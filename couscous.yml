@@ -4,15 +4,15 @@ template:
     url: https://github.com/LaunchCodeEducation/Template-Light
 
 # Base URL of the published website
-baseUrl: http://education.launchcode.org/cs50x-pleasantville
+baseUrl: http://education.launchcode.org/cs50x-maryville
 
 
 # Used to link to the GitHub project
 github:
     user: LaunchCodeEducation 
-    repo: cs50x-pleasantville 
+    repo: cs50x-maryville 
 
-title: LaunchCode's CS50x - Pleasantville 
+title: LaunchCode's CS50x - Maryville 
 
 # The left menu bar
 menu:
@@ -37,9 +37,9 @@ menu:
             attributes: target="_blank"
         piazza:
             text: Piazza
-            absoluteUrl: http://piazza.com/link-to-pleasantville-piazza-page
+            absoluteUrl: http://piazza.com/link-to-maryville-piazza-page
             attributes: target="_blank"
         studentguide:  
             text: Student Guide
-            absoluteUrl: https://docs.google.com/document/d/link-to-pleasantville-student-guide
+            absoluteUrl: https://docs.google.com/document/d/link-to-maryville-student-guide
             attributes: target="_blank"
