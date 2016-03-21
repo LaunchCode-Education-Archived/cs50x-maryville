@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>LaunchCode&#039;s CS50x - Maryville</title>
+
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/font-awesome.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/highlight.dark.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/main.css">
+    </head>
+    <body>
+
+        <header class="navbar navbar-default navbar-fixed-top">
+
+            <a class="navbar-brand" href="http://education.launchcode.org/cs50x-maryville/">
+                LaunchCode&#039;s CS50x - Maryville
+            </a>
+
+        </header>
+
+        <main class="container-fluid">
+            <div class="row">
+
+                
+                    <nav id="sidebar" class="col-sm-3 col-lg-2" role="navigation">
+
+                        <ul class="nav nav-pills nav-stacked">
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/calendar/">
+                                        Calendar
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/how-to-take-this-class/">
+                                        How To Take This Class
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/helpful-resources/">
+                                        Helpful Resources
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://cs50.io/">
+                                        CS50 IDE
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://labs.vocareum.com/home/login.php">
+                                        Vocareum
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://piazza.com/link-to-maryville-piazza-page">
+                                        Piazza
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://docs.google.com/document/d/link-to-maryville-student-guide">
+                                        Student Guide
+                                    </a>
+                                </li>
+                                                    </ul>
+
+                    </nav>
+
+                
+                <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
+                    <pre><code class="language-c">/**
+ * toystorage.c
+ * 
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;cs50.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;ctype.h&gt;
+
+#define NUM_BINS 27
+
+// a node structure for use in implementing singly linked lists
+typedef struct node
+{
+    char* name;
+    struct node* next;
+} node;
+
+int hashByFirstLetter(char* inputString);
+
+void printBin(int binNumber, node* table[]);
+
+void freeAll(node* table[]);
+
+int main(void)
+{
+    printf("Welcome, valued employee.\n");
+
+    // Initialize an array of (initially null) pointers for use in a hash table. 
+    node* table[NUM_BINS] = { NULL };
+
+    // Make a loop where you ask the user if they want to put a new toy in;
+    // if they input "q", stop, else, take the string as a name
+    while(true)
+    {
+        printf("Please select an option\n\ta -- to add a new toy to the warehouse\n\tq -- to quit\n");
+        char* input = GetString();
+
+        if(strcmp("q", input) == 0)
+        {
+            // User wants to quit, so break out of the while loop
+            break;
+        } 
+
+        // TODO: your code goes here! Here's what you should do:
+        // - using malloc, make a new node
+        // - prompt the user for the name of the new toy
+        // - set your node's "name" field to the string that the user inputted
+        // - use the hashByFirstLetter function to obtain a hash key for the toy name
+        // - use this hash key to insert the new node into its proper "bin"
+        //      - make a variable pointing to the current first node in the linked list for this bin
+        //      - to insert the new node, update its "next" pointer so that it points to the current first node
+        //      - then make the table point to your new node
+
+        // now we report what happened
+        printf("%s has been added to bin %i:", toynode-&gt;name, hashkey);
+        printBin(hashkey, table);
+    }
+
+    // if we're here, the user just quit, so wrap things up
+
+    // print a summary
+    printf("Contents of all bins:\n");
+    for (int i = 0; i &lt; NUM_BINS; i++)
+    {
+        printBin(i, table);
+    }
+
+    //let's remember to free all the memory we malloc'ed
+    freeAll(table);
+
+    // that's all folks
+    printf("Goodbye, valued employee.\n");
+}
+
+/**
+ * hashByFirstLetter
+ * 
+ * A hash function that returns an index for every string passed in
+ * For any string, returns a key based on its first letter
+ * Capitals and lowercase get the same key (e.g. 'A' and 'a' both return 0)
+ * non-letter characters share one key (26)
+ */
+int hashByFirstLetter(char* inputString)
+{
+    // get the first letter
+    char firstChar = *inputString;
+
+    // if it's not a letter return the max index
+    if (!isalpha(firstChar))
+    {
+        return NUM_BINS - 1;
+    }
+
+    // we have a letter. return its alphabet position
+    int ascii = (int)(toupper(firstChar));
+    return ascii - 'A';
+}
+
+/**
+ * printBin
+ * 
+ * prints the contents of a hash-table "bin" to the console
+ * you must tell it which bin number you want to print,
+ * and also pass a reference to the hashtable itself
+ */
+void printBin(int binNumber, node* table[])
+{
+    // get the appropriate list from the table
+    node* currentNode = table[binNumber];
+
+    // if the list is empty, don't bother continuing
+    if (currentNode == NULL)
+    {
+        return;
+    }
+
+    // walk over the list and print a line for each of its nodes 
+    printf("bin %i contains:\n", binNumber);
+    do
+    {
+        printf("\t%s\n", currentNode-&gt;name);
+        currentNode = currentNode-&gt;next;
+    } while(currentNode != NULL);
+    printf("\n");
+}
+
+/**
+ * freeAll
+ * 
+ * frees all memory in a hash-table
+ */
+void freeAll(node* table[])
+{
+    // for each entry in the table...
+    for (int i = 0; i &lt; NUM_BINS; i++)
+    {
+        // get the head of the list
+        node* toynode = table[i];
+
+        // walk over the entire list and free all the nodes
+        while (toynode != NULL)
+        {
+            // grab a reference to the next node (we'll need this in a sec)
+            node* next = toynode-&gt;next;
+
+            // free the current node and its associated data
+            free(toynode-&gt;name);
+            free(toynode);
+
+            // walk to the next node
+            toynode = next;
+        }
+    }
+}</code></pre>
+                </section>
+
+            </div>
+        </main>
+
+        <footer>
+            <div class="container-fluid">
+                <p class="text-muted">
+                    website generated with <a href="http://couscous.io" title="Markdown website generator">Couscous</a>
+                </p>
+            </div>
+        </footer>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="//yastatic.net/highlightjs/8.2/highlight.min.js"></script>
+
+        <script>
+            $(function() {
+                $("section>h1").wrap('<div class="page-header" />');
+                // Syntax highlighting
+                hljs.initHighlightingOnLoad();
+            });
+        </script>
+
+    </body>
+</html>

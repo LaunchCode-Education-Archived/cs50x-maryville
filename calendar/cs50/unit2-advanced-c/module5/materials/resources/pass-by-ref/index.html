@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>LaunchCode&#039;s CS50x - Maryville</title>
+
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/font-awesome.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/highlight.dark.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/main.css">
+    </head>
+    <body>
+
+        <header class="navbar navbar-default navbar-fixed-top">
+
+            <a class="navbar-brand" href="http://education.launchcode.org/cs50x-maryville/">
+                LaunchCode&#039;s CS50x - Maryville
+            </a>
+
+        </header>
+
+        <main class="container-fluid">
+            <div class="row">
+
+                
+                    <nav id="sidebar" class="col-sm-3 col-lg-2" role="navigation">
+
+                        <ul class="nav nav-pills nav-stacked">
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/calendar/">
+                                        Calendar
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/how-to-take-this-class/">
+                                        How To Take This Class
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/helpful-resources/">
+                                        Helpful Resources
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://cs50.io/">
+                                        CS50 IDE
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://labs.vocareum.com/home/login.php">
+                                        Vocareum
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://piazza.com/link-to-maryville-piazza-page">
+                                        Piazza
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://docs.google.com/document/d/link-to-maryville-student-guide">
+                                        Student Guide
+                                    </a>
+                                </li>
+                                                    </ul>
+
+                    </nav>
+
+                
+                <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
+                    <h5 id="module-5">Module 5</h5>
+<p><a href="../../class1-prep#more-on-pointers-and-memory--some-tricky-gotchas">Back to Class 1 Prep</a></p>
+<h1 id="resource-pass-by-reference">Resource: Pass by Reference</h1>
+<p>Recall from Module 4 that functions generally receive copies of whatever values you pass in. This is called &quot;passing by value&quot;, and is the reason why the <code>swap</code> function failed to actually swap anything. To fix <code>swap</code>, we had to pass the two variables &quot;by reference&quot; instead:</p>
+<pre><code class="language-c">void swap(int* x, int* y);</code></pre>
+<p>The above signature indicates that <code>swap</code> receives the <em>addresses</em> of two <code>int</code>s: <code>x</code> is the address in memory where an <code>int</code> is stored, and so is <code>y</code>. The body of the function then goes and does the work of swapping the &quot;real&quot; values by overwriting the memory at those addresses.</p>
+<p>This is a very common pattern: a function that receives a pointer to some value, and then goes to that spot in memory and updates the value there.</p>
+<p>In this resource, we present 3 more examples of &quot;pass by reference&quot; functions, just to get you comfortable with the idea.</p>
+<h3 id="1-cut-in-half">1. Cut in Half</h3>
+<p>First, we have a program that simply divides a number by 2:</p>
+<pre><code class="language-nohighlight">$ ./cutinhalf 46.5
+I halved the number you gave me
+It is now 23.250000</code></pre>
+<p>Check out the source for <a href="./cutinhalf.html">cutinhalf.c</a>. Notice how there is a function called <code>cutInHalf</code>, whose signature is:</p>
+<pre><code class="language-c">void cutInHalf(float* n);</code></pre>
+<p>In <code>main</code>, we call this function like so:</p>
+<pre><code class="language-c">cutInHalf(&amp;n);</code></pre>
+<p>by passing the address of <code>n</code>, our <code>float</code> variable. And after making that call, <code>n</code> has been &quot;magically&quot; updated to half of whatever it was.</p>
+<p>This is a contrived example. You would probably never actually implement this program with a pass-by-ref function (or any function at all!). But hopefully the simplicity here makes it easy to see how the mechanics of function work.</p>
+<h3 id="2-vowel-caps">2. Vowel Caps</h3>
+<p>The next example is a program that capitalizes vowels in a string:</p>
+<pre><code class="language-nohighlight">./vowelcaps "I like doin stuff"                                                             
+I took the liberty of capitalizing all your vowels...
+I lIkE dOIn stUff</code></pre>
+<p>Check out the source for <a href="./vowelcaps.html">vowelcaps.c</a>. Pretty similar to <code>cutinhalf.c</code>. In this case the function looks like this:</p>
+<pre><code class="language-c">void capitalizeVowels(char* str);</code></pre>
+<p>and in <code>main</code>, we call the <code>capitalizeVowels</code> function like this:</p>
+<pre><code class="language-c">capitalizeVowels(str);</code></pre>
+<p>Question: Recall that in the previous example, we used the address-of <code>&amp;</code> operator. How come we didn't have to do that in this time, like so:</p>
+<pre><code class="language-c">capitalizeVowels(&amp;str);</code></pre>
+<p>?</p>
+<p>Answer: Because in this case <code>str</code> is <em>already</em> an address. The type of <code>str</code> is <code>char*</code>, i.e. pointer-to-a-<code>char</code>. So by default we are already passing a reference to the data that needs to be overwritten. If we tried to pass <code>&amp;str</code>, that would actually be a <code>char**</code>: a pointer to a pointer to a char!</p>
+<h1 id="3-late-grade">3. Late grade</h1>
+<p>In this example, we pass a reference to a <code>struct</code> into our function. The program defines a <code>struct</code> representing a student's grade on a homework assignment. The hard-coded situation is that a student named Suzie turned in her assignment late, so we want to retroactively change her grade to deduct points from her score.</p>
+<pre><code class="language-nohighlight">$ ./lategrade 
+Suzie got a score of 94 on the assignment. But you say she turned it in late?
+How many days late did Suzie submit her work?
+4
+Suzie's PERMANENT RECORD has been updated to reflect the late submission.
+Her new score for the assignment is 82</code></pre>
+<p>Go look quickly at the source code for <a href="./lategrade.html">lategrade.c</a>.</p>
+<p>In this case, our function takes a reference to an <code>assignmentRecord</code>, and an <code>int</code> representing how many days late Suzie was. It then updates the score of the <code>assignmentRecord</code> to reflect the late submission. The signature is this:</p>
+<pre><code class="language-c">void dockPoints(assignmentRecord* grade, int daysLate)</code></pre>
+<p>and we call it like this:</p>
+<pre><code class="language-c">dockPoints(&amp;suzieRecord, daysLate);</code></pre>
+<p>We do use the <code>&amp;</code> operator for <code>suzieRecord</code> here, because <code>suzieRecord</code> is just a normal struct. We need to pass in a pointer to a struct.</p>
+<p>Also notice that inside the body of the <code>dockPoints</code> function, once we have a pointer to the struct, we need to use arrow notation to update the struct's <code>score</code> field:</p>
+<pre><code class="language-c">record-&gt;score = record-&gt;score - pointsOff;</code></pre>
+<p><code>record</code> here is a pointer to the struct. So in order to update it, we need to go to that location in memory. The <code>-&gt;</code> operator allows us to do that. Recall that this</p>
+<pre><code class="language-c">record-&gt;score</code></pre>
+<p>is short-hand for </p>
+<pre><code class="language-c">(*record).score</code></pre>
+                </section>
+
+            </div>
+        </main>
+
+        <footer>
+            <div class="container-fluid">
+                <p class="text-muted">
+                    website generated with <a href="http://couscous.io" title="Markdown website generator">Couscous</a>
+                </p>
+            </div>
+        </footer>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="//yastatic.net/highlightjs/8.2/highlight.min.js"></script>
+
+        <script>
+            $(function() {
+                $("section>h1").wrap('<div class="page-header" />');
+                // Syntax highlighting
+                hljs.initHighlightingOnLoad();
+            });
+        </script>
+
+    </body>
+</html>

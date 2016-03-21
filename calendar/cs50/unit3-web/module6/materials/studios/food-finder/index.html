@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>LaunchCode&#039;s CS50x - Maryville</title>
+
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/font-awesome.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/highlight.dark.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/main.css">
+    </head>
+    <body>
+
+        <header class="navbar navbar-default navbar-fixed-top">
+
+            <a class="navbar-brand" href="http://education.launchcode.org/cs50x-maryville/">
+                LaunchCode&#039;s CS50x - Maryville
+            </a>
+
+        </header>
+
+        <main class="container-fluid">
+            <div class="row">
+
+                
+                    <nav id="sidebar" class="col-sm-3 col-lg-2" role="navigation">
+
+                        <ul class="nav nav-pills nav-stacked">
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/calendar/">
+                                        Calendar
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/how-to-take-this-class/">
+                                        How To Take This Class
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/helpful-resources/">
+                                        Helpful Resources
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://cs50.io/">
+                                        CS50 IDE
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://labs.vocareum.com/home/login.php">
+                                        Vocareum
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://piazza.com/link-to-maryville-piazza-page">
+                                        Piazza
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://docs.google.com/document/d/link-to-maryville-student-guide">
+                                        Student Guide
+                                    </a>
+                                </li>
+                                                    </ul>
+
+                    </nav>
+
+                
+                <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
+                    <h5 id="module-6">Module 6</h5>
+<p><a href="../../class1">Back to Class 1</a></p>
+<h1 id="studio-food-finder">Studio: Food Finder</h1>
+<p>The CS50 staff have created a few APIs that are available for students to play with. API stands for Application Program Interface. An API provides a consistent way to access a program. The programmer (that's you!) provides a request to the API using a <strong>method</strong>, providing <strong>parameters</strong> that specify what exactly is being requested. If it sounds similar to using functions in C, that's because it is! The biggest difference for this studio is that the requests are sent over the web instead of using C.</p>
+<p>For this studio we are going to use the <a href="https://manual.cs50.net/api/food/">Food API</a> for meals served at Harvard to answer some basic questions.</p>
+<h3 id="setting-up">Setting Up</h3>
+<p>You'll notice that you need an &quot;API key&quot; in order to proceed.</p>
+<p><a href="https://docs.cs50.net/signup" target="_blank"><a href="https://docs.cs50.net/signup">https://docs.cs50.net/signup</a></a></p>
+<p>Fill out the form in the link above. You will then be sent an email to verify your account. Go to the link in the email and login then click the API credentials link at the top of the page. You should then see something that says:</p>
+<pre><code class="language-nohighlight">User Key 123456789123456789123456789</code></pre>
+<p>This is your API key. When you start forming requests to be sent to the API, you will need to use your API key. If you don't, the API will not send you back any results! This will make more sense once we look at a few examples of requests.</p>
+<h3 id="using-the-api">Using the API</h3>
+<p>To use the API we need to send a request. According to <a href="https://manual.cs50.net/api/food/">the documentation</a>, a request looks something like this:</p>
+<pre><code class="language-nohighlight">http://api.cs50.net/food/3/facts?param1=value1&amp;param2=value2&amp;...</code></pre>
+<p>Each request will contain the address to the API, followed by a list of parameters. To request a specific piece of information you need to set these parameters appropriately. For example, if I want to see what was on the menu for lunch today, I could use the following request:</p>
+<pre><code class="language-nohighlight">http://api.cs50.net/food/3/menus?key=123456789123456789123456789&amp;meal=LUNCH&amp;output=json</code></pre>
+<p>Remember that you will have to use the API key that was assigned to you. The key in the example above will not work! Take it out and replace it with your own key.</p>
+<p>Once you have your request, you can run it by using curl, or by pasting the request into a browser window. The first entry of the results might look something like this:</p>
+<pre><code class="language-nohighlight">{
+    "date": "2016-03-10",
+    "meal": "LUNCH",
+    "category": "ACCOMPANIMENTS &amp; FRUIT",
+    "recipe": "201002",
+    "name": "Local Apples",
+    "portion": "1",
+    "unit": "each"
+}</code></pre>
+<p>This is a format called JSON. JSON lists key value pairs separated by a colon, and is fairly easy to read. You can also get results in XML if you wish.</p>
+<h3 id="food-finder">Food Finder</h3>
+<p>Once you have everything set up, use <a href="https://manual.cs50.net/api/food/">the documentation</a> to form requests that will answer the following questions:</p>
+<p><strong>Question 1</strong>: What items were on the menu for breakfast yesterday?</p>
+<p><strong>Question 2</strong>: Examine this menu item:</p>
+<pre><code class="language-nohighlight">{
+  "date": "2016-03-10",
+  "meal": "DINNER",
+  "category": "ENTREE SALADS",
+  "recipe": "510036",
+  "name": "Taco Nacho Salad",
+  "portion": "6",
+  "unit": "oz"
+}</code></pre>
+<p>Write a request that determines how many calories are in five portions of this item.</p>
+<p><strong>Question 3</strong>: Write a request that looks up the ingredients for Taco Nacho Salad. Try this request in two ways: one that uses JSON for the results and one that uses XML. Compare the two result sets and take note of the similarities and differences between them. Your answer to this question should include 2 requests: one for JSON, and one for XML.</p>
+<h3 id="how-to-submit">How to Submit</h3>
+<p>Once you are finished, put your requests into a text file called <strong>requests.txt</strong> and upload that file to Vocareum. Your should include the answers to all 3 questions. </p>
+                </section>
+
+            </div>
+        </main>
+
+        <footer>
+            <div class="container-fluid">
+                <p class="text-muted">
+                    website generated with <a href="http://couscous.io" title="Markdown website generator">Couscous</a>
+                </p>
+            </div>
+        </footer>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="//yastatic.net/highlightjs/8.2/highlight.min.js"></script>
+
+        <script>
+            $(function() {
+                $("section>h1").wrap('<div class="page-header" />');
+                // Syntax highlighting
+                hljs.initHighlightingOnLoad();
+            });
+        </script>
+
+    </body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>LaunchCode&#039;s CS50x - Maryville</title>
+
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/font-awesome.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/highlight.dark.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/main.css">
+    </head>
+    <body>
+
+        <header class="navbar navbar-default navbar-fixed-top">
+
+            <a class="navbar-brand" href="http://education.launchcode.org/cs50x-maryville/">
+                LaunchCode&#039;s CS50x - Maryville
+            </a>
+
+        </header>
+
+        <main class="container-fluid">
+            <div class="row">
+
+                
+                    <nav id="sidebar" class="col-sm-3 col-lg-2" role="navigation">
+
+                        <ul class="nav nav-pills nav-stacked">
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/calendar/">
+                                        Calendar
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/how-to-take-this-class/">
+                                        How To Take This Class
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/helpful-resources/">
+                                        Helpful Resources
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://cs50.io/">
+                                        CS50 IDE
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://labs.vocareum.com/home/login.php">
+                                        Vocareum
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://piazza.com/link-to-maryville-piazza-page">
+                                        Piazza
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://docs.google.com/document/d/link-to-maryville-student-guide">
+                                        Student Guide
+                                    </a>
+                                </li>
+                                                    </ul>
+
+                    </nav>
+
+                
+                <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
+                    <h5 id="module-6">Module 6</h5>
+<p><a href="../../class2-prep">Back to Class 2 Prep</a></p>
+<h1 id="resource-html-forms">Resource: HTML Forms</h1>
+<p>In the <a href="https://www.youtube.com/watch?v=RQ2_TIXBo00&amp;list=PLhQjrBD2T381f7IlC090UL9JN-PJfGoLd&amp;index=14">search-0</a> walkthrough, David Malan uses an HTML <code>&lt;form&gt;</code> to create his own &quot;front end&quot; for Google's search service.</p>
+<p>Here is the source code of his HTML form:</p>
+<pre><code class="language-html">&lt;form action="https://www.google.com/search" method="get"&gt;
+    &lt;input name="q" type="text"/&gt;
+    &lt;br/&gt;
+    &lt;input type="submit" value="CS50 Search"/&gt;
+&lt;/form&gt;</code></pre>
+<p>Let's take a miute to break this down. </p>
+<h3 id="its-just-http">It's just HTTP</h3>
+<p>First things first. It is important to understand is that &quot;searching for something on Google&quot;, no matter how you slice it, really just amounts to sending out an HTTP request like this:</p>
+<pre><code class="language-nohighlight">GET /search HTTP/1.1
+Host: https://www.google.com</code></pre>
+<p>A <code>&lt;form&gt;</code> is simply a nice, user-friendly way of constructing and sending that HTTP request.</p>
+<h3 id="constructing-the-request">Constructing the Request</h3>
+<p>There are a handful of ingredients we need in order to create the request:</p>
+<table>
+<thead>
+<tr>
+<th>HTTP Ingredient</th>
+<th>Description</th>
+<th>Example Value</th>
+<th>HTML Form Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Host</code></td>
+<td>Where is the request being sent?</td>
+<td><code>https://www.google.com</code></td>
+<td><code>&lt;form action="https://www.google.com" ... /&gt;</code></td>
+</tr>
+<tr>
+<td><code>Endpoint</code> or <code>Path</code></td>
+<td>Which part of the host site do you want to talk to?</td>
+<td><code>/search</code></td>
+<td><code>&lt;form action="https://www.google.com/search" ... /&gt;</code> <br> notice we tacked <code>/search</code> onto the end</td>
+</tr>
+<tr>
+<td><code>Method</code></td>
+<td>What type of HTTP request is this?</td>
+<td><code>GET</code></td>
+<td><code>&lt;form ... method="get" /&gt;</code></td>
+</tr>
+<tr>
+<td>additional <code>Field</code>s</td>
+<td>Any other info that you need to send, as a name + value pair</td>
+<td>What do we want to search for? <br> How about pandas! <br> <code>q</code> + <code>pandas</code></td>
+<td><code>&lt;input name="q" value="pandas"/&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="sending-the-request">Sending the Request</h3>
+<p>When the user clicks the <code>&lt;input type="submit" /&gt;</code> button, the request will constructed and sent! </p>
+<h3 id="query-string">Query String</h3>
+<p>The user's browser, when sending the request, will also update the URL in its address bar at the top of the window, to indicate that the user has &quot;left&quot; the previous page and is now &quot;visiting&quot; this new page:</p>
+<p><code>https://www.google.com/search?q=pandas</code></p>
+<p>Notice that the resulting URL (also known as the &quot;query string&quot; for our request) contains a lot of the request's info.</p>
+<p>Specifically, notice that the host and endpoint make up the beginning of the url, followed by a <code>?</code> mark, followed by the additional field(s). </p>
+<p>If there is more than one additional field, they will be separated with a <code>&amp;</code> symbol:</p>
+<p><code>https://www.google.com/search?q=pandas&amp;fruit=banana</code></p>
+<table>
+<thead>
+<tr>
+<th>Host</th>
+<th>Endpoint</th>
+<th>(<code>?</code>)</th>
+<th>Field 1</th>
+<th>(<code>&amp;</code>)</th>
+<th>Field 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>https://www.google.com</code></td>
+<td><code>/search</code></td>
+<td><code>?</code></td>
+<td><code>q=pandas</code></td>
+<td><code>&amp;</code></td>
+<td><code>fruit=banana</code></td>
+</tr>
+</tbody>
+</table>
+<p>As an aside, what about the HTTP <code>method</code> (ours was <code>GET</code>) -- is that reflceted in the URL? It is not. But although the query string does not display the method, it is affected by it. If your <code>method</code> is <code>POST</code> rather than <code>GET</code>, then the additional <code>Field</code>s like (<code>q=panda</code>) will not show up in the string. This is for security purposes in situations where you don't want sensitive information visible in the URL.</p>
+<h3 id="adding-more-fields">Adding More Fields</h3>
+<p>If we want to add additional fields to our request, we simply need to add more <code>&lt;input&gt;</code> elements to our form. </p>
+<p>For instance, let's say we wanted to do an <em>image</em> search. It turns out that the way to specify a google image search is to include another field in your request: the <code>"tbm"</code> field should have a value of <code>"isch"</code> (I have no idea what those keywords mean, I just know it works). We want our url to look like this <a href="https://www.google.com/search?q=pandas&tbm=isch">https://www.google.com/search?q=pandas&tbm=isch</a>. So we simply need to add another input:</p>
+<pre><code class="language-html">&lt;form action="https://www.google.com/search" method="get"&gt;
+    &lt;input name="q" type="text"/&gt;
+    &lt;br/&gt;
+    &lt;input name="tbm" value="isch" type="text"/&gt;
+    &lt;br/&gt;
+    &lt;input type="submit" value="CS50 Search"/&gt;
+&lt;/form&gt;</code></pre>
+<p>Check out <a href="./image-search-0.html" target="_blank"l>image-search-0.html</a> to see this in action.</p>
+<h3 id="hidden-inputs">Hidden Inputs</h3>
+<p>In <a href="./image-search-0.html" target="_blank"l>image-search-0.html</a>, the resulting form looks kind of silly because we added that extra input, so the user now sees a text field with <code>"isch"</code> inside it.</p>
+<p>We don't actually want the user to see this field, or to be able to change it. There is a special input type, <code>"hidden"</code>, which allows us to fix this problem by including additional fields to our request, but without actually rendering anything visible to the screen:</p>
+<pre><code class="language-html">&lt;input name="tbm" value="isch" type="hidden"/&gt;</code></pre>
+<p>Check out <a href="./image-search-1.html" target="_blank"l>image-search-1.html</a> to see the result. The extra <code>&lt;input&gt;</code> is no longer visible, but we still are able to do an image search and look at pictures of pandas.</p>
+                </section>
+
+            </div>
+        </main>
+
+        <footer>
+            <div class="container-fluid">
+                <p class="text-muted">
+                    website generated with <a href="http://couscous.io" title="Markdown website generator">Couscous</a>
+                </p>
+            </div>
+        </footer>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="//yastatic.net/highlightjs/8.2/highlight.min.js"></script>
+
+        <script>
+            $(function() {
+                $("section>h1").wrap('<div class="page-header" />');
+                // Syntax highlighting
+                hljs.initHighlightingOnLoad();
+            });
+        </script>
+
+    </body>
+</html>

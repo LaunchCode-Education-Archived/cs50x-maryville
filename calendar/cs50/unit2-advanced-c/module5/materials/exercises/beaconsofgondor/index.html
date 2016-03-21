@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>LaunchCode&#039;s CS50x - Maryville</title>
+
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/font-awesome.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/highlight.dark.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/main.css">
+    </head>
+    <body>
+
+        <header class="navbar navbar-default navbar-fixed-top">
+
+            <a class="navbar-brand" href="http://education.launchcode.org/cs50x-maryville/">
+                LaunchCode&#039;s CS50x - Maryville
+            </a>
+
+        </header>
+
+        <main class="container-fluid">
+            <div class="row">
+
+                
+                    <nav id="sidebar" class="col-sm-3 col-lg-2" role="navigation">
+
+                        <ul class="nav nav-pills nav-stacked">
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/calendar/">
+                                        Calendar
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/how-to-take-this-class/">
+                                        How To Take This Class
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/helpful-resources/">
+                                        Helpful Resources
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://cs50.io/">
+                                        CS50 IDE
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://labs.vocareum.com/home/login.php">
+                                        Vocareum
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://piazza.com/link-to-maryville-piazza-page">
+                                        Piazza
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://docs.google.com/document/d/link-to-maryville-student-guide">
+                                        Student Guide
+                                    </a>
+                                </li>
+                                                    </ul>
+
+                    </nav>
+
+                
+                <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
+                    <h5 id="module-5">Module 5</h5>
+<p><a href="../../class1-prep#linked-lists">Back to Prep for Class 1</a></p>
+<h1 id="exercise-the-beacons-of-gondor">Exercise: The Beacons of Gondor</h1>
+<p>Gondor calls for aid!  Will Rohan answer?</p>
+<p>Inspired by the hit Academy Award(TM) winning film The Lord of The Rings: Return of the King, we’ve provided an exercise where, in order to complete it, you must write code to iterate through a singly-linked list.</p>
+<p>In the movie, the nation of Gondor has a warning beacon system where each beacon is a large bonfire, and is visible from one other beacon.  In order to send an alert to other nations, a soldier lights the first beacon, which causes the second beacon to be lit, and so on, until all of them are lit, signaling a call for help.</p>
+<p>It can be visualized like this:</p>
+<pre><code class="language-nohighlight">Current status of the beacons of Gondor:
+* _ _ _ _ _ _ _ _ _</code></pre>
+<p>In the above lines, a &quot;*&quot; indicates a lit beacon, and a &quot;_&quot; indicates one that is not lit.  Only one beacon is currently lit.</p>
+<p>We’ve already <a href="beaconsofgondor.html">provided code</a> for a singly-linked list implementation, where each node represents one beacon of Gondor: each node has a bool to indicate whether it is lit or not, and a pointer to the next visible beacon.</p>
+<p>The code provided initializes a linked list where the first beacon is already lit.  Write the code to iterate through the rest of the list, lighting each beacon one-by-one.</p>
+<p>More specifically:</p>
+<ul>
+<li>initialize a pointer to a beacon object</li>
+<li>use a while loop to check each beacon in the list</li>
+<li>set the &quot;isLit&quot; variable to true for each beacon</li>
+<li>remember to &quot;move&quot; the pointer at the end of every iteration!</li>
+</ul>
+<p>Output from a correct implementation should look like this:</p>
+<pre><code class="language-nohighlight">$ ./beaconsofgondor
+Invaders! Light the beacons of Gondor!
+Current status of the beacons of Gondor:
+* _ _ _ _ _ _ _ _ _
+Current status of the beacons of Gondor:
+* * * * * * * * * *
+The beacons are all lit! Our allies have been alerted!</code></pre>
+                </section>
+
+            </div>
+        </main>
+
+        <footer>
+            <div class="container-fluid">
+                <p class="text-muted">
+                    website generated with <a href="http://couscous.io" title="Markdown website generator">Couscous</a>
+                </p>
+            </div>
+        </footer>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="//yastatic.net/highlightjs/8.2/highlight.min.js"></script>
+
+        <script>
+            $(function() {
+                $("section>h1").wrap('<div class="page-header" />');
+                // Syntax highlighting
+                hljs.initHighlightingOnLoad();
+            });
+        </script>
+
+    </body>
+</html>

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>LaunchCode&#039;s CS50x - Maryville</title>
+
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/font-awesome.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/highlight.dark.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/main.css">
+    </head>
+    <body>
+
+        <header class="navbar navbar-default navbar-fixed-top">
+
+            <a class="navbar-brand" href="http://education.launchcode.org/cs50x-maryville/">
+                LaunchCode&#039;s CS50x - Maryville
+            </a>
+
+        </header>
+
+        <main class="container-fluid">
+            <div class="row">
+
+                
+                    <nav id="sidebar" class="col-sm-3 col-lg-2" role="navigation">
+
+                        <ul class="nav nav-pills nav-stacked">
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/calendar/">
+                                        Calendar
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/how-to-take-this-class/">
+                                        How To Take This Class
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/helpful-resources/">
+                                        Helpful Resources
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://cs50.io/">
+                                        CS50 IDE
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://labs.vocareum.com/home/login.php">
+                                        Vocareum
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://piazza.com/link-to-maryville-piazza-page">
+                                        Piazza
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://docs.google.com/document/d/link-to-maryville-student-guide">
+                                        Student Guide
+                                    </a>
+                                </li>
+                                                    </ul>
+
+                    </nav>
+
+                
+                <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
+                    <h5><a href="../../">Module 5</a></h5>
+<h1 id="class-1-prep">Class 1 Prep</h1>
+<p>Before coming to <a href="../class1">Class 1</a>, please complete the following tasks:</p>
+<h5 id="lecture">Lecture</h5>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Resource Type</th>
+<th>Link</th>
+<th>Instructions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Watch</td>
+<td>Lecture</td>
+<td><a href="https://www.youtube.com/watch?v=RsIP1gRneOs" target="_blank">Week 5</a></td>
+<td>This lecture continues looking at memory management, and some common &quot;gotchas&quot; that you have to watch out for. Additionally, we learn about linked lists, stacks and queues, which are &quot;data structures&quot; that provide various ways of interacting with collections of data.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h5 id="more-on-pointers-and-memory--some-tricky-quotgotchasquot">More on Pointers and Memory / Some tricky &quot;gotchas&quot;</h5>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Resource Type</th>
+<th>Link</th>
+<th>Instructions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Read</td>
+<td>Lecture Notes</td>
+<td><a href="http://cdn.cs50.net/2015/fall/lectures/5/m/notes5m/notes5m.html#more_on_pointers" target="_blank">Week 5 / More On Pointers</a></td>
+<td>These notes show an example of how you should never dereference a pointer to some memory that you (or a function you called) did not <code>malloc</code>. If you do, you will be accessing memory that does not belong to you, and you might get a segmentation fault.</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Lecture Notes</td>
+<td><a href="http://cdn.cs50.net/2015/fall/lectures/5/m/notes5m/notes5m.html#cs50_library" target="_blank">Week 5 / CS50 Library</a></td>
+<td>These notes walk us through the actual source code of how the <code>GetString</code> and <code>GetInt</code> functions are implemented in the <code>&lt;cs50.h&gt;</code> library. <code>GetString</code> is actually very complicated because the function does not know ahead of time how long the user's input will be, so it must look through the input string and continually reallocate additional memory until reaching the end. <code>GetInt</code> simply delegates most of the work to <code>GetString</code> and then subsequently ensures that the &quot;string&quot; truly does contain an integer.</td>
+</tr>
+<tr>
+<td>Follow-Along</td>
+<td>Walkthrough</td>
+<td><a href="https://www.youtube.com/watch?v=l1sfaAyt6ac&list=PLhQjrBD2T381hO-XiBPrps4fzt4rVY3E8&index=1" target="_blank">scanf-0</a></td>
+<td>Follow along with David's first attempt at implementing a program that gets an integer value from the user (without using <code>GetInt</code>). <br>You've already seen this program, but see if you can recreate it using the pseudocode <a href="../../../../../../helpful-resources/modules/module-5.md#class-1-task-scanf-0" target="_blank">here.</a></td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Resource</td>
+<td><a href="../resources/pass-by-ref">Pass by Reference</a></td>
+<td>Above we used <code>scanf</code>, which is one of those functions that, rather than returning a value, instead requires you to pass a reference to some memory, and then goes and makes a &quot;overwriting&quot; update at the address you pass in. Here we present a few more examples of functions like that, just to get comfortable with the idea.</td>
+</tr>
+<tr>
+<td>Follow-Along</td>
+<td>Walkthrough</td>
+<td><a href="https://www.youtube.com/watch?v=4zS7RTnRuWY&index=2&list=PLhQjrBD2T381hO-XiBPrps4fzt4rVY3E8" target="_blank">scanf-1</a></td>
+<td>In <code>scanf-0</code>, we were not able to confirm that the user gave us the integer we wanted. To solve this, we'll need to change plans and accept <code>string</code>s. Then later we'll be able to validate the actual type &quot;inside&quot; the string. But first, simply getting the <code>string</code> leads to the problem of figuring out how much memory we need to allocate. <br>You can find the pseudocode to start this task <a href="../../../../../../helpful-resources/modules/module-5.md#class-1-task-scanf-1" target="_blank">here.</a></td>
+</tr>
+<tr>
+<td>Follow-Along</td>
+<td>Walkthrough</td>
+<td><a href="https://www.youtube.com/watch?v=TJK6l_SBLnk&list=PLhQjrBD2T381hO-XiBPrps4fzt4rVY3E8&index=3" target="_blank">scanf-2</a></td>
+<td>This is an improvement to scanf-1. Now we simply pick an arbitrary buffer size. It works... until the user gives some input is too large. <br>You can find the instructions to start this task <a href="../../../../../../helpful-resources/modules/module-5.md#class-1-task-scanf-2" target="_blank">here.</a></td>
+</tr>
+<tr>
+<td>Watch</td>
+<td>Short</td>
+<td><a href="https://www.youtube.com/watch?v=L02X-XNT5No" target="_blank">CS50 Library</a></td>
+<td>In scanf-2, David Malan left us hanging with a decent, but limited solution for getting user input. Now Nate Hardison guides us through the actual source code of the implementation for GetInt and GetString.</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Lecture Notes</td>
+<td><a href="http://cdn.cs50.net/2015/fall/lectures/5/m/notes5m/notes5m.html#memory_and_valgrind" target="_blank">Week 5 / Memory and Valgrind</a></td>
+<td>These notes introduce Valgrind, a program you can run on the command-line that checks your own program for memory issues such as invalid writes (when you try to access memory that doesn't belong to you), and leaks (when you allocate memory but never &quot;give it back&quot; by calling <code>free()</code>).</td>
+</tr>
+<tr>
+<td>Watch</td>
+<td>Short</td>
+<td><a href="https://www.youtube.com/watch?v=fvTsFjDuag8" target="_blank">Valgrind</a></td>
+<td>This short explains in more detail how to use Valgrind.</td>
+</tr>
+<tr>
+<td>Do</td>
+<td>Exercise</td>
+<td><a href="../exercises/leaky">Leaky</a></td>
+<td>Practice your valgrind skills to fix a program that contains a memory leak.</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Lecture Notes</td>
+<td><a href="http://cdn.cs50.net/2015/fall/lectures/5/w/notes5w/notes5w.html#memory" target="_blank">Week 5, continued / Memory</a></td>
+<td>These notes explain how your program's memory comes from two different sources, the Stack and the Heap, and then the notes outline how a malicious user can pwn you with a buffer overflow attack.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h5 id="recursion-review-and-recursive-structs">Recursion Review and Recursive Structs</h5>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Resource Type</th>
+<th>Link</th>
+<th>Instructions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Study</td>
+<td>CS50 Study</td>
+<td><a href="https://study.cs50.net/recursion" target="_blank">recursion</a></td>
+<td>Review these materials detailing how recursion works.</td>
+</tr>
+<tr>
+<td>Watch</td>
+<td>Doug's Playlist</td>
+<td><a href="https://www.youtube.com/watch?v=beqqGIdabrE&index=7&list=PLhQjrBD2T383tGruv374_Yee84qbXeJjq" target="_blank">Call Stack</a></td>
+<td>Doug demonstrates an example of what &quot;The Stack&quot; looks like when you call a recursive function.</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Resource</td>
+<td><a href="../resources/recursive-structs">Recursive Structs</a></td>
+<td>Here we provide a brief review of <code>struct</code>s, and then introduce the concept of a &quot;recursively defined&quot; <code>struct</code>. This is the crucial development that allows us to create data structures such as linked lists, which you will learn about next.</td>
+</tr>
+<tr>
+<td>Watch</td>
+<td>Short</td>
+<td><a href="https://www.youtube.com/watch?v=EzRwP7NV0LM&index=7&list=PLhQjrBD2T381pcj3Ph49iiDkrhZ9FHpHP" target="_blank">Structs</a></td>
+<td>Rewatch this short, which talks more about both regular and recursively defined <code>struct</code>s, and demonstrates an implementation of a linked list. You will see much more about linked lists in the next section below.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h5 id="linked-lists">Linked Lists</h5>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Resource Type</th>
+<th>Link</th>
+<th>Instructions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Read</td>
+<td>Lecture Notes</td>
+<td><a href="http://cdn.cs50.net/2015/fall/lectures/5/m/notes5m/notes5m.html#linked_lists" target="_blank">Week 5 / Linked Lists</a></td>
+<td>These notes explain the advantages that a linked list can give us over an array, and breaks down how to implement a linked list using a recursively defined <code>struct</code>.</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Lecture Notes</td>
+<td><a href="http://cdn.cs50.net/2015/fall/lectures/5/w/notes5w/notes5w.html#linked_lists_continued" target="_blank">Week 5, continued / Linked Lists, continued</a></td>
+<td>These notes recap the pros and cons of linked lists as compared with arrays.</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Lecture Notes</td>
+<td><a href="http://cdn.cs50.net/2015/fall/lectures/5/w/notes5w/notes5w.html#searching" target="_blank">Week 5, continued / Searching</a></td>
+<td>These notes show an example of a function that searches for a particular value in a linked list.</td>
+</tr>
+<tr>
+<td>Watch</td>
+<td>Short</td>
+<td><a href="https://www.youtube.com/watch?v=5nsKtQuT6E8" target="_blank">Singly Linked Lists</a></td>
+<td>Jason Steinkamp talks about linked lists. A &quot;singly-linked&quot; list is the same, normal linked list we have seen so far. (But we could also create a &quot;doubly-linked&quot; list, which you will see soon in upcoming videos.)</td>
+</tr>
+<tr>
+<td>Watch</td>
+<td>Doug's Playlist</td>
+<td><a href="https://www.youtube.com/watch?v=ZoG2hOIoTnA&index=2&list=PLhQjrBD2T382ZqJSoJqAnX7dXVi5-YaRh" target="_blank">Singly-Linked Lists</a></td>
+<td>Doug Lloyd jumps in with a good hearty talk on linked lists.</td>
+</tr>
+<tr>
+<td>Watch</td>
+<td>Doug's Playlist</td>
+<td><a href="https://www.youtube.com/watch?v=HmAEzp1taIE&list=PLhQjrBD2T382ZqJSoJqAnX7dXVi5-YaRh&index=3" target="_blank">Doubly-Linked Lists</a></td>
+<td>Doug now introduces the doubly-linked list, which allows us to walk both forwards and backwards over the list.</td>
+</tr>
+<tr>
+<td>Study</td>
+<td>CS50 Study</td>
+<td><a href="https://study.cs50.net/linked_lists" target="_blank">Linked Lists</a></td>
+<td>CS50 Study gives an overview of linked lists.</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Resource</td>
+<td><a href="../exercises/getstring-ll">GetString with lists</a></td>
+<td>Examine an implementation of GetString() implemented with linked lists</td>
+</tr>
+<tr>
+<td>Do</td>
+<td>Exercise</td>
+<td><a href="../exercises/queensenglish">Queen's English</a></td>
+<td>Linked lists make it very easy to insert new values into the middle of a list. Use this new power to rectify the spelling of words to ensure that they are fit to be unveiled before the <strong>honourable</strong> presence of Her Majesty the Queen.</td>
+</tr>
+<tr>
+<td>Do</td>
+<td>Exercise</td>
+<td><a href="../exercises/beaconsofgondor">Beacons of Gondor</a></td>
+<td>Use linked lists on an epic journey through Middle Earth.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="now-youre-ready-for">Now you're ready for <a href="../class1">Class 1</a></h3>
+                </section>
+
+            </div>
+        </main>
+
+        <footer>
+            <div class="container-fluid">
+                <p class="text-muted">
+                    website generated with <a href="http://couscous.io" title="Markdown website generator">Couscous</a>
+                </p>
+            </div>
+        </footer>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="//yastatic.net/highlightjs/8.2/highlight.min.js"></script>
+
+        <script>
+            $(function() {
+                $("section>h1").wrap('<div class="page-header" />');
+                // Syntax highlighting
+                hljs.initHighlightingOnLoad();
+            });
+        </script>
+
+    </body>
+</html>

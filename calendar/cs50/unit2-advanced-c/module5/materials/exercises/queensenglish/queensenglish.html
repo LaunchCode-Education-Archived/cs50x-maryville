@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>LaunchCode&#039;s CS50x - Maryville</title>
+
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/font-awesome.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/highlight.dark.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/main.css">
+    </head>
+    <body>
+
+        <header class="navbar navbar-default navbar-fixed-top">
+
+            <a class="navbar-brand" href="http://education.launchcode.org/cs50x-maryville/">
+                LaunchCode&#039;s CS50x - Maryville
+            </a>
+
+        </header>
+
+        <main class="container-fluid">
+            <div class="row">
+
+                
+                    <nav id="sidebar" class="col-sm-3 col-lg-2" role="navigation">
+
+                        <ul class="nav nav-pills nav-stacked">
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/calendar/">
+                                        Calendar
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/how-to-take-this-class/">
+                                        How To Take This Class
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/helpful-resources/">
+                                        Helpful Resources
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://cs50.io/">
+                                        CS50 IDE
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://labs.vocareum.com/home/login.php">
+                                        Vocareum
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://piazza.com/link-to-maryville-piazza-page">
+                                        Piazza
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://docs.google.com/document/d/link-to-maryville-student-guide">
+                                        Student Guide
+                                    </a>
+                                </li>
+                                                    </ul>
+
+                    </nav>
+
+                
+                <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
+                    <pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;cs50.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+
+typedef struct node
+{
+    char myChar;
+    struct node* next;
+} node;
+
+node* stringToList(char* inputString)
+{
+    node* first = malloc(sizeof(node));
+    first-&gt;myChar = 'a';
+    first-&gt;next = NULL;
+    node* current = first;
+
+    char* s;
+    for(s = inputString; *s != '\0'; s++)
+    {
+        node* newNode = malloc(sizeof(node));
+        newNode-&gt;myChar = *s;
+        newNode-&gt;next = NULL;
+        current-&gt;next = newNode;
+        current = newNode;
+    }
+    return first-&gt;next;
+}
+
+char* listToString(node* firstChar)
+{
+    // get the length of the string
+    int totalLen = 0;
+    node* current = firstChar;
+    while(current != NULL)
+    {
+        totalLen++;
+        current = current-&gt;next;
+    }
+
+    char *newString = malloc(sizeof(char)*(totalLen+1));
+    char *iter = newString;
+    current = firstChar;
+    for (int i = 0; i &lt; totalLen; i++)
+    {
+        *iter = current-&gt;myChar;
+        current = current-&gt;next;
+        iter++;
+    }
+    *iter = '\0';
+    return newString;
+}
+
+int main(void)
+{
+    // Read in an input string
+    printf("Input string?: \n");
+    char* myString = GetString();
+
+    // Convert that string into a linked list
+    node* firstChar = stringToList(myString);
+
+    // TODO: Your code here! Loop through the list, and every time you see an 'o',
+    // insert a 'u' afterwards
+    node* current = firstChar;
+    while(current != NULL){
+
+    }
+
+    // convert the list back into a string
+    char* newString = listToString(firstChar);
+
+    // print out the "corrected" string
+    printf("Charlatan! I use the Queen's English:\n");
+    printf("%s\n", newString);
+}</code></pre>
+                </section>
+
+            </div>
+        </main>
+
+        <footer>
+            <div class="container-fluid">
+                <p class="text-muted">
+                    website generated with <a href="http://couscous.io" title="Markdown website generator">Couscous</a>
+                </p>
+            </div>
+        </footer>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="//yastatic.net/highlightjs/8.2/highlight.min.js"></script>
+
+        <script>
+            $(function() {
+                $("section>h1").wrap('<div class="page-header" />');
+                // Syntax highlighting
+                hljs.initHighlightingOnLoad();
+            });
+        </script>
+
+    </body>
+</html>

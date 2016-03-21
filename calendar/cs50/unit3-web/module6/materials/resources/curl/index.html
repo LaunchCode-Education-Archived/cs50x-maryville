@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>LaunchCode&#039;s CS50x - Maryville</title>
+
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/font-awesome.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/highlight.dark.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/main.css">
+    </head>
+    <body>
+
+        <header class="navbar navbar-default navbar-fixed-top">
+
+            <a class="navbar-brand" href="http://education.launchcode.org/cs50x-maryville/">
+                LaunchCode&#039;s CS50x - Maryville
+            </a>
+
+        </header>
+
+        <main class="container-fluid">
+            <div class="row">
+
+                
+                    <nav id="sidebar" class="col-sm-3 col-lg-2" role="navigation">
+
+                        <ul class="nav nav-pills nav-stacked">
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/calendar/">
+                                        Calendar
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/how-to-take-this-class/">
+                                        How To Take This Class
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/helpful-resources/">
+                                        Helpful Resources
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://cs50.io/">
+                                        CS50 IDE
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://labs.vocareum.com/home/login.php">
+                                        Vocareum
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://piazza.com/link-to-maryville-piazza-page">
+                                        Piazza
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://docs.google.com/document/d/link-to-maryville-student-guide">
+                                        Student Guide
+                                    </a>
+                                </li>
+                                                    </ul>
+
+                    </nav>
+
+                
+                <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
+                    <h5 id="module-6">Module 6</h5>
+<p><a href="../../class1-prep#http-and-servers">Back to Class 1 Prep</a></p>
+<h1 id="follow-along-curl">Follow Along: cURL</h1>
+<p>There's a really cool program called <code>cURL</code> that allows us to make HTTP requests on the command line. Follow along with me (you can pretend I'm David Malan) as we use curl to practice speaking HTTP-ese with the machines.</p>
+<p>In your IDE, make a directory as usual, at <code>module6/followalongs/curl/</code>, and then navigate to that spot in your terminal window.</p>
+<p>Then type the following into the terminal:</p>
+<pre><code class="language-nohighlight">$ curl google.com</code></pre>
+<p>You should see the following response:</p>
+<pre><code class="language-nohighlight">$ curl google.com
+&lt;HTML&gt;&lt;HEAD&gt;&lt;meta http-equiv="content-type" content="text/html;charset=utf-8"&gt;
+&lt;TITLE&gt;301 Moved&lt;/TITLE&gt;&lt;/HEAD&gt;&lt;BODY&gt;
+&lt;H1&gt;301 Moved&lt;/H1&gt;
+The document has moved
+&lt;A HREF="http://www.google.com/"&gt;here&lt;/A&gt;.
+&lt;/BODY&gt;&lt;/HTML&gt;</code></pre>
+<p>Cool! We just sent an HTTP request to Google, and got back some HTML from them.</p>
+<p>Using the <code>-v</code> option will allow us to see the HTTP headers that were passed back and forth. Run the same command again with <code>-v</code> inserted:</p>
+<pre><code class="language-nohighlight">$ curl -v google.com                                                                               </code></pre>
+<p>and you should see a response like this:</p>
+<pre><code class="language-nohighlight">* Rebuilt URL to: google.com/
+* Hostname was NOT found in DNS cache
+*   Trying 209.85.146.113...
+* Connected to google.com (209.85.146.113) port 80 (#0)
+&gt; GET / HTTP/1.1
+&gt; User-Agent: curl/7.35.0
+&gt; Host: google.com
+&gt; Accept: */*
+&gt; 
+&lt; HTTP/1.1 301 Moved Permanently
+&lt; Location: http://www.google.com/
+&lt; Content-Type: text/html; charset=UTF-8
+&lt; Date: Mon, 29 Feb 2016 17:42:30 GMT
+&lt; Expires: Wed, 30 Mar 2016 17:42:30 GMT
+&lt; Cache-Control: public, max-age=2592000
+* Server gws is not blacklisted
+&lt; Server: gws
+&lt; Content-Length: 219
+&lt; X-XSS-Protection: 1; mode=block
+&lt; X-Frame-Options: SAMEORIGIN
+&lt; 
+&lt;HTML&gt;&lt;HEAD&gt;&lt;meta http-equiv="content-type" content="text/html;charset=utf-8"&gt;
+&lt;TITLE&gt;301 Moved&lt;/TITLE&gt;&lt;/HEAD&gt;&lt;BODY&gt;
+&lt;H1&gt;301 Moved&lt;/H1&gt;
+The document has moved
+&lt;A HREF="http://www.google.com/"&gt;here&lt;/A&gt;.
+&lt;/BODY&gt;&lt;/HTML&gt;
+* Connection #0 to host google.com left intact</code></pre>
+<p>Above, we can see the HTTP <em>request</em> that we sent, and the <em>response</em> that we received back. </p>
+<p>The request was:</p>
+<pre><code class="language-nohighlight">&gt; GET / HTTP/1.1
+&gt; User-Agent: curl/7.35.0
+&gt; Host: google.com
+&gt; Accept: */*</code></pre>
+<p>We made a <code>GET</code> request to <code>/</code> (the root page) of the host <code>google.com</code> using <code>HTTP</code> version <code>1.1</code>, via <code>curl</code>, and we said that we were able to accept a response in any format.</p>
+<p>The remainder of what is shown is the response we received back. </p>
+<p>The response is broken into two parts: the headers, and the body. You can think of the response as an envelope with a letter inside. The headers are various pieces of &quot;meta-data&quot;, the stuff you would write on the outside of the envelope, and the body is the actual letter itself.</p>
+<p>For now we can ignore most of the headers we received, but let's take a look at the first two lines:</p>
+<pre><code class="language-nohighlight">&lt; HTTP/1.1 301 Moved Permanently
+&lt; Location: http://www.google.com/</code></pre>
+<p>As you can see, we received a response code of <code>301</code>, representing <code>Moved Permanently</code>. Essentially, we were told that the host <code>http://google.com</code> does not actually exist-- the <em>real</em> location is the one with the <code>www</code> subdomain, <code>http://www.google.com</code>. A 301 reponse just means: the host you are looking for has been moved permanently to this other location.</p>
+<p>In the response's body, the HTML we received is similary meant to inform a person that Google's site is actually somewhere else. </p>
+<pre><code class="language-html">&lt;HTML&gt;&lt;HEAD&gt;&lt;meta http-equiv="content-type" content="text/html;charset=utf-8"&gt;
+&lt;TITLE&gt;301 Moved&lt;/TITLE&gt;&lt;/HEAD&gt;&lt;BODY&gt;
+&lt;H1&gt;301 Moved&lt;/H1&gt;
+The document has moved
+&lt;A HREF="http://www.google.com/"&gt;here&lt;/A&gt;.
+&lt;/BODY&gt;&lt;/HTML&gt;</code></pre>
+<p>You will learn all about HTML starting next class, but for now, suffice it to say that an internet browser like Chrome or Firefox would be able to interpret the code above and render a page onto the window like this:</p>
+<img src="./301.png"/>
+<p>where that &quot;<a href="http://www.google.com">here</a>&quot; link points to <code>http://www.google.com</code>.</p>
+<p>Of course, if you actually open up a browser window and visit <code>google.com</code> without the <code>www</code>, you never see this ugly 301 page. You end up directly at the normal google homepage! But it turns out that under the hood, your browser actually <em>did</em> receive that same <code>301</code> response. The reason you don't see anything is because a typical browser, upon receiving the <code>301</code>, will neglect to display that HTML, and instead will simply redirect you automatically to the new location specifed in the location header (<code>Location: http://www.google.com/</code>).</p>
+<p>Let's try making another curl request. This time, we'll connect to the &quot;real&quot; google:</p>
+<pre><code class="language-nohighlight">$ curl -v www.google.com/</code></pre>
+<p>If you run the above command, and all goes well, you should see an ungodly barrage of incomprehensible text. You'll have to scroll up a little bit just to find the place where you originally made the command. But when you find it, you should see the familiar request and response headers. Your response headers should look something like this:</p>
+<pre><code class="language-nohighlight">&lt; HTTP/1.1 200 OK
+&lt; Date: Mon, 29 Feb 2016 19:52:50 GMT
+&lt; Expires: -1
+&lt; Cache-Control: private, max-age=0
+&lt; Content-Type: text/html; charset=ISO-8859-1
+&lt; P3P: CP="This is not a P3P policy! See https://www.google.com/support/accounts/answer/151657?hl=en for more info."
+* Server gws is not blacklisted
+&lt; Server: gws
+&lt; X-XSS-Protection: 1; mode=block
+&lt; X-Frame-Options: SAMEORIGIN
+&lt; Set-Cookie: NID=77=ZBRzfm8GIePi1KdttsWQc0ztxeFoLvyeBE0AMN8HS__QF4ejpccfRSpSRRkuvKaD3qlG6HIJGhDkBgjAAfBQkVxi4T97gpN5a8G_ldCtepgBT5F_xr68Zigy6fIWfiympwVubvo2-F7WR48; expires=Tue, 30-Aug-2016 19:52:50 GMT; path=/; domain=.google.com; HttpOnly
+&lt; Accept-Ranges: none
+&lt; Vary: Accept-Encoding
+&lt; Transfer-Encoding: chunked</code></pre>
+<p>From the first line, <code>HTTP/1.1 200 OK</code> we can see that this time we got back a <code>200 OK</code> response code, indicating that everything is peachy. </p>
+<p>Below the headers are the Great Wall of Text, which is, in fact, perfectly valid HTML, namely the HTML that describes google's homepage!</p>
+<p>Let's verify this for ourselves. Using the <code>-o</code> option, we can tell cURL to pipe its output into a file for us. We want to  pipe the output into an HTML file called, say, <code>google.html</code>. Run the following:</p>
+<pre><code class="language-nohighlight">$ curl -v -o google.html www.google.com/</code></pre>
+<p>And now, you should see that <code>google.html</code> file in your file tree on the lefthand sidebar of the IDE. If you open it up you'll see the same jumble of text. But if you right-click on that file, and select preview, the IDE will show you a preview of what the page looks like. Lo and behold, we see google! (More or less. Some of the images may have failed to load, and the page is not &quot;styled&quot; nicely.)</p>
+                </section>
+
+            </div>
+        </main>
+
+        <footer>
+            <div class="container-fluid">
+                <p class="text-muted">
+                    website generated with <a href="http://couscous.io" title="Markdown website generator">Couscous</a>
+                </p>
+            </div>
+        </footer>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="//yastatic.net/highlightjs/8.2/highlight.min.js"></script>
+
+        <script>
+            $(function() {
+                $("section>h1").wrap('<div class="page-header" />');
+                // Syntax highlighting
+                hljs.initHighlightingOnLoad();
+            });
+        </script>
+
+    </body>
+</html>

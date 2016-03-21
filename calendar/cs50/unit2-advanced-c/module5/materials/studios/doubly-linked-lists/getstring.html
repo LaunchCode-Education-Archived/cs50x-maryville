@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>LaunchCode&#039;s CS50x - Maryville</title>
+
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/font-awesome.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/highlight.dark.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/main.css">
+    </head>
+    <body>
+
+        <header class="navbar navbar-default navbar-fixed-top">
+
+            <a class="navbar-brand" href="http://education.launchcode.org/cs50x-maryville/">
+                LaunchCode&#039;s CS50x - Maryville
+            </a>
+
+        </header>
+
+        <main class="container-fluid">
+            <div class="row">
+
+                
+                    <nav id="sidebar" class="col-sm-3 col-lg-2" role="navigation">
+
+                        <ul class="nav nav-pills nav-stacked">
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/calendar/">
+                                        Calendar
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/how-to-take-this-class/">
+                                        How To Take This Class
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/helpful-resources/">
+                                        Helpful Resources
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://cs50.io/">
+                                        CS50 IDE
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://labs.vocareum.com/home/login.php">
+                                        Vocareum
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://piazza.com/link-to-maryville-piazza-page">
+                                        Piazza
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://docs.google.com/document/d/link-to-maryville-student-guide">
+                                        Student Guide
+                                    </a>
+                                </li>
+                                                    </ul>
+
+                    </nav>
+
+                
+                <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
+                    <pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;cs50.h&gt;
+
+//Prototypes for the functions we need
+string GetString(void);
+void append(int c);
+
+//Node structure definition
+typedef struct node
+{
+    // the value to store in this node
+    int n;
+
+    // the link to the next node in the list
+    struct node* next;
+}
+node;
+
+//A simple main method to test our function
+int main(void)
+{
+    printf("Please give me a string: \n");
+    string x = GetString();
+    printf("Thanks for the %s!\n", x);
+}
+
+//The head of our linked list
+node* head = NULL;
+
+string GetString(void)
+{
+
+    // number of chars actually in buffer
+    unsigned int n = 0;
+
+    // character read or EOF
+    int c;
+
+    // iteratively get chars from standard input
+    while ((c = fgetc(stdin)) != '\n' &amp;&amp; c != EOF)
+    {
+        //append the character to our linked list
+        append(c);
+        //update the number of characters
+        n++;
+    }
+
+    // return NULL if user provided no input
+    if (n == 0 &amp;&amp; c == EOF)
+    {
+        return NULL;
+    }
+
+    //create a string to hold our result
+    string minimal = malloc((n + 1) * sizeof(char));
+
+    //iterate through the list, adding each character to the string
+    node * curr = head;
+    for(int i = 0; i &lt; n; i++)
+    {
+        minimal[i] = curr-&gt;n;
+        curr = curr-&gt;next;
+    }
+
+    // terminate string
+    minimal[n] = '\0';
+
+    // return string
+    return minimal;
+}
+
+void append(int c)
+{
+    //create a new node
+    node* newNode = malloc(sizeof(node));
+    newNode-&gt;n = c;
+    newNode-&gt;next = NULL;
+
+    //if the list is empty, our node is the only node
+    if(head == NULL)
+    {
+        head = newNode;
+    }
+    else
+    {
+        //iterate through the list until we find the end
+        node* curr = head;
+        while(curr-&gt;next != NULL)
+        {
+            curr = curr-&gt;next;
+        }
+
+        //append the new node to the end of the list
+        curr-&gt;next = newNode;
+    }
+}</code></pre>
+                </section>
+
+            </div>
+        </main>
+
+        <footer>
+            <div class="container-fluid">
+                <p class="text-muted">
+                    website generated with <a href="http://couscous.io" title="Markdown website generator">Couscous</a>
+                </p>
+            </div>
+        </footer>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="//yastatic.net/highlightjs/8.2/highlight.min.js"></script>
+
+        <script>
+            $(function() {
+                $("section>h1").wrap('<div class="page-header" />');
+                // Syntax highlighting
+                hljs.initHighlightingOnLoad();
+            });
+        </script>
+
+    </body>
+</html>

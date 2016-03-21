@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>LaunchCode&#039;s CS50x - Maryville</title>
+
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/font-awesome.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/highlight.dark.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/main.css">
+    </head>
+    <body>
+
+        <header class="navbar navbar-default navbar-fixed-top">
+
+            <a class="navbar-brand" href="http://education.launchcode.org/cs50x-maryville/">
+                LaunchCode&#039;s CS50x - Maryville
+            </a>
+
+        </header>
+
+        <main class="container-fluid">
+            <div class="row">
+
+                
+                    <nav id="sidebar" class="col-sm-3 col-lg-2" role="navigation">
+
+                        <ul class="nav nav-pills nav-stacked">
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/calendar/">
+                                        Calendar
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/how-to-take-this-class/">
+                                        How To Take This Class
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/helpful-resources/">
+                                        Helpful Resources
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://cs50.io/">
+                                        CS50 IDE
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://labs.vocareum.com/home/login.php">
+                                        Vocareum
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://piazza.com/link-to-maryville-piazza-page">
+                                        Piazza
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://docs.google.com/document/d/link-to-maryville-student-guide">
+                                        Student Guide
+                                    </a>
+                                </li>
+                                                    </ul>
+
+                    </nav>
+
+                
+                <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
+                    <pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdbool.h&gt;
+#include &lt;stdlib.h&gt;
+
+// Provide code for a singly linked list
+typedef struct beacon
+{
+    bool isLit;
+    struct beacon* next;
+} beacon;
+
+void printBeaconStatus(beacon* head){
+    beacon* current = head;
+    printf("Current status of the beacons of Gondor:\n");
+    while(current != NULL)
+    {
+        if(current-&gt;isLit){
+            printf("* ");
+        } else {
+            printf("_ ");
+        }
+        current = current-&gt;next;
+    }
+    printf("\n");
+}
+
+bool areAllLit(beacon* head){
+    beacon* current = head;
+    while(current != NULL)
+    {
+        if(!current-&gt;isLit){
+            return false;
+        }
+        current = current-&gt;next;
+    }
+    return true;
+}
+
+int main(void)
+{
+    // Initialize a linked list
+
+    beacon firstBeacon;
+    beacon* curBeacon = &amp;firstBeacon;
+
+    for (int i = 0; i &lt; 9; i++)
+    {
+        curBeacon-&gt;next = malloc(sizeof(beacon));
+        curBeacon-&gt;next-&gt;isLit = false;
+        curBeacon-&gt;next-&gt;next = NULL;
+        curBeacon = curBeacon-&gt;next;
+    }
+
+    printf("Invaders! Light the beacons of Gondor!\n");
+    firstBeacon.isLit = true;
+
+    // print out the initial state of the beacons
+    printBeaconStatus(&amp;firstBeacon);
+
+    // TODO: Your code here! Iterate through the linked list of beacons to light the beacons
+    // of Gondor!
+
+    // put in a function to check if everything is lit, outputs if they're all lit
+    printBeaconStatus(&amp;firstBeacon);
+    if(areAllLit(&amp;firstBeacon)){
+        printf("The beacons are all lit! Our allies have been alerted!\n");
+    } else {
+        printf("The beacons are not all lit! Gondor is doomed!\n");
+    }
+}</code></pre>
+                </section>
+
+            </div>
+        </main>
+
+        <footer>
+            <div class="container-fluid">
+                <p class="text-muted">
+                    website generated with <a href="http://couscous.io" title="Markdown website generator">Couscous</a>
+                </p>
+            </div>
+        </footer>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="//yastatic.net/highlightjs/8.2/highlight.min.js"></script>
+
+        <script>
+            $(function() {
+                $("section>h1").wrap('<div class="page-header" />');
+                // Syntax highlighting
+                hljs.initHighlightingOnLoad();
+            });
+        </script>
+
+    </body>
+</html>

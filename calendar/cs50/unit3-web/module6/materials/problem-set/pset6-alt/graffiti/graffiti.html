@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>LaunchCode&#039;s CS50x - Maryville</title>
+
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/font-awesome.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/highlight.dark.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/main.css">
+    </head>
+    <body>
+
+        <header class="navbar navbar-default navbar-fixed-top">
+
+            <a class="navbar-brand" href="http://education.launchcode.org/cs50x-maryville/">
+                LaunchCode&#039;s CS50x - Maryville
+            </a>
+
+        </header>
+
+        <main class="container-fluid">
+            <div class="row">
+
+                
+                    <nav id="sidebar" class="col-sm-3 col-lg-2" role="navigation">
+
+                        <ul class="nav nav-pills nav-stacked">
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/calendar/">
+                                        Calendar
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/how-to-take-this-class/">
+                                        How To Take This Class
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/helpful-resources/">
+                                        Helpful Resources
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://cs50.io/">
+                                        CS50 IDE
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://labs.vocareum.com/home/login.php">
+                                        Vocareum
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://piazza.com/link-to-maryville-piazza-page">
+                                        Piazza
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://docs.google.com/document/d/link-to-maryville-student-guide">
+                                        Student Guide
+                                    </a>
+                                </li>
+                                                    </ul>
+
+                    </nav>
+
+                
+                <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
+                    <p><code>graffiti.html</code></p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;  
+    &lt;title&gt;Graffiti&lt;/title&gt;
+    &lt;link rel="stylesheet" type="text/css" href="styles.css" /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="heading"&gt;
+        &lt;h1&gt;Graffiti&lt;/h1&gt;
+        &lt;h4&gt;Add your voice to the Pset6-Alt graffiti wall&lt;/h4&gt;
+    &lt;/div&gt;
+
+    &lt;div class="card"&gt;
+
+        &lt;!-- Don't change the id. Our JS script below is looking for "slackForm". --&gt;
+        &lt;form id="slackForm"&gt; 
+
+            &lt;!-- TODO: add the necessary fields, action, submit button, etc --&gt;
+
+        &lt;/form&gt;
+    &lt;/div&gt;
+
+    &lt;!-- here we include some javascript: first a few libraries... --&gt;
+    &lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"&gt;&lt;/script&gt;
+    &lt;script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"&gt;&lt;/script&gt;
+
+    &lt;!-- ...and then our own script --&gt;
+    &lt;script type="text/javascript"&gt;
+
+        // first get a reference to the form
+        var slackForm = document.getElementById("slackForm");
+
+        // right before the form submits, execute the function called populatePayloadField
+        slackForm.onsubmit = populatePayloadField;
+
+        function populatePayloadField() {
+            // convert form fields into a JSON string
+            var formData = getFormData();
+            delete formData.payload;
+            jsonString = JSON.stringify(formData);
+
+            // create a new hidden input and add it to the form
+            var payloadInput = document.createElement("input");
+            payloadInput.setAttribute("type", "hidden");
+            payloadInput.setAttribute("name", "payload");
+            payloadInput.setAttribute("value", jsonString);
+            console.log(payloadInput);
+            slackForm.appendChild(payloadInput);
+            console.log(slackForm);
+        }
+
+        // a helper function to return a javascript object containing all the form's fields
+        function getFormData() {
+            var object = {};
+            var fields = $("#slackForm").serializeArray();
+            for (var i = 0; i &lt; fields.length; i++) {
+                var field = fields[i];
+                object[field.name] = field.value;
+            }
+            return object;
+        }
+    &lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </section>
+
+            </div>
+        </main>
+
+        <footer>
+            <div class="container-fluid">
+                <p class="text-muted">
+                    website generated with <a href="http://couscous.io" title="Markdown website generator">Couscous</a>
+                </p>
+            </div>
+        </footer>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="//yastatic.net/highlightjs/8.2/highlight.min.js"></script>
+
+        <script>
+            $(function() {
+                $("section>h1").wrap('<div class="page-header" />');
+                // Syntax highlighting
+                hljs.initHighlightingOnLoad();
+            });
+        </script>
+
+    </body>
+</html>

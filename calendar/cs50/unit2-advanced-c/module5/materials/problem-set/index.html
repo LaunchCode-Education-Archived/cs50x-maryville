@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>LaunchCode&#039;s CS50x - Maryville</title>
+
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/font-awesome.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/highlight.dark.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/main.css">
+    </head>
+    <body>
+
+        <header class="navbar navbar-default navbar-fixed-top">
+
+            <a class="navbar-brand" href="http://education.launchcode.org/cs50x-maryville/">
+                LaunchCode&#039;s CS50x - Maryville
+            </a>
+
+        </header>
+
+        <main class="container-fluid">
+            <div class="row">
+
+                
+                    <nav id="sidebar" class="col-sm-3 col-lg-2" role="navigation">
+
+                        <ul class="nav nav-pills nav-stacked">
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/calendar/">
+                                        Calendar
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/how-to-take-this-class/">
+                                        How To Take This Class
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/helpful-resources/">
+                                        Helpful Resources
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://cs50.io/">
+                                        CS50 IDE
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://labs.vocareum.com/home/login.php">
+                                        Vocareum
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://piazza.com/link-to-maryville-piazza-page">
+                                        Piazza
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://docs.google.com/document/d/link-to-maryville-student-guide">
+                                        Student Guide
+                                    </a>
+                                </li>
+                                                    </ul>
+
+                    </nav>
+
+                
+                <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
+                    <h5><a href="../..">Module 5</a></h5>
+<h1 id="problem-set-5">Problem Set 5</h1>
+<h3 id="synopsis">Synopsis</h3>
+<p>In this problem set, you will implement a &quot;spell checker&quot;, which identifies misspelled words in a text file. A word is considered &quot;misspelled&quot; if it cannot be found in a second file, the &quot;dictionary&quot;. Your goal is to load the entire contents of the dictionary into memory in such a way that, when it comes time to start checking words, your program will be able to search through the dictionary words as quickly as possible, checking to see whether the dictionary contains the word in question. You will have the option of storing the dictionary as one of 2 possible data structures: a hash table, or a trie.</p>
+<h3 id="how-to-submit">How to submit</h3>
+<p>On Vocareum, you will see one assignmnet:</p>
+<ul>
+<li><strong>Problem Set 5: Speller</strong>: For this assignment, submit <strong>three</strong> files, dictionary.c <em>and</em> dictionary.h <em>and</em> Makefile</li>
+</ul>
+<p>After signing in, you will see each component as an assignment on the left. You must submit each component separately. Follow the instructions there, and make sure you name your files correctly! Remember, you can ignore the instructions on the Harvard spec on how to submit; we only care about your submission on Vocareum.</p>
+<p>You can use check50 to check the correctness of your code for the Speller component before submitting. Check50 won't work for questions.txt either, but please submit your answers to the questions specified in the problem set spec. </p>
+<p>If you forget how to use Vocaruem, please refer to the Student Guide section about Vocaruem.</p>
+<h3 id="get-started">Get Started</h3>
+<p>Here is the <a href="http://cdn.cs50.net/2015/fall/psets/5/pset5/pset5.html#getting_ready" target="_blank">Problem Set 5 Spec</a>. Long instructions, and lots of supplemental videos here. Remember what Shia told you: don't let your dreams be dreams - nothing is impossible!</p>
+<h3 id="guidance">Guidance</h3>
+<h5 id="general-tips">General Tips</h5>
+<p>This guidance primarily refers to the hashtable structure. However, you can select whichever structure you'd prefer. The instructions remain basically the same:</p>
+<ul>
+<li>
+<p>Skip anything in the problem set specification and videos that has to do with structures other than the one you've selected to code.</p>
+</li>
+<li>
+<p>Start with just the problem set specification - don't worry about any of the videos until you're clear on the written stuff.</p>
+</li>
+<li>
+<p>While reading the pset spec, underline or highlight everything that applies specifically to the input and output requirements. For example, the spec notes that all the words in the dictionary will be lowercase. That's important because it tells you that you don't have to convert anything to different cases during the <code>load()</code> function.</p>
+</li>
+<li>
+<p>Make sure you understand exactly what CS50's base code will provide you and what you have to put out. FOR EXAMPLE: <code>speller.c</code> does a whole lot of the heavy lifting! <strong>You</strong> are going to load words from a dictionary (the name will be provided by <code>speller.c</code>). <strong>You</strong> will provide the capability to check if a word is in the dictionary. And, finally <strong>you</strong> will be unloading the words from memory when the program is done. Some people have a tendency to practically rewrite everything that <code>speller.c</code> does! Make sure you understand only what the actual <code>dictionary.c</code> file has to do (load, check, unload)!</p>
+</li>
+<li>
+<p>When you get to a video in the spec, watch it. You don't need any videos other than what's in the spec!</p>
+</li>
+<li>
+<p>Do one section at a time! Don't even worry about anything past what you're currently trying to complete. For example, Zamyla starts with 'load'. Read that section, then watch Zamyla's video. <strong>Don't move on to anything else until you have that specific part working.</strong></p>
+</li>
+<li>While watching the videos linked in the spec, <strong>stop the video whenever you see code</strong>! Zamyla and her co-TFs will be explaining stuff about how hashtables (or your desired structure) work. That information is good and helpful - but you really want to focus in on any code they provide. <strong>You will use that code in your work!</strong></li>
+</ul>
+<h5 id="on-to-the-coding">On to the coding:</h5>
+<ul>
+<li>
+<p>You need an array to act as the starting point or &quot;head&quot; for your hashtable's linked lists. Zamyla demonstrates an array variable declared as <code>node* hashtable[500]</code>.</p>
+</li>
+<li>
+<p>That array needs to be declared within the <code>dictionary.c</code> file - but where? A tip: the array variable that is the basis for your hashtable will need to be used by all of the functions in your <code>dictionary.c</code> file. Where do you put variables that are used within many functions in the same file? &quot;Global&quot; variables are just like regular variables, but you put them outside of any other functions. That way, they can be used by any function. Like prototypes, they go somewhere above the first function (<code>int main</code>, if present; whatever other function is first if no <code>int main</code> is there, as in <code>dictionary.c</code>).</p>
+</li>
+<li>While working on your <code>load</code> function, you might want to also implement your <code>size</code> function – it just returns the number of words in your dictionary. Consider a global variable for that one, too. That would allow you to use the same variable for both counting the words as you load them and returning the number of words loaded when size is called.</li>
+</ul>
+<h5><code>load</code></h5>
+<ul>
+<li>
+<p><strong>Important</strong>:</p>
+<ul>
+<li>Create your own test dictionary and story files. This will be much, much easier to test with than the files CS50 provides!</li>
+<li>Make sure your test files don't contain many words.</li>
+<li>Make sure the test dictionary file's words are all in lowercase (as CS50's files will be). CS50's files will also be in alphabetical order – your choice here for testing.</li>
+<li>Make sure your story file contains a few extra words beyond what's in the dictionary file, some mixed case words (eg, ThE), and some apostrophes (eg, cat's).</li>
+<li>Make sure both files have a blank line at the bottom (as CS50's files will have).</li>
+</ul>
+</li>
+<li>
+<p>On to it: first, you want to set up an array that will act as the “head” of your linked lists. As noted previously, that array should be set up as a global variable – in your .c file, above any functions appearing in the file.</p>
+</li>
+<li>
+<p>You also want to set up a variable to hold the number of words you end up loading into your hashtable – the &quot;size&quot; of the table. This should also be a global variable because you'll use it in two functions: load and size.</p>
+</li>
+<li>
+<p>Once you've got those global variables set up, just save and compile. Yes – <strong>each time you complete a change, save and compile</strong>. One of the most important things about programming is to work on the smallest pieces you can at one time!</p>
+</li>
+<li>
+<p>Next step, start your actual <code>load</code> function: the parameter of this function, <code>const char* dictionary</code>, represents the dictionary file name you entered on the command line of speller. This is the file you need to open and load. Look back at <code>recover.c</code> to find how to open a file, if you need an example. Make sure to include the check for the file being NULL – but this time, return <code>false</code>, rather than the number 1 (the signature for <code>load</code> says <code>bool load</code>, right, not <code>int</code>!)</p>
+</li>
+<li>
+<p>You'll want to go ahead and close the file at the end of the function, now while you're thinking about it. Then, save and compile again! Fix any little problems that come up.</p>
+</li>
+<li>
+<p>You'll need to <code>malloc</code> some space to hold a <code>node</code> variable now. Make sure to free the <code>node</code> variable just before closing your file – then save and compile again.</p>
+</li>
+<li>Now the meat of this function! You need to loop:
+<ul>
+<li>Read a word from the file variable you set up (using Zamyla's example of <code>fscanf</code> – more on this later) - save, compile, and test!</li>
+<li>Retrieve the word's hash value (using the function Lauren showed you in her pset video) - save, compile, and test!</li>
+<li>Load the word into your array/linked list (your &quot;hashtable&quot;; using Zamyla's code for swapping <code>node</code> and <code>head</code> – again, more on this later) - save, compile, and test!</li>
+<li>And, re-<code>malloc</code> your <code>node</code> for the next round – save, compile, and test!</li>
+</ul></li>
+</ul>
+<p>Note: again – <strong>only work on one step at a time!!!</strong> Once you've figured out how to read the words in, enter a <code>printf</code> to see whether the word actually gets read into <code>new_node-&gt;word</code>.</p>
+<p>Run speller. If you get the words you expected, then remove the <code>printf</code>, and begin the next step.</p>
+<p>Once you have figured out how to retrieve the word's hash value, enter a <code>printf</code> to show what hash value you've gotten. (If you're using Lauren's hash function correctly, you should get a zero for each word starting with 'a', a 1 for each word starting with 'b', and so on.)</p>
+<p>Etc, etc, etc.!</p>
+<p>Once everything's working in <code>load</code> as you would like it to, change the return value from <code>false</code> to <code>true</code> – and you're done with <code>load</code>!</p>
+<p>Some additional details:<br />
+<code>fscanf</code>: Zamyla's example just kind of hangs out there – how are you supposed to use it? Well, you have two options. <code>fscanf</code> works something like <code>fread</code> – which you used in <code>recover.c</code>. Looking at the man page (or the CS50 references page), you'll find that <code>fscanf</code> gives a return value when it successfully reads an item. You can use that return value to determine when you've reached the end of the dictionary word file, like this:</p>
+<ul>
+<li>
+<p>as the condition of your while loop:</p>
+<pre><code class="language-c">while (fscanf(yourdictfilevariable, "%s", new_node-&gt;word) == 1)
+{
+// process the word
+}</code></pre>
+</li>
+<li>or, on its own within the while loop:
+<pre><code class="language-c">while (true)
+{
+int yourendoffilecheckervariable = fscanf(yourdictfilevariable, "%s", new_node-&gt;word) == 1);
+if (yourendoffilecheckervariable != 1)
+{
+ // do something to break out of the loop
+}
+// continue processing the word
+}</code></pre></li>
+</ul>
+<p>Zamyla's code for swapping <code>node</code> and <code>head</code>: Zamyla's example looks something like this –</p>
+<pre><code class="language-c"> new_node-&gt;next = head;
+ head = new-&gt;node;</code></pre>
+<p>The note here is that &quot;head&quot;, in our case, actually refers to the array location determined by your hash function. So, anywhere you see <code>head</code> in that code, replace it with something like <code>hashtable[hash_location]</code> – or whatever you called your array, with whatever you called the variable you created to hold your hash result for the current word inside the square brackets.</p>
+<h5><code>check</code></h5>
+<p><code>check</code> is tricky because speller is sending us a <code>const char* word</code>. CS50 is doing that to save memory – <code>const char*</code> variable values get stored in the &quot;stack&quot; part of memory, which gets cleaned out as soon as your function is done running. You have to free memory in the &quot;heap&quot; (where normal pointer-type variables are stored) in order to get rid of the variable.</p>
+<p>Because our dictionary is loaded with all lowercase words, and the words speller sends us to check might be mixed- or uppercase, we have to make sure to compare the words in the same case. Since our loaded dictionary is lower, it probably makes sense to compare in lower – but we can't change a <code>const</code>, so what now???</p>
+<p>We'll have to create a new variable to hold the same length word as <code>check</code> sent us (mm, plus the nul terminator!). The format to set up this variable should look something like the word variable defined in our <code>node</code> typedef – except, instead of LENGTH + 1, we probably should use the length of the word speller gave us + 1. We've often used a function for getting the length of a string. Remember what that is???</p>
+<p>Next, we'll have to load that new variable with the word's characters, using <code>tolower</code> in the process. (Where have we read the characters of a word, one by one, before? <code>vigenere.c</code>, perhaps???</p>
+<p>Once you've filled in the new variable with matching lowercase letters from this function's &quot;word&quot; parameter, we'll have to add the nul terminator at the end. How 'bout something like:
+<code>lowercaseword[wordlength] = '\0';</code> - using your variable names, of course!</p>
+<p>Save, compile, and test!!! (eg, use <code>printf</code> to display both the word that speller gave us and the new, lowercase word that you just created)</p>
+<p>Now, we have to use our hash function again! Why? To make sure we're looking in the same place the word would appear in our loaded dictionary – assuming it's there, of course.</p>
+<p>Again, save, compile, and test – are you getting the hash result you expect for each word speller sends you?</p>
+<p>Now, the meat of the check function: traversing to see if the word from speller is present in your loaded hashtable. Zamyla gave us the following code for traversing a list: <code>node* cursor = head;</code> - remember that &quot;head&quot; here represents our hashtable's array location where our hash told us to start looking for the current word</p>
+<pre><code class="language-c">while (cursor != NULL)
+{
+    // do stuff (like comparing whether cursor-&gt;word is the same as your new lowercase version of speller's word???
+    //   then returning true to tell speller we found it???)
+    //   strcmp might be handy here...
+    cursor = cursor-&gt;next;
+}</code></pre>
+<p>or, you can look at src5w.pdf. This is the source code under the 2nd lecture for week 5. In it, you'll find two samples of doing stuff with <code>node</code> structs. list-0 is very similar to our problem set. The only difference is that it uses an <code>int</code> variable, <code>n</code>, while we use a character array called <code>word</code>. The part of the example search function we need to use looks like this:</p>
+<pre><code class="language-c">node* ptr = first;     // - here, "first" would represent the location in our hashtable array where our hash told us to begin
+                       //   looking for the current word (like "head" in Zamyla's example)
+while (ptr != NULL)
+{
+    if (ptr-&gt;n == n)   // - oops, we're not using an int! What should ours look like??? How about using strcmp here to check
+    {                  //   whether speller's word matches our lowercase one???
+        // stuff the example does that we don't need for ours – we need instead to return true, telling speller that we found the word!
+    }
+    ptr = ptr-&gt;next;
+}</code></pre>
+<p>Gosh, these two examples look a whole lot like each other. Hmmm!!! Oh, and be sure to code in there to return <code>false</code> if the word wasn't found in your while loop!</p>
+<p>Once you've coded what you think will work – yep! Save, compile, test! Did the words in your story file that were not in your dictionary file get found? Again, some <code>printf</code> statements could be handy here! (Of course, please note, this could be also a very good way to practice your GDB skills!)</p>
+<p>Oh, also a note: we're not freeing any memory in check. We're not malloc'ing any new words, and we're not removing any words, so we're good to go. Wait – what about that new lowercase word variable we created? We didn’t use malloc, so we're good to go. C will clear that memory whenever <code>check</code> is done.</p>
+<h5><code>unload</code></h5>
+<p>Guess what Zamyla gave us in her unload video? The answer - almost!</p>
+<pre><code class="language-c">node* cursor = head;
+while (cursor != NULL)
+{
+    node* temp = cursor;
+    cursor = cursor-&gt;next;
+    free(temp);
+}</code></pre>
+<p>There are only 2 things missing:</p>
+<ul>
+<li>
+<p>Remember, first, that &quot;head&quot; represents the start location in our hashtable array. Well, it turns out that we don't even need to use our hash function here! Simply loop through each element (<code>node</code> box) in the array. The <code>while</code> loop above, then, will clear out that location's linked nodes. How do we loop through an array? Hmm... We already know the size of the array... And, we've done this before a bunch of times now...</p>
+</li>
+<li>Finally, we need to tell speller we finished unloading the array and its associated linked lists, er, the hashtable. What should we return?</li>
+</ul>
+<p>Again, save, compile, and test. In this one, maybe you can <code>printf</code> the words while you're unloading them (just before you free temp, maybe?).</p>
+<p>When this one's done, you'll need to run valgrind (pronounced like &quot;Val grinned&quot; ;-) Try something like the following:</p>
+<pre><code class="language-nohighlight">valgrind --tool=memcheck --leak-check=full --show-leak-kinds=all ./speller ~cs50/pset5/texts/austinpowers.txt</code></pre>
+<p>If all is well, you should see: <code>All heap blocks were freed -- no leaks are possible</code></p>
+<p>Then, congratulations! You're done with this pset!</p>
+                </section>
+
+            </div>
+        </main>
+
+        <footer>
+            <div class="container-fluid">
+                <p class="text-muted">
+                    website generated with <a href="http://couscous.io" title="Markdown website generator">Couscous</a>
+                </p>
+            </div>
+        </footer>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="//yastatic.net/highlightjs/8.2/highlight.min.js"></script>
+
+        <script>
+            $(function() {
+                $("section>h1").wrap('<div class="page-header" />');
+                // Syntax highlighting
+                hljs.initHighlightingOnLoad();
+            });
+        </script>
+
+    </body>
+</html>

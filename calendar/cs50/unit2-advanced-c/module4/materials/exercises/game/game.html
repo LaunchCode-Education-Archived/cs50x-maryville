@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>LaunchCode&#039;s CS50x - Maryville</title>
+
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/font-awesome.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/highlight.dark.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/main.css">
+    </head>
+    <body>
+
+        <header class="navbar navbar-default navbar-fixed-top">
+
+            <a class="navbar-brand" href="http://education.launchcode.org/cs50x-maryville/">
+                LaunchCode&#039;s CS50x - Maryville
+            </a>
+
+        </header>
+
+        <main class="container-fluid">
+            <div class="row">
+
+                
+                    <nav id="sidebar" class="col-sm-3 col-lg-2" role="navigation">
+
+                        <ul class="nav nav-pills nav-stacked">
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/calendar/">
+                                        Calendar
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/how-to-take-this-class/">
+                                        How To Take This Class
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/helpful-resources/">
+                                        Helpful Resources
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://cs50.io/">
+                                        CS50 IDE
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://labs.vocareum.com/home/login.php">
+                                        Vocareum
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://piazza.com/link-to-maryville-piazza-page">
+                                        Piazza
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://docs.google.com/document/d/link-to-maryville-student-guide">
+                                        Student Guide
+                                    </a>
+                                </li>
+                                                    </ul>
+
+                    </nav>
+
+                
+                <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
+                    <pre><code class="language-c">/**
+ * game.c
+ *
+ */
+
+#include &lt;cs50.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;time.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+
+#define DESTINATION "The Altar of Yezzeron"
+#define SKILL "Zorph Wisdom"
+#define SKILL_GOAL 3
+
+// TODO
+// define a struct type called player
+
+bool checkGameOver(player p);
+void reportStatus(player p);
+void discoverPotion(player* p);
+
+int main(void) 
+{
+    // intro text
+    printf("* * * DUNGEON QUEST * * *\n\n");
+    printf("You find yourself in a dungeon ruled by dark magic\n");
+    printf("Try to escape and reach %s without dying!\n", DESTINATION);
+    printf("But before you arrive, you must boost your %s to at least level %i,\n", SKILL, SKILL_GOAL);
+    printf("...or else the Dieties of %s will not accept you!\n\n", DESTINATION);
+
+    // provide a seed to the random number generator (don't worry about understanding this)
+    srand(time(NULL));
+
+    // initialize the player
+    player p = { 100, 3, 1 };
+
+    // continue looping forever until Game Over
+    while (true)
+    {
+        if (checkGameOver(p))
+        {
+            // stop if we hit Game Over
+            return 0;
+        }
+
+        reportStatus(p);
+
+        printf("You continue walking through dark corridors...\n");
+        p.distance -= 1;
+        GetString();
+
+        printf("You health is slowly waning...\n");
+        p.health -= 10;
+        GetString();
+
+        discoverPotion(&amp;p);
+    }
+}
+
+/** 
+ * Returns true if the player has run out of health or reached the destination, else false
+ * If the game did end, also prints an appropriate message, depending on the outcome
+ */
+bool checkGameOver(player p)
+{
+    if (p.health &lt;= 0)
+    {
+        printf("Your last vestiges of health have deteriorated. You waste away in the loneliness of the Dungeon!\n");
+        printf("Game Over\n");
+        return true;
+    }
+    else if (p.distance &lt;= 0)
+    {
+        if (p.skill &gt;= SKILL_GOAL)
+        {
+            printf("You reach %s! The Dieties welcome you to their ethereal realm, and you join them in immortality!\n", DESTINATION);
+        }
+        else 
+        {
+            printf("You reach %s, but your %s is not developed enough.\n", DESTINATION, SKILL);
+            printf("The Dieties condemn you, mortal, to another twenty years in the Dungeon!\n");
+            printf("Game Over\n");
+        }
+        return true;
+    }
+
+    return false;
+}
+
+/**
+ * Prints a status report to the console, informing the user of how they are doing 
+ */
+void reportStatus(player p)
+{
+    printf("Current Status: \n");
+    printf("You are %i miles away from %s\n", p.distance, DESTINATION);
+    printf("Your health is at %i percent\n", p.health);
+    printf("Your %s is at level %i\n\n", SKILL, p.skill);
+    GetString();
+}
+
+/**
+ * Allows user the option to drink a magic potion
+ * If so, randomly decides whether the potion had a "good" effect or "bad", and updates the player model accordingly
+ */
+void discoverPotion(player* p)
+{
+    printf("Suddenly you discover a potion on the ground!\n");
+    printf("Do you want to drink it? (y/n)\n");
+
+    // do drink if user types "y", otherwise don't drink
+    bool userDecidesToDrink = strcmp(GetString(), "y") == 0;
+    if (userDecidesToDrink)
+    {
+        // flip a coin to determine if the potion was helpful or harmful
+        int r = rand();
+        if (r % 2 == 0)
+        {
+            // good potion. increase skill
+            p-&gt;skill++;
+            printf("You feel your powers growing!\n");
+            GetString();
+        }
+        else 
+        {
+            // evil potion. decrease health
+            p-&gt;health -= 35;
+            printf("A devilish sickness comes over you...\n");
+            GetString();
+        }
+    }
+}
+</code></pre>
+                </section>
+
+            </div>
+        </main>
+
+        <footer>
+            <div class="container-fluid">
+                <p class="text-muted">
+                    website generated with <a href="http://couscous.io" title="Markdown website generator">Couscous</a>
+                </p>
+            </div>
+        </footer>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="//yastatic.net/highlightjs/8.2/highlight.min.js"></script>
+
+        <script>
+            $(function() {
+                $("section>h1").wrap('<div class="page-header" />');
+                // Syntax highlighting
+                hljs.initHighlightingOnLoad();
+            });
+        </script>
+
+    </body>
+</html>

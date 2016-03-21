@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>LaunchCode&#039;s CS50x - Maryville</title>
+
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/font-awesome.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/highlight.dark.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/main.css">
+    </head>
+    <body>
+
+        <header class="navbar navbar-default navbar-fixed-top">
+
+            <a class="navbar-brand" href="http://education.launchcode.org/cs50x-maryville/">
+                LaunchCode&#039;s CS50x - Maryville
+            </a>
+
+        </header>
+
+        <main class="container-fluid">
+            <div class="row">
+
+                
+                    <nav id="sidebar" class="col-sm-3 col-lg-2" role="navigation">
+
+                        <ul class="nav nav-pills nav-stacked">
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/calendar/">
+                                        Calendar
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/how-to-take-this-class/">
+                                        How To Take This Class
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/helpful-resources/">
+                                        Helpful Resources
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://cs50.io/">
+                                        CS50 IDE
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://labs.vocareum.com/home/login.php">
+                                        Vocareum
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://piazza.com/link-to-maryville-piazza-page">
+                                        Piazza
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://docs.google.com/document/d/link-to-maryville-student-guide">
+                                        Student Guide
+                                    </a>
+                                </li>
+                                                    </ul>
+
+                    </nav>
+
+                
+                <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
+                    <h5 id="module-6">Module 6</h5>
+<p><a href="../../class2">Back to Class 2</a></p>
+<h1 id="studio-lunchcode">Studio: LunchCode</h1>
+<p>Today we are going to be working once again with CS50's API, specifically the Food API. Your assignment for today is to build a front end page for users to query the API. </p>
+<p>From the previous studio, you might remember interacting with this page from the cs50 docs:</p>
+<img src="lunchcode3.png"/>
+<p>Today your job is to build a very similar page. Here is a mockup:</p>
+<img src="lunchcode1.png"/>
+<p>As you can see, our page contains three <code>&lt;form&gt;</code> elements, one for each of the three &quot;endpoints&quot; of the food API: <code>/facts</code>, <code>/menus</code>, and <code>/recipes</code>.</p>
+<p>Upon filling out one of the forms and clicking its <code>SEND REQUEST</code> button, a user should be whisked away to the page displaying the response from the API, like this:</p>
+<img src="lunchcode2.png"/>
+<p>(The url in the screenshot above is: <a href="http://api.cs50.net/food/3/menus?key=123456789&output=json&meal=LUNCH">http://api.cs50.net/food/3/menus?key=123456789&output=json&meal=LUNCH</a>)</p>
+<h3 id="getting-started">Getting Started</h3>
+<p>We've given you a little starter code in <a href="lunchcode.html" target="_blank">lunchcode.html</a>. Copy the code over into a file called lunchcode.html in your IDE. When you preview that link you should see a very plain form that says &quot;Menus&quot;. </p>
+<p>OK, so that's what the page looks like, but where is the actual starter code?? Well, here's the thing: we sent you a link to an HTML file, so your browser went ahead and did what it always does when opening an HTML file: it rendered the page! </p>
+<p>But no matter, this is a good opportunity to remind you that you can always view the <em>source</em> code for any HTML page by <a href="http://cdn.cs50.net/2015/fall/lectures/7/m/notes7m/notes7m.html#html" target="_blank">using your browser's developer tools</a>.</p>
+<p>Go ahead and copy the source over into a new file in your IDE.</p>
+<h3 id="action">Action</h3>
+<p>You may have noticed that the form currently does not <em>go</em> anywhere. Clicking on the <code>SEND REQUEST</code> button simply causes the page to refresh. Your first step is to fix that. You want users to be taken to somewhere upon submitting the form. Where they should go, and how to implement that feature, we will leave for you to figure out! For a refresher on form submission, see the <a href="../../resources/html-forms" target="_blank">HTML Forms resource</a>. </p>
+<h3 id="authentication">Authentication</h3>
+<p>After you implement the form so that submission takes the user to the Food API, you will presumably run into an error message about &quot;authentication parameters missing&quot;. You probably remember from last studio that the solution to this was to include your personal API key as a parameter in the url:</p>
+<pre><code>...&amp;key=123456789...</code></pre>
+<p>where <code>123456789</code> is your API key. We can do the same thing here by including another <code>&lt;input&gt;</code> field in the form, like this:</p>
+<pre><code class="language-html">&lt;input type="text" name="key" value="123456789"/&gt;</code></pre>
+<p>If you add that <code>&lt;input&gt;</code> element, you should now find that your form takes you to the promised land of menus data.</p>
+<h3 id="hidden-inputs">Hidden Inputs</h3>
+<p><em>But wait!</em> you say, <em>The mockup that we are trying to copy does not have any extra field for the API key. The mockup contains only one field for <code>meal:</code>! How did this mockup function properly without that extra field? Is this a trick? A trap? Conspiracy?</em> </p>
+<p>Great question (although you may have gotten carried away at the end, there). It turns out that our mockup <em>does</em>  have an input element like the one above-- you just don't see it. There is a special type of input available for precisely this purpose: when you want to include an HTTP parameter to your form's submission url, but you don't actually need the user to see anything or tell you anything. This type is called the <code>"hidden"</code> :</p>
+<pre><code class="language-html">&lt;input type="hidden" ... /&gt;</code></pre>
+<p>Try changing the <code>type</code> from <code>"text"</code> to <code>"hidden"</code>, and you should see the input field disappear from the screen, but still work its magic in the sumbission url.</p>
+<h3 id="the-other-forms">The Other Forms</h3>
+<p>Once you have the Menu form working, go ahead and add the Recipes and Nutrition Facts forms as well. </p>
+<p>For the <code>portions:</code> field on your Nutrition Facts form, you can use:</p>
+<pre><code class="language-html">&lt;input type="number" ... /&gt;</code></pre>
+<p>to make that fancy input element with the up and down <code>^</code> / <code>v</code> buttons</p>
+<h3 id="the-page-heading">The Page Heading</h3>
+<p>Once you have created all the forms, add that big LunchCode heading and tagline.</p>
+<h3 id="styles">Styles</h3>
+<p>Finally, create a <code>styles.css</code> file and style your page!</p>
+                </section>
+
+            </div>
+        </main>
+
+        <footer>
+            <div class="container-fluid">
+                <p class="text-muted">
+                    website generated with <a href="http://couscous.io" title="Markdown website generator">Couscous</a>
+                </p>
+            </div>
+        </footer>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="//yastatic.net/highlightjs/8.2/highlight.min.js"></script>
+
+        <script>
+            $(function() {
+                $("section>h1").wrap('<div class="page-header" />');
+                // Syntax highlighting
+                hljs.initHighlightingOnLoad();
+            });
+        </script>
+
+    </body>
+</html>

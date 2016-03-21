@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>LaunchCode&#039;s CS50x - Maryville</title>
+
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/font-awesome.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/highlight.dark.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/main.css">
+    </head>
+    <body>
+
+        <header class="navbar navbar-default navbar-fixed-top">
+
+            <a class="navbar-brand" href="http://education.launchcode.org/cs50x-maryville/">
+                LaunchCode&#039;s CS50x - Maryville
+            </a>
+
+        </header>
+
+        <main class="container-fluid">
+            <div class="row">
+
+                
+                    <nav id="sidebar" class="col-sm-3 col-lg-2" role="navigation">
+
+                        <ul class="nav nav-pills nav-stacked">
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/calendar/">
+                                        Calendar
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/how-to-take-this-class/">
+                                        How To Take This Class
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/helpful-resources/">
+                                        Helpful Resources
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://cs50.io/">
+                                        CS50 IDE
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://labs.vocareum.com/home/login.php">
+                                        Vocareum
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://piazza.com/link-to-maryville-piazza-page">
+                                        Piazza
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://docs.google.com/document/d/link-to-maryville-student-guide">
+                                        Student Guide
+                                    </a>
+                                </li>
+                                                    </ul>
+
+                    </nav>
+
+                
+                <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
+                    <h5 id="module-5">Module 5</h5>
+<p><a href="../../class2">Back to Class 2</a></p>
+<h1 id="studio-toys-r-accounted-4">Studio: Toys R Accounted 4</h1>
+<p>You work for a toy warehouse management company. You've got a lot of toys in your warehouse, and so it is important to keep an organized list of your inventory. Your company's organizational system is to sort each toy by the first letter of its name.</p>
+<p>So, for example, if your current inventory contained:</p>
+<ul>
+<li>Slinky</li>
+<li>Barbie</li>
+<li>Silly Putty</li>
+<li>Furbie</li>
+<li><a href="https://www.youtube.com/watch?v=AdHrgApNYWs" target="_blank">Bonestorm</a> Videogame</li>
+<li>Cup and Ball</li>
+</ul>
+<p>...then it would be organized into the following sublists:</p>
+<ul>
+<li>
+<p>B</p>
+<ol>
+<li>Barbie</li>
+<li>Bonestorm Videogame</li>
+</ol>
+</li>
+<li>
+<p>C</p>
+<ol>
+<li>Cup and Ball</li>
+</ol>
+</li>
+<li>
+<p>F</p>
+<ol>
+<li>Furbie</li>
+</ol>
+</li>
+<li>S
+<ol>
+<li>Slinky</li>
+<li>Silly Putty</li>
+</ol></li>
+</ul>
+<p>Items do not have to be listed alphabetically within a sublist-- they can be in any order. For example, look at the S list above.</p>
+<h3 id="your-assignment">Your Assignment</h3>
+<p>Help your company out by writing a program that takes in new inventory items and stores them in the proper location:</p>
+<pre><code class="language-nohighlight">$ ./toystorage
+Welcome, valued employee. 
+
+Please select an option:
+    a - to add a new toy to the warehouse
+    q - to quit
+a 
+What is the name of the new toy?
+Slinky
+Ok, Slinky has been added to bin 18
+bin 18 contains:
+    - Slinky
+
+Please select an option:
+    a - to add a new toy to the warehouse
+    q - to quit
+a 
+What is the name of the new toy?
+Barbie
+Ok, Barbie has been added to bin 1
+bin 1 contains:
+    - Barbie
+
+Please select an option:
+    a - to add a new toy to the warehouse
+    q - to quit
+a 
+What is the name of the new toy?
+Bonestorm Videogame
+Ok, Bonestorm Videogame has been added to bin 1
+bin 1 contains:
+    - Bonestorm Videogame
+    - Barbie
+
+Please select an option:
+    a - to add a new toy to the warehouse
+    q - to quit
+q
+Current contents of all bins:
+bin 1 contains:
+    - Bonestorm Videogame
+    - Barbie
+
+bin 18 contains:
+    - Slinky
+
+Goodbye, valued employee.</code></pre>
+<p>To do this, you’ll need to employ a Hash Table with Separate Chaining, as we saw <a href="http://cdn.cs50.net/2015/fall/lectures/5/w/notes5w/notes5w.html#hash_tables">here</a>.</p>
+<p>Your hash table will be implemented as a big array, where each item in the array is a sublist for a particular letter. So your array will have 26 slots, one for each letter</p>
+<ul>
+<li>the array, at index 0, will contain the sublist of all the toys that start with &quot;a&quot;, </li>
+<li>the array, at index 1, will contain the sublist of all the toys that start with &quot;b&quot;, </li>
+<li>etc</li>
+</ul>
+<p>Each sublist is implemented as a linked list, where each node in the list contains the name of the toy and a pointer to the next toy. So we looked inside the big array at index 1, we might expect to find a pointer to node whose <code>name</code> field is <code>"Bonestorm Videogame"</code>, and whose <code>next</code> field is a pointer to the &quot;Barbie&quot; node. </p>
+<p>The full process for storing any new item, looks like this:</p>
+<ul>
+<li>ask for the name of the item</li>
+<li>create a struct to represent the new item</li>
+<li>use a hash function to find correct location where this toy belongs</li>
+<li>add it to the correct sublist, the one at the above location</li>
+<li>print out the new inventory at that location</li>
+</ul>
+<p>We’ve provided starter code in <a href="toystorage.html">toystorage.c</a>, including a function for hashing based on the first letter of a toy’s name, as well as a basic struct for linked lists, and an initialization of an array to use as a hash table.  We’ve also provided the code to print out the contents of a key in the hash table.</p>
+                </section>
+
+            </div>
+        </main>
+
+        <footer>
+            <div class="container-fluid">
+                <p class="text-muted">
+                    website generated with <a href="http://couscous.io" title="Markdown website generator">Couscous</a>
+                </p>
+            </div>
+        </footer>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="//yastatic.net/highlightjs/8.2/highlight.min.js"></script>
+
+        <script>
+            $(function() {
+                $("section>h1").wrap('<div class="page-header" />');
+                // Syntax highlighting
+                hljs.initHighlightingOnLoad();
+            });
+        </script>
+
+    </body>
+</html>

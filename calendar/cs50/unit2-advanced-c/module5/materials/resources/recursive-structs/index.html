@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>LaunchCode&#039;s CS50x - Maryville</title>
+
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/font-awesome.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/highlight.dark.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/main.css">
+    </head>
+    <body>
+
+        <header class="navbar navbar-default navbar-fixed-top">
+
+            <a class="navbar-brand" href="http://education.launchcode.org/cs50x-maryville/">
+                LaunchCode&#039;s CS50x - Maryville
+            </a>
+
+        </header>
+
+        <main class="container-fluid">
+            <div class="row">
+
+                
+                    <nav id="sidebar" class="col-sm-3 col-lg-2" role="navigation">
+
+                        <ul class="nav nav-pills nav-stacked">
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/calendar/">
+                                        Calendar
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/how-to-take-this-class/">
+                                        How To Take This Class
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/helpful-resources/">
+                                        Helpful Resources
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://cs50.io/">
+                                        CS50 IDE
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://labs.vocareum.com/home/login.php">
+                                        Vocareum
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://piazza.com/link-to-maryville-piazza-page">
+                                        Piazza
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://docs.google.com/document/d/link-to-maryville-student-guide">
+                                        Student Guide
+                                    </a>
+                                </li>
+                                                    </ul>
+
+                    </nav>
+
+                
+                <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
+                    <h5 id="module-5">Module 5</h5>
+<p><a href="../../class1-prep#recursion-review-and-recursive-structs">Back to Class 1 Prep</a></p>
+<h1 id="resource-recursively-defined-structs">Resource: Recursively Defined Structs</h1>
+<p>In Module 4 we learned about <code>struct</code>s, which allow us to define new data types by clustering together a handful of pieces of data into a single meaningful unit.</p>
+<p>For example, we might represent a sports team as being composed of a city, a name, number of wins, and number of losses:</p>
+<pre><code class="language-c">typedef struct
+{
+    char* city;
+    char* name;
+    int wins;
+    int losses;
+} team;</code></pre>
+<p>We can create and initialize an &quot;instance&quot; of this type by using curly braces:</p>
+<pre><code class="language-c">team spoons = { "Springfield", "Spoons", 2, 13 };
+team forks = { "Shelbyville", "Forks", 11, 4 };</code></pre>
+<p>We can read to and write from the &quot;fields&quot; or &quot;members&quot; of an instance by using dot-notation:</p>
+<pre><code class="language-c">printf("In a shock upset, our beloved %s %s actually won!\n", spoons.city, spoons.name);
+spoons.wins = spoons.wins + 1;
+forks.losses = forks.losses + 1;
+printf("%s's record is now %i and %i\n", spoons.city, spoons.wins, spoons.losses);</code></pre>
+<h3 id="structs-of-structs">Structs of Structs</h3>
+<p>In the above example, our <code>team</code> struct is composed entirely of regular &quot;primitive&quot; data types: <code>int</code> and <code>char*</code>.</p>
+<p>But we are not restricted to primitives. If we want, we can make a struct whose fields are actually <em>other</em> structs.</p>
+<p>For example, suppose we wanted to represent a game between two sports teams. What pieces of information do we need in order to comprise a game? Maybe something like this:</p>
+<ul>
+<li>the score of one team</li>
+<li>the score of the other team</li>
+</ul>
+<p>We can represent both of these fields using integers:</p>
+<pre><code class="language-c">typedef struct
+{
+    int homeScore;
+    int awayScore;
+} game;</code></pre>
+<p>That's all well and good. But another pretty essential feature of a game is missing: the teams that are competing in it! How can we incorporate that?</p>
+<p>Well, we could start adding a bunch of fields to hold the information to represent each of the teams:</p>
+<pre><code class="language-c">typedef struct
+{
+    int homeScore;
+    int awayScore;
+    char* homeCity;
+    char* awayCity;
+    char* homeName;
+    char* awayName;
+    int homeWins;
+    int awayWins;
+    ...
+} game;</code></pre>
+<p>...but that's obviously not the way to go. We've already defined a new type called <code>team</code> which contains all that data. So in fact, our <code>game</code> only needs to keep track of its two <code>teams</code>:</p>
+<pre><code class="language-c">typedef struct
+{
+    team homeTeam;
+    team awayTeam;
+    int homeScore;
+    int awayScore;
+} game;</code></pre>
+<p>And we could create a game like this:</p>
+<pre><code class="language-c">game spoonsVsForks = { spoons, forks, 22, 19 };</code></pre>
+<h3 id="value-vs-reference">Value vs Reference</h3>
+<p>A quick tangent now:</p>
+<p>Let's actually change one thing about our <code>game</code>. Currently it contains two <code>team</code>s, home and away, but in fact it actually contains <em>copies</em> of those teams. </p>
+<p>This means that the following code will behave unexpectedly:</p>
+<pre><code class="language-c">team spoons = { "Springfield", "Spoons", 2, 13 };
+team forks = { "Shelbyville", "Forks", 11, 4 };
+
+game spoonsVsForks = { spoons, forks, 22, 19 };
+
+team homeTeam = forksVsSpoons.homeTeam; 
+// homeTeam is spoons, right?
+
+// so let's increase their wins
+homeTeam.wins += 1;
+
+// but in fact, homeTeam is merely a copy of spoons
+
+// so homeTeam.wins is now 3
+
+// but spoons.wins is still 2!
+
+printf("The home team now has %i wins. The Spoons have %i wins.\n", homeTeam.wins, spoons.wins);
+//prints out: The home team now has 3 wins. The Spoons have 2 wins.</code></pre>
+<p>Our beloved Spoons have a life of their own outside of this one particular game, and so the game should really refer to the <em>same exact</em> location in memory where our <code>spoons</code> variable is located. We can do this by giving the game a pointer to its teams.</p>
+<pre><code class="language-c">typedef struct
+{
+    team* homeTeam;
+    team* awayTeam;
+    int homeScore;
+    int awayScore;
+} game;</code></pre>
+<p>Now this code works as expected:</p>
+<pre><code class="language-c">team spoons = { "Springfield", "Spoons", 2, 13 };
+team forks = { "Shelbyville", "Forks", 11, 4 };
+
+// we now must use the address of our teams
+game spoonsVsForks = { &amp;spoons, &amp;forks, 22, 19 };
+
+// this time homeTeam really is a pointer to "the actual" spoons
+team* homeTeam = spoonsVsForks.homeTeam; 
+
+// and here we must use arrow notation instead of dot notation
+homeTeam-&gt;wins += 1;
+
+printf("The home team now has %i wins. The Spoons have %i wins.\n", homeTeam-&gt;wins, spoons.wins);
+//prints out: The home team now has 3 wins. The Spoons have 3 wins.</code></pre>
+<p>(To be clear, it's not universally true that you'll want to use pointers instead of values in situations like this. Sometimes you just want the data, and you don't care if it's a copy.)</p>
+<h3 id="recursively-defined">Recursively Defined</h3>
+<p>So we've now seen how structs can be composed of other structs. In the example above, each <code>game</code> contains pointers to two <code>team</code>s.</p>
+<p>But we are also not restricted to referring to different <em>types</em> of structs. A struct can contain fields whose type is the exact same as its own type.</p>
+<p>For example, let's say we want to incorporate the idea of rivarlies into our program. We want each team, in addition to its other information, to have a field representing which <em>other team</em> is its biggest rival. To do this, we simply need to add another field, of type <code>team*</code>:</p>
+<pre><code class="language-c">typedef struct
+{
+    char* city;
+    char* name;
+    int wins;
+    int losses;
+    team* biggestRival;
+} team;</code></pre>
+<p>Hopefully that makes sense.</p>
+<p>There's actually one small complication. The compiler will not be able to handle the above code without some extra help on our part. The problem is that, because we are trying to use <code>team*</code> inside the definition of <code>team</code> itelf, the compiler says &quot;Hey I don't know what a team is yet. You can't use that type.&quot; So on recursively defined structs like this, we have to add a little bit of syntax to tell the compiler &quot;Trust me, there is going to be a type called team.&quot; We do this like so:</p>
+<pre><code class="language-c">typedef struct team // we add the word "team" to the end of this line
+{
+    char* city;
+    char* name;
+    int wins;
+    int losses;
+    struct team* biggestRival; // and we add the word "struct" to the beginning of this line
+} team;</code></pre>
+<p>Now the compiler will be happy.</p>
+<p>In <a href="./sports.html">sports.c</a> you will find a complete working program that incorporates all the concepts discussed in this resource. If you run it, it behaves like so:</p>
+<pre><code class="language-nohighlight">$ ./sports 
+Good evening, sports fans!
+The score of this year's EPIC RIVALRY CLASH was
+Springfield Spoons: 22
+Shelbyville Forks: 19
+Springfield now has a record of 3 wins, 13 losses
+Shelbyville now has a record of 11 wins, 5 losses</code></pre>
+<p>Obviously this is a little contrived, since we don't take any user input, and we hard-code the results of the game inside <code>main</code>. But you could easily extend the program to be more dynamic. </p>
+<p>Check out the source code and make sure you understand how all the different <code>struct</code> fields enter into the picture.</p>
+                </section>
+
+            </div>
+        </main>
+
+        <footer>
+            <div class="container-fluid">
+                <p class="text-muted">
+                    website generated with <a href="http://couscous.io" title="Markdown website generator">Couscous</a>
+                </p>
+            </div>
+        </footer>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="//yastatic.net/highlightjs/8.2/highlight.min.js"></script>
+
+        <script>
+            $(function() {
+                $("section>h1").wrap('<div class="page-header" />');
+                // Syntax highlighting
+                hljs.initHighlightingOnLoad();
+            });
+        </script>
+
+    </body>
+</html>
