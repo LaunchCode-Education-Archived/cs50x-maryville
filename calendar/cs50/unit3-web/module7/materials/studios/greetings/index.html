@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>LaunchCode&#039;s CS50x - Maryville</title>
+
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/font-awesome.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/highlight.dark.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/main.css">
+    </head>
+    <body>
+
+        <header class="navbar navbar-default navbar-fixed-top">
+
+            <a class="navbar-brand" href="http://education.launchcode.org/cs50x-maryville/">
+                LaunchCode&#039;s CS50x - Maryville
+            </a>
+
+        </header>
+
+        <main class="container-fluid">
+            <div class="row">
+
+                
+                    <nav id="sidebar" class="col-sm-3 col-lg-2" role="navigation">
+
+                        <ul class="nav nav-pills nav-stacked">
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/calendar/">
+                                        Calendar
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/how-to-take-this-class/">
+                                        How To Take This Class
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/helpful-resources/">
+                                        Helpful Resources
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://cs50.io/">
+                                        CS50 IDE
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://labs.vocareum.com/home/login.php">
+                                        Vocareum
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://piazza.com/link-to-maryville-piazza-page">
+                                        Piazza
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://docs.google.com/document/d/1TiS8pmVkEu96BC7-wC-qSueIi8RDIZcRg700w4gqmf0/edit?usp=sharing">
+                                        Student Guide
+                                    </a>
+                                </li>
+                                                    </ul>
+
+                    </nav>
+
+                
+                <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
+                    <h5 id="module-7">Module 7</h5>
+<p><a href="../../class2">Back to Class 2</a></p>
+<h1 id="studio-greetings">Studio: Greetings</h1>
+<p>Today you will use your new SQL skills to build a full website with a PHP back end <em>and</em> a database that persists user data!</p>
+<p>Your site will also follow good MVC conventions.</p>
+<p>This is a big, hearty studio, with lots of work to do. Oh boy!</p>
+<h3 id="the-goal">The Goal</h3>
+<p>First, let's go over what you are trying to accomplish.</p>
+<p>The home page is simply a form where users can input their name and choose a greeting (If you did the <a href="../../class1-prep">Class 1 Prep</a>, this should feel very familiar!):</p>
+<img src="screenshots/sup-ruth-form.png" />
+<p>Upon submitting the form, the user should be warmly greeted:</p>
+<img src="screenshots/sup-ruth-response.png" />
+<p>Notice that the site also reports how many times a particular greeting has been used. If someone else (named, say, Moe) were to come along and select &quot;What is up&quot; at this point, he should see this:</p>
+<img src="screenshots/sup-moe-response.png"/>
+<p>How does the site keep track of this? By using a database, of course! You will build a database table to store greetings, where each greeting will have a <code>text</code> field with a value like <code>"What is up"</code> and a <code>num_times</code> field with a value like <code>5</code>. More on that later.</p>
+<p>Another feature to notice is that the form on the homepage should also give users the option of creating their own &quot;custom&quot; greeting, rather than choosing from one of the &quot;pre-made&quot; greetings in the drop-down menu:</p>
+<img src="screenshots/lizards-form.png"/>
+<p>Claudia should see a response like this:</p>
+<img src="screenshots/lizards-response.png"/>
+<p>(As you can see, your site doesn't have to be smart about English numbering syntax. You can say &quot;1th&quot; and &quot;2th&quot; instead of &quot;1st&quot; and &quot;2nd&quot;).</p>
+<p>One last thing to note is that when a user creates a custom greeting like &quot;I like lizards&quot;, that new greeting should then be permanently added to the database, and subsequently should be available as an option in the dropdown menu:</p>
+<img src="screenshots/lizards-select.png"/>
+<h3 id="starter-code">Starter Code</h3>
+<p>We have provided you with some starter code. Download it using the <code>wget</code> command:</p>
+<pre><code class="language-nohighlight">$ cd ~/workspace/module7/studios/
+$ wget education.launchcode.org/calendar/cs50/unit3-web/module7/materials/studios/greetings/greetings.zip</code></pre>
+<p>Unzip the <code>.zip</code> archive, confirm that you now have a <code>greetings</code> directory, and then delete the archive:</p>
+<pre><code class="language-nohighlight">$ unzip greetings.zip
+$ ls 
+greetings/ greetings.zip mult_table/
+$ rm -f greetings.zip</code></pre>
+<h3 id="a-brief-tour">A Brief Tour</h3>
+<p>Let's see what the project looks like so far.</p>
+<pre><code class="language-nohighlight">$ cd greetings
+$ ls 
+config.json includes/  public/  vendor/  views/</code></pre>
+<p>A lot of stuff in there! If we expand it, it looks like this:</p>
+<pre><code class="language-nohighlight">├── config.json
+├── public
+    ├── greet.php
+    └── index.php
+├── views
+    ├── greeting_form.php
+    ├── greeting_display.php
+    └── header.php
+    ├── footer.php
+├── includes
+    └── helpers.php
+└── vendor
+    └── library50-php-5
+        └── CS50
+            ├── CS50.php
+            └── (a bunch of other things we don't need to care about)
+                ├── ... </code></pre>
+<h5 id="the">The <code>public/</code> Folder</h5>
+<p>The <code>public/</code> directory contains our Controllers, the pages that our site makes publicly available for users to visit. You should be pretty familiar by now with the following 2-page form/reponse dynamic:</p>
+<ul>
+<li><code>index.php</code>, our &quot;home page&quot;, displays a form where the user can submit her name and choose a greeting</li>
+<li><code>greet.php</code> is the file that receives and handles the submission of the form.</li>
+</ul>
+<h5 id="the-1">The <code>views/</code> Folder</h5>
+<p>If you glance through the source code for the two public pages, <code>index.php</code> and <code>greet.php</code>, you might notice that neither contains any HTML. That's because, as per MVC, we want those Controller files to handle our core &quot;business logic&quot; only-- we do not want the Controllers to worry about the details of how stuff looks on screen. Any code specifying how stuff looks should be factored out into separate &quot;template&quot; View files, which our Controllers will simply combine together to assemble the overall response that ultimately gets sent back to the client. </p>
+<p>For example, notice that at the bottom of each of those Controller files is a section where we &quot;render stuff&quot;, by passing the names of various template files to the the <code>render()</code> function from <code>helpers.php</code> (more on that soon). There are 4 such template files in the <code>views/</code> folder:</p>
+<ul>
+<li><code>header.php</code> is some basic boilerplate HTML that goes at the top of a page</li>
+<li><code>footer.php</code> is similar basic HTML for the bottom of a page</li>
+<li><code>greeting_form.php</code> is the form that users fill out when they visit the home page</li>
+<li><code>greeting_display.php</code> is the greeting that users see after submitting the form</li>
+</ul>
+<p>Both Controllers follow a similar pattern of rendering the <code>header.php</code> and <code>footer.php</code> Views first and last respectively, with a more interesting piece of content sandwiched in between.</p>
+<h5 id="the-2">The <code>includes/</code> Folder</h5>
+<p>Over in the <code>includes/</code> folder is just one file, <code>helpers.php</code>, which contains a few helper functions:</p>
+<ul>
+<li><code>render()</code>, as mentioned before, receives the name of a &quot;template&quot; file, and optionally some extra data that the template file will need. This function should check to see if the template file actually exists, and if so, render it by simply calling <code>require()</code> on it.</li>
+<li><code>create_new_greeting()</code> receives a string representing a new custom greeting fom the user (e.g. &quot;I like lizards&quot;). It should add a new row to the database for that string, but only after checking to make sure the database does not <em>already</em> contain a greeting with identical text.</li>
+</ul>
+<h5 id="the-3">The <code>vendor/</code> folder</h5>
+<p>The <code>vendor</code> folder is where we have placed all 3rd-party code that other people wrote that we would like to use in our project. </p>
+<p>There is really only one 3rd-party library that we are using directly, and that is a small library written by the CS50 folks in a file called <code>CS50.php</code>. This CS50 library shields us from many of the low-level details involved in connecting to and interacting with a database, which will free us to focus on our SQL queries instead of the grunt work required to set up a connection, authenticate ourselves, and so on.</p>
+<p>Incidentally, there are a bunch more libraries in this folder, because the CS50 library itself is dependent on them. But we don't have to care about that for the purposes of this project.</p>
+<h3 id="setting-up-the-database">Setting Up the Database</h3>
+<p>The first thing to do is to set up the database. Follow along as we walk you though how to do that. </p>
+<h5 id="mysql-server">MySQL Server</h5>
+<p>First, start up your apache server:</p>
+<pre><code class="language-nohighlight">$ apache50 start public/
+Setting Apache's document root to /home/ubuntu/workspace/module7/studios/greetings/public ...
+ * Starting web server apache2
+ * 
+Apache started successfully!
+Your site is now available at https://ide50-jharvard.c9users.io</code></pre>
+<p>Next, start up another separate server for the database:</p>
+<pre><code class="language-nohighlight">$ mysql50 start
+ * Starting MySQL database server mysqld
+   ...done.
+ * Checking for tables which need an upgrade, are corrupt or were 
+not closed cleanly.</code></pre>
+<p>This server establishes a communication channel between our back end and our database, so that we can read from and write to the database.</p>
+<p>But we don't yet have a database! Let's create one.</p>
+<h5 id="create-the-database-in-phpmyadmin">Create the Database in phpMyAdmin</h5>
+<p>If you head over <code>https://ide50-jharvard.cs50.io</code> (with your username instead of &quot;jharvard&quot;), you will see a big orange error on the screen. No problem, this is just because you don't have a database yet. Go to the address bar and add <code>/phpmyadmin</code> onto the end of your url, yielding <code>https://ide50-jharvard.cs50.io/phpmyadmin</code>, and hit Enter.</p>
+<p>You should now arrive at a login screen for something called phpMyAdmin. phpMyAdmin is a tool that allows you to manage your MySQL databases. Let's log in. You can find your username and password by running some magic commands in the terminal:</p>
+<pre><code class="language-nohighlight">$ username50 
+jharvard
+$ password50
+123456789</code></pre>
+<p>Once you log in, click on the <code>SQL</code> tab in the menu at the top (towards the left). This tool allows you to write SQL code to create and edit databases.</p>
+<p>Paste the following code into the textbox:</p>
+<pre><code class="language-SQL">--
+-- Database: `module7studio`
+--
+
+CREATE DATABASE IF NOT EXISTS module7studio;
+USE module7studio;
+
+-- --------------------------------------------------------
+
+--
+-- Create a table `greetings`
+--
+
+CREATE TABLE IF NOT EXISTS `greetings` (
+  id int(10) unsigned NOT NULL AUTO_INCREMENT,
+  text varchar(255) NOT NULL,
+  num_times int(10) unsigned NOT NULL,
+  PRIMARY KEY (id),
+  UNIQUE KEY text (text)
+) ENGINE=InnoDB;
+
+--
+-- Add some data to table `greetings`
+--
+
+INSERT INTO greetings (text) VALUES('Hello');
+INSERT INTO greetings (text) VALUES('Cheers');
+INSERT INTO greetings (text) VALUES('What is up');</code></pre>
+<p>Essentially, we are creating a new database called <code>module7studio</code>, within which we are creating a new table called <code>greetings</code>, and finally we are adding a few rows to the <code>greetings</code> table. </p>
+<p>Look over the code for a sec, make sure it makes sense, and then execute the code by clicking Go at the bottom right.</p>
+<p>You should now be able to click on a table called <code>greetings</code>, which you can browse and see that it contains some data, the three rows we inserted!</p>
+<h5 id="add-authenticaion-to-configjson">Add Authenticaion to config.json</h5>
+<p>There is one file we didn't talk about previously, <code>config.json</code>. Open it up now, and you'll see it is a very small chunk of JSON, with some TODOs. This is simply a place where we put our MySQL credentials, which the CS50 library will use in order to establish its connection to the MySQL server. </p>
+<p>Go ahead and add your username and password to this file, and save it.</p>
+<h3 id="check-it-out">Check It Out</h3>
+<p>Now we are finally at the point where you can visit the site!</p>
+<p>Go back to the root page, <code>https://ide50-jharvard.cs50.io</code>. You should now see a log statement detailing the contents of the database. Indeed, we are looking at the output of <code>index.php</code>. (Recall that even though we aren't directly visiting <code>/index.php</code> in the URL, the apache server, upon finding a file with the special name <code>"index"</code>, automatically takes the user there.) </p>
+<h5 id="the-4">The <code>var_dump()</code> function</h5>
+<p>Look at the source code for <code>index.php</code>, and you will see that the output on the page is coming from two lines near the top of the file:</p>
+<pre><code class="language-php">print("This is what we have in the database right now:");
+var_dump($greeting_rows);</code></pre>
+<p>The second line uses an awesome php function valled <code>var_dump()</code> to render to the screen a nicely formatted, human-readable string describing the contents of our local <code>$greeting_rows</code> variable. Whenever you're trying to debug, make liberal use of the <code>var_dump()</code> function.</p>
+<h5 id="the-5">The <code>query()</code> function</h5>
+<p>Looking up, we can see that the <code>$greeting_rows</code> variable came from this line:</p>
+<pre><code class="language-php">$greeting_rows = CS50::query("SELECT * FROM greetings");</code></pre>
+<p>This is where the magic happens. The CS50 library exposes a function called <code>query()</code> which allows you to make SQL queries on your database. You simply pass in a string with the SQL code, and the function will execute the query and return the results. For more one this function, see the <a href="http://cdn.cs50.net/2015/fall/lectures/8/w/notes8w/notes8w.html#sql" target="_blank">lecture notes from Week 8 / SQL</a>.</p>
+<p>(Don't worry too much about the <code>CS50::</code> syntax. The <code>query()</code> function is &quot;inside of&quot; an &quot;object&quot; or &quot;class&quot; called <code>CS50</code>, and so any time you want to use the function, you have to prepend <code>CS50::</code>.)</p>
+<h3 id="get-to-work">Get to Work</h3>
+<p>After <code>index.php</code> gets the current data from the deatabase and dumps it to the screen, the next few lines call the <code>render()</code> function. But on screen, nothing seems to be showing up!</p>
+<p>That's because <code>render()</code> is incomplete. That is your first task! Fill in the TODOs so that <code>render()</code> actually causes templates to show up on screen. You might find David Malan's <code>mvc-3</code> program provides a helpful example from which you can more-or-less copy. (See the <a href="http://cdn.cs50.net/2015/fall/lectures/8/m/src8m/mvc/3/helpers.php.src" target="_blank">source code</a> and the <a href="https://www.youtube.com/watch?v=5juddGp7D9g&index=5&list=PLhQjrBD2T3810Z6sRJdj148H0ANU2jJcO" target="_blank">walkthrough video</a> for guidance).</p>
+<h3 id="other-todos">Other TODOs</h3>
+<p>Once you get <code>render()</code> up and running, you should see a <code>&lt;form&gt;</code> on the screen! At that point, your next few TODOs will become apparent. Keep on working your way through all the TODOs (everything that needs to be done is documented in the source files) until your site contains all the features described above.</p>
+<h3 id="how-to-submit">How to Submit</h3>
+<p>Compress your <code>greetings</code> directory into a <code>.zip</code> file:</p>
+<pre><code class="language-nohighlight">cd ~/workspace/module7/studios
+zip greetings.zip greetings</code></pre>
+<p>Upload <code>greetings.zip</code> on Vocareum, in the assignment titled <strong>Studio: Greetings</strong>.</p>
+                </section>
+
+            </div>
+        </main>
+
+        <footer>
+            <div class="container-fluid">
+                <p class="text-muted">
+                    website generated with <a href="http://couscous.io" title="Markdown website generator">Couscous</a>
+                </p>
+            </div>
+        </footer>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="//yastatic.net/highlightjs/8.2/highlight.min.js"></script>
+
+        <script>
+            $(function() {
+                $("section>h1").wrap('<div class="page-header" />');
+                // Syntax highlighting
+                hljs.initHighlightingOnLoad();
+            });
+        </script>
+
+    </body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>LaunchCode&#039;s CS50x - Maryville</title>
+
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/font-awesome.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/highlight.dark.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/main.css">
+    </head>
+    <body>
+
+        <header class="navbar navbar-default navbar-fixed-top">
+
+            <a class="navbar-brand" href="http://education.launchcode.org/cs50x-maryville/">
+                LaunchCode&#039;s CS50x - Maryville
+            </a>
+
+        </header>
+
+        <main class="container-fluid">
+            <div class="row">
+
+                
+                    <nav id="sidebar" class="col-sm-3 col-lg-2" role="navigation">
+
+                        <ul class="nav nav-pills nav-stacked">
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/calendar/">
+                                        Calendar
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/how-to-take-this-class/">
+                                        How To Take This Class
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/helpful-resources/">
+                                        Helpful Resources
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://cs50.io/">
+                                        CS50 IDE
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://labs.vocareum.com/home/login.php">
+                                        Vocareum
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://piazza.com/link-to-maryville-piazza-page">
+                                        Piazza
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://docs.google.com/document/d/1TiS8pmVkEu96BC7-wC-qSueIi8RDIZcRg700w4gqmf0/edit?usp=sharing">
+                                        Student Guide
+                                    </a>
+                                </li>
+                                                    </ul>
+
+                    </nav>
+
+                
+                <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
+                    <h5 id="module-7">Module 7</h5>
+<p><a href="../../class1-prep">Back to Class 1 Prep</a></p>
+<h1 id="resource-htmlspecialchars">Resource: htmlspecialchars</h1>
+<p>Going back to our continuing Hello example, let's now introduce a little wrinkle.</p>
+<p>Suppose we have a mischievous user who types something like this:</p>
+<img src="screenshots/rascal-form.png" />
+<p>You see what that rascal is doing? If we handle the form submission like this:</p>
+<pre><code class="language-php">&lt;?php 
+
+$greeting = $_GET["greeting"];
+$username = $_GET["username"];
+print("{$greeting}, {$username}!");
+
+?&gt;</code></pre>
+<p>The end result is going to be:</p>
+<img src="screenshots/rascal-response.png" />
+<p>Uh oh!</p>
+<p>Our browser sees that <code>"&lt;h1&gt;"</code> and gets all excited, misinterpretting it as an actual HTML tag, rather than simply treating it as part of the user's name, like it should.</p>
+<p>PHP gives us a function called <code>htmlspecialchars</code> for situations like this. This function allows us to specify that a string should taken as a literal string, not as HTML.</p>
+<p>In our script, let's pass the user input through the <code>htmlspecialchars</code> function before printing it:</p>
+<pre><code class="language-php">&lt;?php 
+
+$greeting = $_GET["greeting"];
+$username = $_GET["username"];
+$message = htmlspecialchars("{$greeting}, {$username}!");
+print($message);
+
+?&gt;</code></pre>
+<p>When we do this, the <code>$message</code> variable actually now looks like this:</p>
+<pre><code class="language-php">"Hello, &amp;lt;h1&amp;gt;li'l Rascal!&amp;lt;/h1&amp;gt;"</code></pre>
+<p>which looks like gobbledygook to us, but the browser understands it to mean:</p>
+<p><em>OK, I should treat this '&lt;' character as a literal '&lt;' character and not try to interpret it as the beginning of a tag</em></p>
+<p>and so on, for each of the &quot;special characters&quot; that have a syntactic function in HTML.</p>
+<p>Now our Rascal user sees this on his screen:</p>
+<img src="screenshots/rascal-response2.png" />
+<p>That's better!</p>
+<p>The moral of this story is that any time you are trying to insert some content into your HTML, you should wrap it into a call to <code>htmlspecialchars()</code>, so that the browser interprets the content as it literally is, rather than misinterpretting it as HTML.</p>
+                </section>
+
+            </div>
+        </main>
+
+        <footer>
+            <div class="container-fluid">
+                <p class="text-muted">
+                    website generated with <a href="http://couscous.io" title="Markdown website generator">Couscous</a>
+                </p>
+            </div>
+        </footer>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="//yastatic.net/highlightjs/8.2/highlight.min.js"></script>
+
+        <script>
+            $(function() {
+                $("section>h1").wrap('<div class="page-header" />');
+                // Syntax highlighting
+                hljs.initHighlightingOnLoad();
+            });
+        </script>
+
+    </body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>LaunchCode&#039;s CS50x - Maryville</title>
+
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/font-awesome.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/highlight.dark.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/main.css">
+    </head>
+    <body>
+
+        <header class="navbar navbar-default navbar-fixed-top">
+
+            <a class="navbar-brand" href="http://education.launchcode.org/cs50x-maryville/">
+                LaunchCode&#039;s CS50x - Maryville
+            </a>
+
+        </header>
+
+        <main class="container-fluid">
+            <div class="row">
+
+                
+                    <nav id="sidebar" class="col-sm-3 col-lg-2" role="navigation">
+
+                        <ul class="nav nav-pills nav-stacked">
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/calendar/">
+                                        Calendar
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/how-to-take-this-class/">
+                                        How To Take This Class
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/helpful-resources/">
+                                        Helpful Resources
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://cs50.io/">
+                                        CS50 IDE
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://labs.vocareum.com/home/login.php">
+                                        Vocareum
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://piazza.com/link-to-maryville-piazza-page">
+                                        Piazza
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://docs.google.com/document/d/1TiS8pmVkEu96BC7-wC-qSueIi8RDIZcRg700w4gqmf0/edit?usp=sharing">
+                                        Student Guide
+                                    </a>
+                                </li>
+                                                    </ul>
+
+                    </nav>
+
+                
+                <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
+                    <h5 id="module-7">Module 7</h5>
+<p><a href="../../class1-prep#php-syntax">Back to Prep for Class 1</a></p>
+<h1 id="exercise-annoying-kid-brother">Exercise: Annoying Kid Brother</h1>
+<p>Unlike in C, arrays in PHP can be dynamically resized. PHP provides two functions for arrays, <code>array_push</code> and <code>array_pop</code>, that you will find useful. Let’s practice using them!</p>
+<p>The <code>array_push</code> function allows you to insert another value at the end of an array without having to reallocate more memory for the array, or having to specify exactly which index to insert into; instead you can simply say &quot;add this element at the next available index in the array, whatever that happens to be.&quot; Here's an example:</p>
+<pre><code class="language-php">$dogs = [ "Spot", "Snoopy" ];
+array_push($dogs, "Air Bud");
+// $dogs is now [ "Spot", "Snoopy", "Air Bud" ]</code></pre>
+<p>Similarly, <code>array_pop</code> allows you to easily remove the last element from an array, without having to know the exact index at which the last element is located:</p>
+<pre><code class="language-php">$dogs = [ "Spot", "Snoopy" ];
+array_pop($dogs);
+// $dogs is now [ "Spot" ]</code></pre>
+<p>In <a href="./kidbrother.php">kidbrother.php</a>, we’ve provided the start of a program for you.  When completed, the program should:</p>
+<ul>
+<li>ask the user how many elements to store</li>
+<li>ask for each element in turn</li>
+<li>then print out the elements in reverse order</li>
+</ul>
+<p>All you need to do to finish the program is write a loop to collect the user’s input.  <strong>In this exercise, all you’ll have to do is use <code>array_push</code> for each element you see.</strong></p>
+<p>Example usage of the completed program:</p>
+<pre><code class="language-nohighlight">$ php kidbrother.php
+I can remember a LOT of things! Tell me what to remember!
+How many things?: 4
+Thing 1? I love dogs but not cats
+Thing 2? 42
+Thing 3? Bacon
+Okay okay okay the things are:
+Bacon
+42
+I love dogs but not cats
+I’m so great! …Or did I mess it up?</code></pre>
+<p>Together, the operations “push” and “pop” allow us to implement a Stack, a very common, useful, and simple data structure.</p>
+<p>One of the common uses of a Stack is making a first pass over some data, pushing it into a Stack on the way, then accessing the data in reverse by popping the elements off one-by-one.</p>
+                </section>
+
+            </div>
+        </main>
+
+        <footer>
+            <div class="container-fluid">
+                <p class="text-muted">
+                    website generated with <a href="http://couscous.io" title="Markdown website generator">Couscous</a>
+                </p>
+            </div>
+        </footer>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="//yastatic.net/highlightjs/8.2/highlight.min.js"></script>
+
+        <script>
+            $(function() {
+                $("section>h1").wrap('<div class="page-header" />');
+                // Syntax highlighting
+                hljs.initHighlightingOnLoad();
+            });
+        </script>
+
+    </body>
+</html>

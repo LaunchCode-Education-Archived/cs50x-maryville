@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>LaunchCode&#039;s CS50x - Maryville</title>
+
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/font-awesome.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/highlight.dark.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/main.css">
+    </head>
+    <body>
+
+        <header class="navbar navbar-default navbar-fixed-top">
+
+            <a class="navbar-brand" href="http://education.launchcode.org/cs50x-maryville/">
+                LaunchCode&#039;s CS50x - Maryville
+            </a>
+
+        </header>
+
+        <main class="container-fluid">
+            <div class="row">
+
+                
+                    <nav id="sidebar" class="col-sm-3 col-lg-2" role="navigation">
+
+                        <ul class="nav nav-pills nav-stacked">
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/calendar/">
+                                        Calendar
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/how-to-take-this-class/">
+                                        How To Take This Class
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/helpful-resources/">
+                                        Helpful Resources
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://cs50.io/">
+                                        CS50 IDE
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://labs.vocareum.com/home/login.php">
+                                        Vocareum
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://piazza.com/link-to-maryville-piazza-page">
+                                        Piazza
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://docs.google.com/document/d/1TiS8pmVkEu96BC7-wC-qSueIi8RDIZcRg700w4gqmf0/edit?usp=sharing">
+                                        Student Guide
+                                    </a>
+                                </li>
+                                                    </ul>
+
+                    </nav>
+
+                
+                <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
+                    <h5 id="module-7">Module 7</h5>
+<p><a href="../class1-prep">Back to Class 1 Prep</a></p>
+<h1 id="exercise-hello-0">Exercise: Hello 0</h1>
+<h3 id="starter-code">Starter Code</h3>
+<p>This exercises has some starter code. Copy over these two files into your IDE: <a href="./hello-form.html">hello-form.php</a> and <a href="./hello-response.html">hello-response.php</a>.</p>
+<p>We've given you the front end and back end to very basic Hello World website, which simply asks the user for their name and then says hello to that person.</p>
+<p>Let's take a look at what we have so far. Start up a server in your current directory:</p>
+<pre><code class="language-nohighlight">apache50 start ./</code></pre>
+<p>Now visit <code>ide50-jharvard.cs50.io/hello-form.php</code> in a web browser.  You should see a page with a basic HTML form that reads &quot;Say hello to _____&quot;. When you fill in the blank with a name (let's say &quot;Zamyla&quot;) and submit the form, you should arrive at a different page, <code>hello-response.php</code>, which says &quot;Hello, Zamyla!&quot;</p>
+<h3 id="assignment">Assignment</h3>
+<p>Your job is to add a new feature to this site: Create an additional form field that allows the user to customize the &quot;Hello&quot; part of the message to some other sort of greeting, like &quot;Hi&quot; or &quot;Hola&quot;. One nice option would be to use a <code>&lt;select&gt;</code> tag, as pictured in the mockup below:</p>
+<img src="hello0-1.png"/>
+<p>Submitting the form should yield the appropriate response, as pictured here:</p>
+<img src="hello0-2.png"/>
+                </section>
+
+            </div>
+        </main>
+
+        <footer>
+            <div class="container-fluid">
+                <p class="text-muted">
+                    website generated with <a href="http://couscous.io" title="Markdown website generator">Couscous</a>
+                </p>
+            </div>
+        </footer>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="//yastatic.net/highlightjs/8.2/highlight.min.js"></script>
+
+        <script>
+            $(function() {
+                $("section>h1").wrap('<div class="page-header" />');
+                // Syntax highlighting
+                hljs.initHighlightingOnLoad();
+            });
+        </script>
+
+    </body>
+</html>

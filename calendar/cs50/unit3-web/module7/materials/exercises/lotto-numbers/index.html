@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>LaunchCode&#039;s CS50x - Maryville</title>
+
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/font-awesome.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/highlight.dark.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/main.css">
+    </head>
+    <body>
+
+        <header class="navbar navbar-default navbar-fixed-top">
+
+            <a class="navbar-brand" href="http://education.launchcode.org/cs50x-maryville/">
+                LaunchCode&#039;s CS50x - Maryville
+            </a>
+
+        </header>
+
+        <main class="container-fluid">
+            <div class="row">
+
+                
+                    <nav id="sidebar" class="col-sm-3 col-lg-2" role="navigation">
+
+                        <ul class="nav nav-pills nav-stacked">
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/calendar/">
+                                        Calendar
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/how-to-take-this-class/">
+                                        How To Take This Class
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/helpful-resources/">
+                                        Helpful Resources
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://cs50.io/">
+                                        CS50 IDE
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://labs.vocareum.com/home/login.php">
+                                        Vocareum
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://piazza.com/link-to-maryville-piazza-page">
+                                        Piazza
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://docs.google.com/document/d/1TiS8pmVkEu96BC7-wC-qSueIi8RDIZcRg700w4gqmf0/edit?usp=sharing">
+                                        Student Guide
+                                    </a>
+                                </li>
+                                                    </ul>
+
+                    </nav>
+
+                
+                <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
+                    <h5 id="module-7">Module 7</h5>
+<p><a href="../../class1-prep#php-syntax">Back to Prep for Class 1</a></p>
+<h1 id="exercise-lotto-numbers">Exercise: Lotto Numbers</h1>
+<p>We just learned about “foreach” loops, which are a feature of PHP, but not C.  In PHP we can use the keyword <code>foreach</code> to declare two kinds of loops:</p>
+<ol>
+<li>
+<p>This kind of loop:</p>
+<pre><code class="language-php">foreach ($things as $thing) {
+    // do stuff with $thing
+}</code></pre>
+<p>lets us loop through an array without having to use an indexing variable to explicitly index into the array. This is a nicer syntax for those (very frequent) times when you don't care about the index, you just want to do something which each of the actual &quot;things&quot; or &quot;values&quot; inside the array.</p>
+</li>
+<li>
+<p>This kind of loop:</p>
+<pre><code class="language-php">foreach ($things as $key =&gt; $thing)
+{
+    // do stuff with $key and $thing
+}</code></pre>
+<p>lets us loop through an “associative array”, looking at each paired key and value together. </p>
+</li>
+</ol>
+<p>In <a href="./lottonumbers.html">lottonumbers.php</a>, we’ve provided some php code for you that declares a list of lottery numbers (in the variable <code>$lottoNumbers</code>), and an associative array (the variable <code>$drawnNumbers</code>).  Each key in the associative array is the name of a lotto ticket buyer, and each corresponding value is the lotto number they drew.</p>
+<p>Add some code to this file, using the two versions of <code>foreach</code> syntax in order to:</p>
+<ul>
+<li>print each of the lotto numbers</li>
+<li>print each lotto participant, along with their number</li>
+</ul>
+<p>When complete, the program should behave like this:</p>
+<pre><code class="language-nohighlight">$ php lottonumbers.php
+Tonight's numbers: 123, 555, 23, 7129
+...
+Participant's drawn numbers:
+Sally: 23
+Ken: 3
+Jeremy: 8
+Rhonda: 7129</code></pre>
+                </section>
+
+            </div>
+        </main>
+
+        <footer>
+            <div class="container-fluid">
+                <p class="text-muted">
+                    website generated with <a href="http://couscous.io" title="Markdown website generator">Couscous</a>
+                </p>
+            </div>
+        </footer>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="//yastatic.net/highlightjs/8.2/highlight.min.js"></script>
+
+        <script>
+            $(function() {
+                $("section>h1").wrap('<div class="page-header" />');
+                // Syntax highlighting
+                hljs.initHighlightingOnLoad();
+            });
+        </script>
+
+    </body>
+</html>

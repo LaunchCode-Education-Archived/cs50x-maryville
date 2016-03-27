@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>LaunchCode&#039;s CS50x - Maryville</title>
+
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/font-awesome.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/highlight.dark.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/main.css">
+    </head>
+    <body>
+
+        <header class="navbar navbar-default navbar-fixed-top">
+
+            <a class="navbar-brand" href="http://education.launchcode.org/cs50x-maryville/">
+                LaunchCode&#039;s CS50x - Maryville
+            </a>
+
+        </header>
+
+        <main class="container-fluid">
+            <div class="row">
+
+                
+                    <nav id="sidebar" class="col-sm-3 col-lg-2" role="navigation">
+
+                        <ul class="nav nav-pills nav-stacked">
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/calendar/">
+                                        Calendar
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/how-to-take-this-class/">
+                                        How To Take This Class
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/helpful-resources/">
+                                        Helpful Resources
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://cs50.io/">
+                                        CS50 IDE
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://labs.vocareum.com/home/login.php">
+                                        Vocareum
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://piazza.com/link-to-maryville-piazza-page">
+                                        Piazza
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://docs.google.com/document/d/1TiS8pmVkEu96BC7-wC-qSueIi8RDIZcRg700w4gqmf0/edit?usp=sharing">
+                                        Student Guide
+                                    </a>
+                                </li>
+                                                    </ul>
+
+                    </nav>
+
+                
+                <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
+                    <h5 id="module-7">Module 7</h5>
+<p><a href="../../class1">Go back to Class 1</a></p>
+<h1 id="studio-mult-table">Studio: Mult Table</h1>
+<p>For today's studio, we are going to borrow an exercise that Doug Lloyd suggested in his <em>PHP for Web Development</em> video. Thanks Doug!</p>
+<p><a href="https://youtu.be/l5O-HKElXPc?list=PLhQjrBD2T380EySS3Y9fBANbblTRxT5Av&t=1311" target="_blank">Watch here</a> for the instructions.</p>
+<h3 id="starter-code">Starter Code</h3>
+<p>As Doug says, your assignment is to create a pair of PHP files, <code>mult_form.php</code> and <code>mult_table.php</code>. The form should contain one field for the user to enter a number. When the form is submitted, the user should be taken to the other page, which displays an <code>n by n</code> mulitplication table.</p>
+<p>We've already started both files. Copy <a href="./mult_form.html" target="_blank">mult_form.php</a> and <a href="./mult_form.html" target="_blank">mult_form.php</a> into your IDE.</p>
+<h3 id="assignment">Assignment</h3>
+<p>The form is almost done. There is one crucial piece that we forgot! If you don't spot it right away, it should become clear later after you get started.</p>
+<p>Over in <code>mult_table.php</code>, you have some TODOs. We have placed some basic skeleten code to create the <code>&lt;table&gt;</code>, but currently the result is simply 10 rows of <code>#</code> characters.</p>
+<p>For a refresher on how the <code>&lt;table&gt;</code> tag works, here is a good reference with some examples: <a href="http://www.w3schools.com/html/html_tables.asp">http://www.w3schools.com/html/html_tables.asp</a></p>
+<p>Good luck!</p>
+<h3 id="rectangularize">Rectangularize</h3>
+<p>Once you have a basic n by n grid, your next step is to extend the site to be more hip and less square. Add a second field to the form for another number. This new number should represent the height of the resulting table, and the old one should represent the width. When rendering the table now, make sure it is a rectangle with the dimensions specified on the form.</p>
+                </section>
+
+            </div>
+        </main>
+
+        <footer>
+            <div class="container-fluid">
+                <p class="text-muted">
+                    website generated with <a href="http://couscous.io" title="Markdown website generator">Couscous</a>
+                </p>
+            </div>
+        </footer>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="//yastatic.net/highlightjs/8.2/highlight.min.js"></script>
+
+        <script>
+            $(function() {
+                $("section>h1").wrap('<div class="page-header" />');
+                // Syntax highlighting
+                hljs.initHighlightingOnLoad();
+            });
+        </script>
+
+    </body>
+</html>

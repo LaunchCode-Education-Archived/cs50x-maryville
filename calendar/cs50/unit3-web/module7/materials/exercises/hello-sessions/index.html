@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>LaunchCode&#039;s CS50x - Maryville</title>
+
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/font-awesome.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/highlight.dark.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/main.css">
+    </head>
+    <body>
+
+        <header class="navbar navbar-default navbar-fixed-top">
+
+            <a class="navbar-brand" href="http://education.launchcode.org/cs50x-maryville/">
+                LaunchCode&#039;s CS50x - Maryville
+            </a>
+
+        </header>
+
+        <main class="container-fluid">
+            <div class="row">
+
+                
+                    <nav id="sidebar" class="col-sm-3 col-lg-2" role="navigation">
+
+                        <ul class="nav nav-pills nav-stacked">
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/calendar/">
+                                        Calendar
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/how-to-take-this-class/">
+                                        How To Take This Class
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/helpful-resources/">
+                                        Helpful Resources
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://cs50.io/">
+                                        CS50 IDE
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://labs.vocareum.com/home/login.php">
+                                        Vocareum
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://piazza.com/link-to-maryville-piazza-page">
+                                        Piazza
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://docs.google.com/document/d/1TiS8pmVkEu96BC7-wC-qSueIi8RDIZcRg700w4gqmf0/edit?usp=sharing">
+                                        Student Guide
+                                    </a>
+                                </li>
+                                                    </ul>
+
+                    </nav>
+
+                
+                <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
+                    <h5 id="module-7">Module 7</h5>
+<p><a href="../../class1-prep">Back to Class 1 Prep</a></p>
+<h1 id="exercise-hello-sessions">Exercise: Hello Sessions</h1>
+<p>Let's make another Hello site. </p>
+<p>This time, we will (almost) never have to worry about the user leaving a form field blank, because if they do, we will just use Sessions to remember what they said last time! </p>
+<h3 id="starter-code">Starter Code</h3>
+<p>As usual, <a href="./hello-form.html">hello-form.php</a> is already done. It simply contains a form asking the user for their name (We don't care about customizing the greeting this time).</p>
+<p>And as usual <a href="./hello-response.html">hello-response</a> is partially done, but contains 3 TODOs! </p>
+<h3 id="assignment">Assignment</h3>
+<p>As mentioned above, your aim is to implement the back end such that, even if the user did not provide a name, your site will remember whatever they said previously, and say Hello to that previous name instead.</p>
+<p>If there is no &quot;whatever they said previously&quot;, because this is their first time submitting the form, then you should simply redirect them back to the form (you don't have to give a helpful error message).</p>
+<p>Let's walk through an example. Suppose David Malan visits your site:</p>
+<ol>
+<li>The first thing he does is submit the form without entering anything. Your site should redirect him back to the form.</li>
+<li>After arriving back at the form, David types his name and clicks Submit. He should now see a message with his name inserted into it.</li>
+<li>Next time, David again neglects to type anything. But nevertheless, upon submitting, he still sees a message with his name inserted into it.</li>
+<li>Finally, David goes back and types &quot;Zamyla&quot; into the form. This time, upon submission, he sees a message with &quot;Zamyla&quot; inserted into it.</li>
+</ol>
+                </section>
+
+            </div>
+        </main>
+
+        <footer>
+            <div class="container-fluid">
+                <p class="text-muted">
+                    website generated with <a href="http://couscous.io" title="Markdown website generator">Couscous</a>
+                </p>
+            </div>
+        </footer>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="//yastatic.net/highlightjs/8.2/highlight.min.js"></script>
+
+        <script>
+            $(function() {
+                $("section>h1").wrap('<div class="page-header" />');
+                // Syntax highlighting
+                hljs.initHighlightingOnLoad();
+            });
+        </script>
+
+    </body>
+</html>
