@@ -77,10 +77,18 @@
 <p>aka <em>C$50 Finance</em>. Your first step is to play around with it for a couple minutes and get a feel for it. Do that now!</p>
 <p>Your site will use a PHP backend with a MySQL database to store user accounts and and their stock portfolios.</p>
 <h3 id="how-to-submit">How to submit</h3>
-<p>When finished, compress your project into a zip file:</p>
-<pre><code class="language-nohighlight">$ zip pzet7.zip pset7</code></pre>
-<p>Then download the zip file from your IDE.</p>
-<p>On Vocareum, upload <code>pset7.zip</code> into the assignment titled <strong>Problem Set 7: Finance</strong>.</p>
+<ol>
+<li>
+<p>When ready to submit, &quot;export&quot; your MySQL database (i.e., save it into a text file) by executing the commands below, where username is your own username, pasting your MySQL password when prompted for a password. (Recall that you can see your MySQL password by clicking the ⓘ icon toward CS50 IDE’s top-right corner.) For security, you won’t see the password as you paste it.</p>
+<pre><code class="language-nohighlight">cd ~/workspace/pset7
+mysqldump -u username -p pset7 &gt; pset7.sql</code></pre>
+<p>If you type ls thereafter, you should see that you have a new file called pset7.sql in ~/workspace/pset7. (If you realize later that you need to make a change to your database and re-export it, you can delete pset7.sql with rm pset7.sql, then re-export as before.)</p>
+</li>
+<li>
+<p>On the CS50 IDE's &quot;file browser&quot; menu on the left side of the page (not within a terminal window), control-click or right-click your pset7 folder and then select Download. You should find that your browser has downloaded <code>pset7.tar</code>, a &quot;tarball&quot; that’s similar in spirit to a ZIP file.</p>
+</li>
+<li>On Vocareum, upload <code>pset7.tar</code> into the assignment titled <strong>Problem Set 7: Finance</strong>.</li>
+</ol>
 <h3 id="guidance">Guidance</h3>
 <p>The structure of this project is very similar to the project you created in the <a href="../studios/greetings">Greetings studio</a>, so you should already have some familiarity with the various building blocks of the application. If you have not yet completed Greetings, we recommend you go back and do that first. </p>
 <h3 id="get-started">Get Started</h3>
