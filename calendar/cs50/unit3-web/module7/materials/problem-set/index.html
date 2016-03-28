@@ -79,10 +79,10 @@
 <h3 id="how-to-submit">How to submit</h3>
 <ol>
 <li>
-<p>When ready to submit, &quot;export&quot; your MySQL database (i.e., save it into a text file) by executing the commands below, where username is your own username, pasting your MySQL password when prompted for a password. (Recall that you can see your MySQL password by clicking the ⓘ icon toward CS50 IDE’s top-right corner.) For security, you won’t see the password as you paste it.</p>
+<p>When ready to submit, &quot;export&quot; your MySQL database (i.e., save it into a text file) by executing the commands below, where username is your own username, pasting your MySQL password when prompted for a password. (Recall that you can see your MySQL password by typing the <code>password50</code> command in the terminal.) For security, you won’t see the password as you paste it.</p>
 <pre><code class="language-nohighlight">cd ~/workspace/pset7
 mysqldump -u username -p pset7 &gt; pset7.sql</code></pre>
-<p>If you type ls thereafter, you should see that you have a new file called pset7.sql in ~/workspace/pset7. (If you realize later that you need to make a change to your database and re-export it, you can delete pset7.sql with rm pset7.sql, then re-export as before.)</p>
+<p>If you type <code>ls</code> thereafter, you should see that you have a new file called <code>pset7.sql</code> in <code>~/workspace/pset7</code>. (If you realize later that you need to make a change to your database and re-export it, you can delete <code>pset7.sql</code> with <code>rm pset7.sql</code>, then re-export as before.)</p>
 </li>
 <li>
 <p>On the CS50 IDE's &quot;file browser&quot; menu on the left side of the page (not within a terminal window), control-click or right-click your pset7 folder and then select Download. You should find that your browser has downloaded <code>pset7.tar</code>, a &quot;tarball&quot; that’s similar in spirit to a ZIP file.</p>
