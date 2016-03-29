@@ -16,8 +16,8 @@ By the end of this module you will have completed [Problem Set 1](./materials/pr
 
 Class # | Date | Before Class | During Class | Topics/Skills
 :------:|:----:|:------------:|:------------:|-----------------------|
-Class 1 | TBD | [Prep Work](./materials/class1-prep) | [In Class](./materials/class1) | CS50 IDE setup, printf, basic math |
-Class 2 | TBD | [Prep Work](./materials/class2-prep) | [In Class](./materials/class2) | conditions, loops, variables, calling functions, nesting control flow, debugging |
-Class 3 | TBD | Work on [Problem Set 1](./materials/problem-set)| [In Class](./materials/class3) | (office hours)
+Class 1 | 5/12 | [Prep Work](./materials/class1-prep) | [In Class](./materials/class1) | CS50 IDE setup, printf, basic math |
+Class 2 | 5/17 | [Prep Work](./materials/class2-prep) | [In Class](./materials/class2) | conditions, loops, variables, calling functions, nesting control flow, debugging |
+Class 3 | 5/19 | Work on [Problem Set 1](./materials/problem-set)| [In Class](./materials/class3) | (office hours)
 
 
