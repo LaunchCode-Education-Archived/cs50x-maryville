@@ -95,7 +95,7 @@
 <p>Remember the basic ingredients we need in order to send an HTTP request: the host server, the endpoint on that host, the type of HTTP method we want to use (GET or POST), and any additional data we need to send.</p>
 <p>According to the Slack docs, the host that we want to talk to is <code>https://hooks.slack.com</code></p>
 <p>The endpoint is <code>/services/123456789</code></p>
-<p>where <code>123456789</code> represents a unique identifier to our <code>#pset6-graffitiwall</code> channel. The actual channel ID is available on Vocareum. Click on the assignment titled <strong>Problem Set 6 Alt: Graffiti</strong>, and you will see it.</p>
+<p>where <code>123456789</code> represents a unique identifier to our <code>#pset-graffitiwall</code> channel. The actual channel ID is available on Vocareum. Click on the assignment titled <strong>Problem Set 6 Alt: Graffiti</strong>, and you will see it.</p>
 <p>The overall url we want is simply the endpoint tacked onto the host: <code>https://hooks.slack.com/services/123456789</code></p>
 <p>Let's open up a terminal window and try to connect to this url. The following command</p>
 <p><code>curl https://hooks.slack.com/services/123456789</code></p>
@@ -144,11 +144,11 @@ curl: (3) [globbing] unmatched close brace/bracket in column 6</code></pre>
 <p>Howdily doodily indeed! </p>
 <p>For the <code>icon_emoji</code>, notice that we provided as special syntax with the name of the emoji (&quot;smiley&quot;) wrapped in colons. Slack has a list of available emojis with their corresponding names which you can find <a href="http://www.emoji-cheat-sheet.com/">here</a></p>
 <h3 id="your-mission">Your Mission</h3>
-<p>Your job is to create an HTML page with a form that will post messages to the <code>#pset6-graffitiwall</code> channel. Your page should look something like this:</p>
+<p>Your job is to create an HTML page with a form that will post messages to the <code>#pset-graffitiwall</code> channel. Your page should look something like this:</p>
 <img src="screenshots/graffiti.png"/>
 <p>When the user clicks the orange &quot;Scrawl on the Wall&quot; button, the form should submit a request to the Slack API, and receive a response like this:</p>
 <img src="screenshots/response.png"/>
-<p>That's not super interesting, but over in our #pset6-graffitiwall channel on Slack, we should now see this:</p>
+<p>That's not super interesting, but over in our #pset-graffitiwall channel on Slack, we should now see this:</p>
 <img src="screenshots/eatyourveg.png"/>
 <h3 id="starter-code">Starter code</h3>
 <p>We have given you some starter code in <a href="graffiti/graffiti.html" target="_blank">graffiti.html</a>. Copy this code into a new file in your IDE, and take a look.</p>
