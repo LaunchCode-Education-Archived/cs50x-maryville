@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>LaunchCode&#039;s CS50x - Maryville</title>
+
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/font-awesome.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/highlight.dark.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/main.css">
+    </head>
+    <body>
+
+        <header class="navbar navbar-default navbar-fixed-top">
+
+            <a class="navbar-brand" href="http://education.launchcode.org/cs50x-maryville/">
+                LaunchCode&#039;s CS50x - Maryville
+            </a>
+
+        </header>
+
+        <main class="container-fluid">
+            <div class="row">
+
+                
+                    <nav id="sidebar" class="col-sm-3 col-lg-2" role="navigation">
+
+                        <ul class="nav nav-pills nav-stacked">
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/calendar/">
+                                        Calendar
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/how-to-take-this-class/">
+                                        How To Take This Class
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/helpful-resources/">
+                                        Helpful Resources
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://cs50.io/">
+                                        CS50 IDE
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://labs.vocareum.com/home/login.php">
+                                        Vocareum
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://piazza.com/link-to-maryville-piazza-page">
+                                        Piazza
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://docs.google.com/document/d/1TiS8pmVkEu96BC7-wC-qSueIi8RDIZcRg700w4gqmf0/edit?usp=sharing">
+                                        Student Guide
+                                    </a>
+                                </li>
+                                                    </ul>
+
+                    </nav>
+
+                
+                <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
+                    <h5 id="module-8">Module 8</h5>
+<p><a href="../../class1">Back to Class 1</a></p>
+<h1 id="studio-googly-moogly">Studio: Googly Moogly</h1>
+<p>Today you will get some practice using JavaScript to manipulate the DOM. Your JS script will perform client-side validation on an HTML form, kind of like this <a href="https://www.youtube.com/watch?v=r2iaKDH79oQ&index=8&list=PLhQjrBD2T382FjybRNOXyEdsjP9CNKJgb" target="_blank">Walkthrough</a>, but instead of reporting feedback with an annoying <code>alert()</code> message, you will provide a nice user experience by modifying the HTML content to include a helpful annotation on whichever field(s) the user messed up.</p>
+<h3 id="the-goal">The Goal</h3>
+<p>You have a brilliant idea for a new search engine, the Googly Moogly. It's kinda like Google, but better. With Googly Moogly, users are only allowed to search for things using letters from their own name. </p>
+<p>Your patent lawyer is drafting the paperwork as we speak, but in the mean time, let's build this thing. It should look like this:</p>
+<img src="screenshots/blank.png"/>
+<p>If the user tries to submit the form without typing anything in at all, you should yell at them for failing to provide their name:</p>
+<img src="screenshots/invalid-noname.png"/>
+<p>If they do provide a name, then they are free to submit the form... provided, of course, that their search query matches the Golden Googly Moogly Rule. </p>
+<img src="screenshots/invalid-chars.png"/>
+<p>Crazy Steve got rejected because his search term contained characters that were not part of his name. Notice also that you should inform the user about which specific characters were not allowed.</p>
+<p>Now let's say Crazy Steve tries this:</p>
+<img src="screenshots/invalid-casesensitive.png"/>
+<p>What's wrong with &quot;raves&quot;? It says &quot;s&quot; is not allowed, but &quot;Steve&quot; starts with &quot;S&quot;, so what's the problem? Well, turns out the Googly Moogly is a case-sensitive beast (Don't you remember? This whole thing was your idea.). So uppercase &quot;S&quot; is allowed, but not lowercase &quot;s&quot;. This should actually make it easier for you to implement.</p>
+<p>When Steve finally gets it right, like this:</p>
+<img src="screenshots/valid.png"/>
+<p>he should be whisked away to learn about raveS:</p>
+<img src="screenshots/google.png"/>
+<h3 id="starter-code">Starter Code</h3>
+<p>Grab our starter code as follows:</p>
+<pre><code class="language-nohighlight">$ cd ~/workspace/module8/studios
+$ wget https://education.launchcode.org/cs50x-stlouis/calendar/cs50/unit3-web/module8/materials/studios/googlymoogly/googlymoogly.zip</code></pre>
+<p>Then unzip the archive and delete it:</p>
+<pre><code class="language-nohighlight">$ unzip googlymoogly.zip
+$ ls 
+googlymoogly/ googlymoogly.zip
+rm googlymoogly.zip</code></pre>
+<p>The contents of the directory look like this:</p>
+<pre><code class="language-nohighlight">$ cd googlymoogly
+$ tree
+.
+├── css
+│   └── styles.css
+├── index.html
+└── scripts
+    └── validate.js</code></pre>
+<p>Nothing crazy here, just an <code>index.html</code> file, along with a stylesheet and a JS script.</p>
+<p>We have already done <code>index.html</code> and <code>styles.css</code>. The only file you will need to work in is <code>validate.js</code>.</p>
+<h3 id="a-brief-tour">A Brief Tour</h3>
+<p>Open up the files in your IDE and check out what we've got so far.</p>
+<h5 id="html">HTML</h5>
+<p>In <code>index.html</code> we have, of course, a page with a <code>&lt;form&gt;</code>. Inside the form are two fields:</p>
+<ul>
+<li>one for the user's name </li>
+<li>and one for the &quot;query&quot;, the term she wants to search for. </li>
+</ul>
+<p>Each of those fields really requires three components:</p>
+<ul>
+<li>an <code>&lt;input&gt;</code> where the user can type</li>
+<li>a <code>&lt;label&gt;</code> describing what this field is all about (e.g., &quot;What's your name?&quot;)</li>
+<li>another <code>&lt;label&gt;</code> to provide feedback if the user screwed up (e.g., &quot;You must tell me your name!&quot;)</li>
+</ul>
+<p>Because these three tags are really subparts that make up a cohesive unit, we have wrapped them in a <code>&lt;div&gt;</code> tag that will serve as their &quot;container&quot;. </p>
+<p>So the form is really composed of two <code>&lt;div&gt;</code>s, one for each field.</p>
+<h5 id="css">CSS</h5>
+<p>In <code>css/styles.css</code>, there isn't much, just a few styles to color things red:</p>
+<ul>
+<li>The <code>.feedback-error</code> class represents feedback <code>&lt;label&gt;</code>s that are reporting errors. Their text color is set to red</li>
+<li>The <code>.input-invalid</code> class represents <code>&lt;input&gt;</code>s that were filled out improperly. They have a red border around them.</li>
+<li>The <code>.container-field</code> class represents those &quot;container&quot; <code>&lt;div&gt;</code>s discussed above. The have a bit of margin underneath them to add a little separation between multiple fields.</li>
+</ul>
+<h5 id="javascript">JavaScript</h5>
+<p><code>validate.js</code> is where you come in. We have some code there in place, but there are 6 <code>TODO</code>s left for you.</p>
+<p>There are a lot of equally valid methods available for traversing and manipulating the DOM, but you will probably use the following properties and functions:</p>
+<p><em>For DOM Elements</em></p>
+<ul>
+<li><code>innerHTML</code></li>
+<li><code>className</code></li>
+<li><code>getElementById()</code> (watch out! capital I, lowercase d)</li>
+<li><code>querySelector()</code></li>
+</ul>
+<p><em>For Arrays and Strings</em></p>
+<ul>
+<li><code>length</code></li>
+<li><code>push()</code></li>
+<li><code>indexOf()</code></li>
+</ul>
+<p>So google those (or googlymoogle them!) as needed.</p>
+<h3 id="how-to-submit">How to Submit</h3>
+<p>Submit your <code>validate.js</code> file on Vocareum for the assignment titled <strong>Studio: Googly Moogly</strong></p>
+                </section>
+
+            </div>
+        </main>
+
+        <footer>
+            <div class="container-fluid">
+                <p class="text-muted">
+                    website generated with <a href="http://couscous.io" title="Markdown website generator">Couscous</a>
+                </p>
+            </div>
+        </footer>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="//yastatic.net/highlightjs/8.2/highlight.min.js"></script>
+
+        <script>
+            $(function() {
+                $("section>h1").wrap('<div class="page-header" />');
+                // Syntax highlighting
+                hljs.initHighlightingOnLoad();
+            });
+        </script>
+
+    </body>
+</html>

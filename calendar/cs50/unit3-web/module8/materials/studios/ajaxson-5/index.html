@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>LaunchCode&#039;s CS50x - Maryville</title>
+
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/font-awesome.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/highlight.dark.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/main.css">
+    </head>
+    <body>
+
+        <header class="navbar navbar-default navbar-fixed-top">
+
+            <a class="navbar-brand" href="http://education.launchcode.org/cs50x-maryville/">
+                LaunchCode&#039;s CS50x - Maryville
+            </a>
+
+        </header>
+
+        <main class="container-fluid">
+            <div class="row">
+
+                
+                    <nav id="sidebar" class="col-sm-3 col-lg-2" role="navigation">
+
+                        <ul class="nav nav-pills nav-stacked">
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/calendar/">
+                                        Calendar
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/how-to-take-this-class/">
+                                        How To Take This Class
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/helpful-resources/">
+                                        Helpful Resources
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://cs50.io/">
+                                        CS50 IDE
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://labs.vocareum.com/home/login.php">
+                                        Vocareum
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://piazza.com/link-to-maryville-piazza-page">
+                                        Piazza
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://docs.google.com/document/d/1TiS8pmVkEu96BC7-wC-qSueIi8RDIZcRg700w4gqmf0/edit?usp=sharing">
+                                        Student Guide
+                                    </a>
+                                </li>
+                                                    </ul>
+
+                    </nav>
+
+                
+                <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
+                    <h5 id="module-8">Module 8</h5>
+<p><a href="../../class2">Back to Class 2</a></p>
+<h1 id="studio-ajaxson-5">Studio: AJAXson 5</h1>
+<p>One of the classic problems in computer science is the question of how to optimally implement a web page that displays GIFs of the Jackson 5. Today you'll take a stab at it.</p>
+<h3 id="the-giphy-api">The Giphy API</h3>
+<p>You are going to use the <a href="https://github.com/Giphy/GiphyAPI" target="_blank">Giphy API</a>, whose purpose, as you can probably guess, is to serve up GIFs to developers. The basic goal of your site will be to fetch a GIF from Giphy, and then insert it into the DOM to display it on your page. We'll get into the details shortly, but first, let's play with Giphy for a minute.</p>
+<h5 id="the-host">The host</h5>
+<p>The host url we want is <code>http://api.giphy.com/v1/gifs/</code>. Let's try sending a GET request to that url. Try entering the following command into your terminal:</p>
+<pre><code class="language-nohighlight">$ curl -G http://api.giphy.com/v1/gifs/
+{"meta":{"status":404,"msg":"Not Found!"}}</code></pre>
+<p>We recieved a 404 Not Found response from Giphy. Maybe they ran out of GIFs?</p>
+<h5 id="the-endpoint">The Endpoint</h5>
+<p>Actually, the problem is that we need to choose an &quot;endpoint&quot; to indicate which specific service we want. The endpoints are all listed in the documentation linked above, so check them out if you are interested. For this assignment, we will use the Random endpoint, which, upon receiving a request, responds with a randomly chosen GIF related to a particular topic (unless you don't provide a specific topic, in which case you'll get back a <em>very</em> random GIF). </p>
+<p>The url for the Random endpoint is simply <code>/random</code>, so let's try this:</p>
+<pre><code class="language-nohighight">$ curl -G http://api.giphy.com/v1/gifs/random
+{"meta":{"status":403,"msg":"Forbidden"}}</code></pre>
+<p>This time we got a different error, 403 Forbidden. Like most APIs, Giphy requires us to authorize ourselves with a key. Luckily, they make a public &quot;Beta&quot; key available for people like us who are just testing, playing around, or doing Studios. The key is &quot;dc6zaTOxFJmzC&quot;. </p>
+<h5 id="adding-params-api_key">Adding Params: api_key</h5>
+<p>Let's authorize ourselves by including in our request a parameter whose value is that magic string and whose key name is &quot;api_key&quot;.</p>
+<p>We can associate data with our curl request by using the -d flag:</p>
+<pre><code class="language-nohighlight">$ curl -G http://api.giphy.com/v1/gifs/random -d api_key=dc6zaTOxFJmzC
+{"data":{"type":"gif","id":"RBLigAVE0xJte","url":"http:\/\/giphy.com\/gifs\/food-dessert-etc-RBLigAVE0xJte","image_original_url":"http:\/\/media1.giphy.com\/media\/RBLigAVE0xJte\/giphy.gif","image_url":"http:\/\/media1.giphy.com\/media\/RBLigAVE0xJte\/giphy.gif","image_mp4_url":"http:\/\/media1.giphy.com\/media\/RBLigAVE0xJte\/giphy.mp4","image_frames":"35","image_width":"245","image_height":"180","fixed_height_downsampled_url":"http:\/\/media1.giphy.com\/media\/RBLigAVE0xJte\/200_d.gif","fixed_height_downsampled_width":"272","fixed_height_downsampled_height":"200","fixed_width_downsampled_url":"http:\/\/media1.giphy.com\/media\/RBLigAVE0xJte\/200w_d.gif","fixed_width_downsampled_width":"200","fixed_width_downsampled_height":"147","fixed_height_small_url":"http:\/\/media1.giphy.com\/media\/RBLigAVE0xJte\/100.gif","fixed_height_small_still_url":"http:\/\/media1.giphy.com\/media\/RBLigAVE0xJte\/100_s.gif","fixed_height_small_width":"136","fixed_height_small_height":"100","fixed_width_small_url":"http:\/\/media1.giphy.com\/media\/RBLigAVE0xJte\/100w.gif","fixed_width_small_still_url":"http:\/\/media1.giphy.com\/media\/RBLigAVE0xJte\/100w_s.gif","fixed_width_small_width":"100","fixed_width_small_height":"73","username":"","caption":""},"meta":{"status":200,"msg":"OK"}}</code></pre>
+<p>We got some stuff! It's not very readable, but if we paste it into a <a href="http://jsonprettyprint.com" target="_blank">json prettifyer</a>, we can see the structure very clearly:</p>
+<pre><code class="language-nohighlight">{
+  "data": {
+    "type": "gif",
+    "id": "RBLigAVE0xJte",
+    "url": "http:\/\/giphy.com\/gifs\/food-dessert-etc-RBLigAVE0xJte",
+    "image_original_url": "http:\/\/media1.giphy.com\/media\/RBLigAVE0xJte\/giphy.gif",
+    "image_url": "http:\/\/media1.giphy.com\/media\/RBLigAVE0xJte\/giphy.gif",
+    "image_mp4_url": "http:\/\/media1.giphy.com\/media\/RBLigAVE0xJte\/giphy.mp4",
+    "image_frames": "35",
+    "image_width": "245",
+    "image_height": "180",
+    ...
+  },
+  "meta": {
+    "status": 200,
+    "msg": "OK"
+  }
+}</code></pre>
+<p>That's a lot of data for just one GIF. For our purposes, the only thing we care about is the value of the <code>"image_url"</code> key, which is inside of the <code>"data"</code> key:</p>
+<p>http:\/\/media3.giphy.com\/media\/RBLigAVE0xJte\/giphy.gif</p>
+<p>If we fix up the &quot;escaped&quot; forward slashes, we get a valid url to a GIF!</p>
+<p><a href="http://media3.giphy.com/media/RBLigAVE0xJte/giphy.gif">http://media3.giphy.com/media/RBLigAVE0xJte/giphy.gif</a></p>
+<p>If we set this url to the <code>"src"</code> attribute of an <code>&lt;img&gt;</code> tag in HTML, like so:</p>
+<pre><code class="language-html">&lt;img src="http://media1.giphy.com/media/RBLigAVE0xJte/giphy.gif"/&gt;</code></pre>
+<p>the result will be a GIF on our page!</p>
+<img src="http://media3.giphy.com/media/RBLigAVE0xJte/giphy.gif"/>
+<h5 id="adding-params-tag">Adding Params: tag</h5>
+<p>But artisan lollipops is a topic for another time, beacause today is all about the Jacksons. To specify the topic of interest, we simply need to add another data parameter with the key &quot;tag&quot; and the value &quot;jackson+5&quot;:</p>
+<pre><code class="language-nohighlight">$ curl -G http://api.giphy.com/v1/gifs/random -d api_key=dc6zaTOxFJmzC -d tag=jackson+5</code></pre>
+<p>which should respond with a GIF like this one:</p>
+<img src="http://media2.giphy.com/media/BrzAAl0VMNkk/giphy.gif" />
+<p>Much better!</p>
+<h3 id="the-goal">The Goal</h3>
+<p>Your site should provide the user with a form where she can type a search query:</p>
+<img src="screenshots/blank.png"/>
+<p>Upon submitting the form, the user should briefly see an indication that something awesome is about to happen:</p>
+<img src="screenshots/loading.png"/>
+<p>After a little while, the user should see a GIF appear!</p>
+<img src="screenshots/dance.png"/>
+<p>If the user clicks the button again, even with the same search term, a new request should be sent, yielding a (probably) new GIF:</p>
+<img src="screenshots/dance2.png"/>
+<p>The gif should ideally be relevant to both the user's search term (&quot;dance&quot; in this case) and the Jackson 5 (or at least Michael), but depending on the search term, and just luck-of-the-draw, you might find that only one or the other could be satisfied. For example, a third click might yield this:</p>
+<img src="screenshots/dance3.png"/>
+<p>Dance: check. Jacksons: not so much. That's OK if the results don't quite work out, as long as you put in the effort and heart and soul (where &quot;effort and heart and soul&quot; means your form submitted to Giphy a request in which the &quot;tag&quot; key had a value of <code>"Jackson 5 dance"</code>).</p>
+<p>Finally, it is possible that something might go wrong in the proccess of making the request. If so, you should report an error to the user, like so:</p>
+<img src="screenshots/error.png" />
+<h3 id="starter-code">Starter Code</h3>
+<p>You can download the starter code here:</p>
+<pre><code class="language-nohighlight">$ cd ~/workspace/module8/studios/
+$ wget https://education.launchcode.org/calendar/cs50/unit3-web/module8/materials/studios/ajaxson-5/ajaxson-5.zip
+$ unzip ajaxson-5.zip</code></pre>
+<p>You should now see a directory called <code>ajaxson5/</code>. If so, you can delete the archive:</p>
+<pre><code class="language-nohighlight">$ ls 
+ajaxson-5/ googlymoogly/ ajaxson-5.zip
+$ rm ajaxson-5.zip</code></pre>
+<h3 id="a-brief-tour">A Brief Tour</h3>
+<p>Look inside the folder:</p>
+<pre><code class="language-nohighlight">$ cd ajaxson-5/
+$ ls 
+index.html request-gif.js</code></pre>
+<p>You should see only two files: <code>index.html</code> and <code>request-gif.js</code>.</p>
+<p>(There is no CSS. If you want to style your page after you've implemented the functionality, feel free!)</p>
+<h5 id="indexhtml">index.html</h5>
+<p>In <code>index.html</code> we have four main things:</p>
+<ul>
+<li>a <code>&lt;form&gt;</code> where the user can type a search query and request a new GIF</li>
+<li>an <code>&lt;img&gt;</code> where the GIF will be displayed</li>
+<li>a <code>&lt;p&gt;</code> that we can use to report feedback about the image loading or an error having occured.</li>
+<li>a couple <code>&lt;script&gt;</code> tags to load jQuery and our own <code>request-gif.js</code> script.</li>
+</ul>
+<h5 id="request-gifjs">request-gif.js</h5>
+<p>You will do all your work inside <code>request-gif.js</code>. Open it up now and take a look. </p>
+<p>In broad terms, this script's job is to set things up such that:</p>
+<ul>
+<li>when the <code>&lt;form&gt;</code> is submitted, an AJAX request will be sent out to Giphy asking for a new random GIF</li>
+<li>when a response comes back from Giphy, the new GIF will be displayed</li>
+</ul>
+<p>The first block of code in the file contains this line:</p>
+<pre><code class="language-js">$("#form-gif-request").submit(fetchAndDisplayGif);</code></pre>
+<p>which uses jQuery to search the DOM for our form (by querying for an element whose <code>id</code> is <code>"form-gif-request"</code>), and then attaches, to that form's <code>submit</code> event, a &quot;callback&quot; function named <code>fetchAndDisplayGif</code>, which we have defined elsewhere in the file. The result is that whenever the form is submitted, our <code>fetchAndDisplayGif</code> function will be invoked. </p>
+<p>The above line is, itself, inside of another callback, an annonymous function that we pass to jQuery's <code>document.ready()</code> function. This ensures that we do not execute that line until the HTML document has finished loading and is &quot;ready&quot; (because if we don't wait, then this code might execute before the <code>&lt;form&gt;</code> has loaded, in which case our <code>$("#form-gif-request")</code> query will fail to find anything).</p>
+<p>Let's continue on to the <code>fetchAndDisplayGif()</code> function. This is where you will do all your work. You will see a handful of TODOs sprinkled throughout the body of this function. The code that is in there currently provides a skeleton for the following gameplan:</p>
+<ol>
+<li>query the DOM to figure out what the user typed</li>
+<li>make an ajax request</li>
+<li>when the request comes back, modify the DOM so that the new GIF is shown.</li>
+</ol>
+<p>To make the AJAX request, we use jQuery's <code>ajax()</code> function. In some of the CS50 examples so far, you might have seen David Malan and co. using a similar jQuery function called <code>getJson()</code>. Both functions do the exact same thing. The only difference is that <code>ajax()</code> lets you customize a little more (with the downside of being a little more complicated). But it's actually not so bad. The gist is that we are calling the <code>ajax()</code> function and passing it a big object to specify all the settings we want to configure:</p>
+<ul>
+<li><code>url</code> -- the url that we want to talk to</li>
+<li><code>data</code> -- any extra data that we want to send along with our request (in our case, the api_key and tag)</li>
+<li><code>success</code> -- a callback function to execute when the response comes back</li>
+<li><code>error</code> -- an alternative callback function, if something went wrong, to handle the error
+There are many more settings you can configure, but those are the core things we care about in this case. </li>
+</ul>
+<p>The last section of this function is a TODO where we instruct you to give the user a &quot;Loading...&quot; message while they wait for the response to come back. You might be wondering: Why are we displaying a loading message AFTER we've already done the whole request and handled the response in the <code>success()</code> (or <code>error()</code>) function? Remember, those callback functions will not actually be <em>executed</em> until later, after the response comes back. Just because the <code>success()</code> function is defined <em>above</em> line 53 does not mean that it will actually be invoked before line 53.</p>
+<p>The final piece of code in the file is a helper function called <code>setGifLoadedStatus()</code> which we have written, which you can use to toggle the visibility of the <code>&lt;img&gt;</code> and <code>&lt;p&gt;</code> tags in the HTML page. Depending on the situation, you are either going to want one to be visible and the other hidden, or vice versa, so this function makes it easy to flip back and forth between those two possible states.</p>
+<h3 id="assignment">Assignment</h3>
+<p>Ok, ahead and fill in those TODOs! </p>
+<p>You may find the following jQuery functions helpful:</p>
+<ul>
+<li><code>$(someSelector).attr()</code></li>
+<li><code>$(someSelector).html()</code></li>
+<li><code>$(someSelector).val()</code></li>
+<li><code>$(someSelector).find()</code></li>
+</ul>
+<h3 id="how-to-submit">How to Submit</h3>
+<p>On Vocareum, click the assignment titled <strong>Studio: AJAXson 5</strong>. Upload your <code>request-gif.js</code> file. (If you made any modifications to <code>index.html</code>, and / or added a <code>.css</code> file, upload those as well.)</p>
+                </section>
+
+            </div>
+        </main>
+
+        <footer>
+            <div class="container-fluid">
+                <p class="text-muted">
+                    website generated with <a href="http://couscous.io" title="Markdown website generator">Couscous</a>
+                </p>
+            </div>
+        </footer>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="//yastatic.net/highlightjs/8.2/highlight.min.js"></script>
+
+        <script>
+            $(function() {
+                $("section>h1").wrap('<div class="page-header" />');
+                // Syntax highlighting
+                hljs.initHighlightingOnLoad();
+            });
+        </script>
+
+    </body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>LaunchCode&#039;s CS50x - Maryville</title>
+
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/font-awesome.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/highlight.dark.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/main.css">
+    </head>
+    <body>
+
+        <header class="navbar navbar-default navbar-fixed-top">
+
+            <a class="navbar-brand" href="http://education.launchcode.org/cs50x-maryville/">
+                LaunchCode&#039;s CS50x - Maryville
+            </a>
+
+        </header>
+
+        <main class="container-fluid">
+            <div class="row">
+
+                
+                    <nav id="sidebar" class="col-sm-3 col-lg-2" role="navigation">
+
+                        <ul class="nav nav-pills nav-stacked">
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/calendar/">
+                                        Calendar
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/how-to-take-this-class/">
+                                        How To Take This Class
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/helpful-resources/">
+                                        Helpful Resources
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://cs50.io/">
+                                        CS50 IDE
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://labs.vocareum.com/home/login.php">
+                                        Vocareum
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://piazza.com/link-to-maryville-piazza-page">
+                                        Piazza
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://docs.google.com/document/d/1TiS8pmVkEu96BC7-wC-qSueIi8RDIZcRg700w4gqmf0/edit?usp=sharing">
+                                        Student Guide
+                                    </a>
+                                </li>
+                                                    </ul>
+
+                    </nav>
+
+                
+                <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
+                    <h4><a href="../..">Module 8</a></h4>
+<h1 id="class-2-prep">Class 2 Prep</h1>
+<p>Before coming to <a href="../class2">Class 2</a>, please complete the following tasks:</p>
+<h3 id="lecture">Lecture</h3>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Resouce Type</th>
+<th>Link</th>
+<th>Instructions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Watch</td>
+<td>Lecture</td>
+<td><a href="https://www.youtube.com/watch?v=l9gEGB0eOps" target="_blank">Week 9, continued</a></td>
+<td>In this (half) lecture, we learn more about anonymous functions and AJAX. <br>You can stop watching at minute 23, when a guest lecturer speaks about archaeology-- looks cool, but is optional.</br></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="ajax">AJAX</h3>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Resouce Type</th>
+<th>Link</th>
+<th>Instructions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Read</td>
+<td>Lecture Notes</td>
+<td><a href="http://cdn.cs50.net/2015/fall/lectures/9/m/notes9m/notes9m.html#ajax_and_asynchronicity" target="_blank">Week 9 / Ajax and Asynchronicity</a></td>
+<td>AJAX is the technique of sending additional HTTP requests after a page has loaded, without reloading the entire page. This section talks more about AJAX and gives some examples of its use.</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Lecture Notes</td>
+<td><a href="http://cdn.cs50.net/2015/fall/lectures/9/w/notes9w/notes9w.html#anonymous_functions_and_callbacks" target="_blank">Week 9 , Continued / Anonymous Functions and Callbacks</a></td>
+<td>These notes talk briefly about the concept of an anonymous function, which in certain contexts might be used as a &quot;callback&quot; to handle the occurance of some event.</td>
+</tr>
+<tr>
+<td>Watch</td>
+<td>Doug's Playlist</td>
+<td><a href="https://www.youtube.com/watch?v=FtefVGIgAfA&list=PLhQjrBD2T383ql2IPhxwnJqu1EjcMXulK&index=3" target="_blank">Ajax</a></td>
+<td>Doug gives an example of using AJAX using something called an XMLHttpRequest object.</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Lecture Notes</td>
+<td><a href="http://cdn.cs50.net/2015/fall/lectures/9/w/notes9w/notes9w.html#ajax" target="_blank">Week 9 , Continued / Ajax</a></td>
+<td>These notes show how to implement AJAX in a page, with some examples. <br>Stop reading when you get to the section titled <strong>Giza Project</strong></br></td>
+</tr>
+<tr>
+<td>Follow-Along</td>
+<td>Walkthrough</td>
+<td><a href="https://www.youtube.com/watch?v=gKupwkz8ZBo&list=PLhQjrBD2T382FjybRNOXyEdsjP9CNKJgb&index=1" target="_blank">ajax-0</a></td>
+<td>David writes a page that uses AJAX (via jQuery's <code>getJson</code> function) to request a stock quote from a file on the back-end, and, when the request comes back, display the information as an alert.<br>You can find pseudocode to start this program <a href="../../../../../../helpful-resources/modules/module-8.html#class-2-task-ajax-0" target="_blank">here</a>.</td>
+</tr>
+<tr>
+<td>Follow-Along</td>
+<td>Walkthrough</td>
+<td><a href="https://www.youtube.com/watch?v=fHuy443Gm-Y&index=2&list=PLhQjrBD2T382FjybRNOXyEdsjP9CNKJgb" target="_blank">ajax-1</a></td>
+<td>Here we clean up the code a bit, in a similar vein to the &quot;dom-1&quot; and &quot;form-1&quot; walkthroughs.<br>You can find pseudocode to start this program <a href="../../../../../../helpful-resources/modules/module-8.html#class-2-task-ajax-1" target="_blank">here</a>.</td>
+</tr>
+<tr>
+<td>Follow-Along</td>
+<td>Walkthrough</td>
+<td><a href="https://www.youtube.com/watch?v=HGVqC6hlqFI&index=3&list=PLhQjrBD2T382FjybRNOXyEdsjP9CNKJgb" target="_blank">ajax-2</a></td>
+<td>Here we improve our page by displaying the new stock quote inside the page's DOM rather than with an alert.<br>You can find pseudocode to start this program <a href="../../../../../../helpful-resources/modules/module-8.html#class-2-task-ajax-2" target="_blank">here</a>.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="jquery">jQuery</h3>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Resouce Type</th>
+<th>Link</th>
+<th>Instructions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Read</td>
+<td>Seminar</td>
+<td><a href="http://cdn.cs50.net/2012/fall/seminars/jquery/jquery.pdf" target="_blank">jQuery</a></td>
+<td>Read the slides from a CS50 Seminar talk on jQuery. jQuery is a Javascript library that makes it much easier to do a wide variety of things in Javascript. <br> Feel free to also <a href="http://cs50.tv/2012/fall/seminars/jquery/jquery-720p.mp4">watch the seminar here</a>.</td>
+</tr>
+<tr>
+<td>Do</td>
+<td>Exercise</td>
+<td><a href="../exercises/codecademy-jquery">Codecademy / jQuery</a></td>
+<td>Head off to Codecademy to get some practice using jQuery.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="security">Security</h3>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Resouce Type</th>
+<th>Link</th>
+<th>Instructions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Read</td>
+<td>Lecture Notes</td>
+<td><a href="http://cdn.cs50.net/2015/fall/lectures/10/m/notes10m/notes10m.html" target="_blank">Week 10</a></td>
+<td>Read the notes from the Week 10 Lecture, which deals with the insecurity of our data on the web, and how we can (sort of try to) protect ourselves from the threats. You can optionally watch the video as well, if you like.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="now-youre-ready-for">Now you're ready for <a href="../class2">Class 2</a></h3>
+                </section>
+
+            </div>
+        </main>
+
+        <footer>
+            <div class="container-fluid">
+                <p class="text-muted">
+                    website generated with <a href="http://couscous.io" title="Markdown website generator">Couscous</a>
+                </p>
+            </div>
+        </footer>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="//yastatic.net/highlightjs/8.2/highlight.min.js"></script>
+
+        <script>
+            $(function() {
+                $("section>h1").wrap('<div class="page-header" />');
+                // Syntax highlighting
+                hljs.initHighlightingOnLoad();
+            });
+        </script>
+
+    </body>
+</html>
