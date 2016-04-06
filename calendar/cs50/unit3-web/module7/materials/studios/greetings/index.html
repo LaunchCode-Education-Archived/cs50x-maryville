@@ -228,6 +228,12 @@ var_dump($greeting_rows);</code></pre>
 <p>That's because <code>render()</code> is incomplete. That is your first task! Fill in the TODOs so that <code>render()</code> actually causes templates to show up on screen. You might find David Malan's <code>mvc-3</code> program provides a helpful example from which you can more-or-less copy. (See the <a href="http://cdn.cs50.net/2015/fall/lectures/8/m/src8m/mvc/3/helpers.php.src" target="_blank">source code</a> and the <a href="https://www.youtube.com/watch?v=5juddGp7D9g&index=5&list=PLhQjrBD2T3810Z6sRJdj148H0ANU2jJcO" target="_blank">walkthrough video</a> for guidance).</p>
 <h3 id="other-todos">Other TODOs</h3>
 <p>Once you get <code>render()</code> up and running, you should see a <code>&lt;form&gt;</code> on the screen! At that point, your next few TODOs will become apparent. Keep on working your way through all the TODOs (everything that needs to be done is documented in the source files) until your site contains all the features described above.</p>
+<p>Note: There is one TODO that asks you to insert a new entry into the database (this occurs when a user typed their own custom greeting into the form). In the TODO message, we ask you to insert the new greeting, BUT ONLY if the same greeting does not already exist in the database (e.g., if the user typed &quot;Hello&quot;, then don't insert anything because we already have an entry for &quot;Hello&quot;). Just to be clear, our intention is not that you accomplish this task in one giant SQL query, but rather that you use multiple steps:</p>
+<ol>
+<li>first, using PHP, get the text of all existing entries from the database</li>
+<li>iterate through the existing greetings to make sure this new custom greeting does not already exist.</li>
+<li>if not, then insert the new greeting into the database. (otherwise, do nothing)</li>
+</ol>
 <h3 id="how-to-submit">How to Submit</h3>
 <p>Compress your <code>greetings</code> directory into a <code>.zip</code> file:</p>
 <pre><code class="language-nohighlight">cd ~/workspace/module7/studios
