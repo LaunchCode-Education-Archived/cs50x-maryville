@@ -16,7 +16,7 @@ On Vocareum, you will see three assignments:
 
 After signing in, you will see each component as an assignment on the left. You must submit each component separately. Follow the instructions there, and make sure you name your files correctly! Remember, you can ignore the instructions on the Harvard spec on how to submit; we only care about your submission on Vocareum. You can also use check50 to check the correctness of your code before submitting.
 
-If you forget how to use Vocaruem, please refer to the <a href="https://docs.google.com/document/d/19HIMxU_RtVV0PcGpuL71KmAoQh-KTgyPGpWWLcmwo58/edit?usp=sharing" target="_blank">Student Guide</a> section about Vocaruem.
+If you forget how to use Vocaruem, please refer to the <a href="https://docs.google.com/document/d/1E72HS409WnV_Ss6VNfzbX9WSYjOqKIJ1d_QtdZpb9xI/edit?usp=sharing" target="_blank">Student Guide</a> section about Vocaruem.
 
 For general guidance on problem sets, you may also find it useful to review the <a  href="../../../../../module0/materials/problem-set/README.html" target="_blank">Problem Set Page Overview from Problem Set 0</a>.
 
