@@ -2,7 +2,7 @@
 
 
 All of your assignments (Studios and Problem Sets) will be submitted on Vocareum.  There is also an in-depth overview with screenshots on how to submit assignments in the Vocareum section of the 
-<a href="https://docs.google.com/document/d/19HIMxU_RtVV0PcGpuL71KmAoQh-KTgyPGpWWLcmwo58/edit?usp=sharing" target="_blank">Student Guide</a>. 
+<a href="https://docs.google.com/document/d/1E72HS409WnV_Ss6VNfzbX9WSYjOqKIJ1d_QtdZpb9xI/edit?usp=sharing" target="_blank">Student Guide</a>. 
 
 ## Before Submitting Assignments
 
