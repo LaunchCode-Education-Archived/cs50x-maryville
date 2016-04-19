@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>LaunchCode&#039;s CS50x - Maryville</title>
+
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/font-awesome.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/highlight.dark.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/main.css">
+    </head>
+    <body>
+
+        <header class="navbar navbar-default navbar-fixed-top">
+
+            <a class="navbar-brand" href="http://education.launchcode.org/cs50x-maryville/">
+                LaunchCode&#039;s CS50x - Maryville
+            </a>
+
+        </header>
+
+        <main class="container-fluid">
+            <div class="row">
+
+                
+                    <nav id="sidebar" class="col-sm-3 col-lg-2" role="navigation">
+
+                        <ul class="nav nav-pills nav-stacked">
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/calendar/">
+                                        Calendar
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/how-to-take-this-class/">
+                                        How To Take This Class
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/helpful-resources/">
+                                        Helpful Resources
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://cs50.io/">
+                                        CS50 IDE
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://labs.vocareum.com/home/login.php">
+                                        Vocareum
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://piazza.com/link-to-maryville-piazza-page">
+                                        Piazza
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://docs.google.com/document/d/1E72HS409WnV_Ss6VNfzbX9WSYjOqKIJ1d_QtdZpb9xI/edit?usp=sharing">
+                                        Student Guide
+                                    </a>
+                                </li>
+                                                    </ul>
+
+                    </nav>
+
+                
+                <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
+                    <h1 id="creating-a-quiz">Creating a Quiz</h1>
+<p>Your next task will be to create a program that allows the user to take a quiz. This means you will have to create some questions, and get some feedback from the user.</p>
+<p>First, the questions. We want to be able to handle multiple types of questions: multiple choice, fill in the blank, and questions with strictly numeric answers.</p>
+<p>As usual, consider:</p>
+<ul>
+<li>What do these types of questions have in common?</li>
+<li>What makes these question types different?</li>
+</ul>
+<p>Construct a base class that contains the common features, and subclasses as necessary. Don't forget to test!</p>
+<p>Make sure that there is functionality included to display the questions, the choices (if necessary) and check to see if the answer is correct.</p>
+<h1 id="design-change">Design Change</h1>
+<p>Now let's add a wrinkle into the design. We want to have two types of multiple choice questions: questions where only one choice is correct, and questions where multiple choices are correct.</p>
+<p>Think about how this will affect your design, and make the necessary changes. Test your code to make sure this new design works!</p>
+<h1 id="putting-it-all-together">Putting it all together</h1>
+<p>You're now ready to present these questions as a Quiz. Create a quiz class that will choose a question, present it to the user, accept the user's response, and then tell them whether their answer was correct or incorrect.</p>
+<p>You have two paths for grabbing user input:</p>
+<ul>
+<li>Scanner can read input from the console (quicker, easier): <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Scanner.html">Scanner API</a></li>
+<li>Dialogs use windows and buttons to get user feedback (more complex, but flashier): <a href="https://docs.oracle.com/javase/tutorial/uiswing/components/dialog.html">Dialog Examples</a></li>
+</ul>
+<p>When it comes to testing this portion of the program, be careful: good design states that retrieving input should be kept separate and isolated from the rest of the program. We want to be able to simulate user input in our tests by provided the appropriate values through method calls. We do <strong>not</strong> want to have to sit and type in a bunch of answers to questions just to test our code!</p>
+<p>For this problem set, you know that you have a good design if your Quiz class is fairly short. Remember that each of the Questions should be responsible for displaying themselves and checking the answers, so the Quiz class merely needs to utilize this functionality!</p>
+<p>When you are finished, make sure that all of your unit tests pass, commit and push your code, and notify an instructor.</p>
+                </section>
+
+            </div>
+        </main>
+
+        <footer>
+            <div class="container-fluid">
+                <p class="text-muted">
+                    website generated with <a href="http://couscous.io" title="Markdown website generator">Couscous</a>
+                </p>
+            </div>
+        </footer>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="//yastatic.net/highlightjs/8.2/highlight.min.js"></script>
+
+        <script>
+            $(function() {
+                $("section>h1").wrap('<div class="page-header" />');
+                // Syntax highlighting
+                hljs.initHighlightingOnLoad();
+            });
+        </script>
+
+    </body>
+</html>
