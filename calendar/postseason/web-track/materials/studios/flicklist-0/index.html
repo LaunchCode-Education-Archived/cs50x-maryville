@@ -72,19 +72,23 @@
                     <h5 id="web-track">Web Track</h5>
 <p><a href="../../class0">Back to Class 0</a></p>
 <h1 id="studio-flicklist-0">Studio: FlickList 0</h1>
-<p>Welcome to your first Studio! Today is mostly just about getting set up. First, you will use Git to grab the starter code for the project. Next, you will register for an API key with themoviedb.org, an open source database of movies. Finally you'll plug your key into the code, and see some results!</p>
+<p>Welcome to your first Studio! Today is mostly just about getting set up. </p>
+<p>First, you will use Git to grab the starter code for the project. (This will be slightly complicated, but that's okay).</p>
+<p>Next, you will register for an API key with themoviedb.org, an open source database of movies. Finally you'll plug your key into the code, and see some results!</p>
+<h3 id="work-individually">Work Individually</h3>
+<p>Today, it is best if you complete this studio on your own, rather than with a partner.</p>
 <h3 id="gitting-started">Gitting Started</h3>
 <p>On all Studio assignments from now on, you are going to use Git and GitHub for obtaining starter code, working on it, and submitting it (kind of. You're still going to use Vocareum also.) </p>
-<p>Warning: At this juncture, we are about to to walk you through exactly what to do, without stopping to over-explain everything. You are probably going to feel overwhelmed by Git-related jargon. Don't worry! Just try to absorb what you can, and trust that the gaps will fill in over time.</p>
+<p>Warning: At this juncture, we are about to to walk you through exactly what to do, with only a minimal amount of accompanying explanation. You are probably going to feel overwhelmed by Git-related jargon. Don't worry! Just try to absorb what you can, and trust that the gaps will fill in over time.</p>
 <p>Follow these steps to get started:</p>
 <h5 id="make-account-on-github">Make account on GitHub</h5>
 <p>You should already have made an account while doing <a href="https://guides.github.com/activities/hello-world/" target="_blank">this exercise</a> for today's Prep Work, but if not, <a href="https://github.com/join?source=header-home" target="_blank">make one now</a>.</p>
 <h5 id="fork-the-flicklist-repo">Fork the FlickList Repo</h5>
 <p>Once you have signed into github, head over to the repository where our class project is hosted: <a href="https://github.com/LaunchCodeEducation/flicklist">https://github.com/LaunchCodeEducation/flicklist</a>.</p>
 <p>To work on this project, you'll need to <em>fork</em> your own version of it. Near the upper-right corner of the screen, you should see a button that says &quot;Fork&quot;. Click it!</p>
-<p>You should now be taken to a new, nearly identical project page. But instead of LaunchCodeEducation/flicklist, this is jharvard/flicklist (where &quot;jharvard&quot; is your username). </p>
-<h6 id="clone-your-fork">Clone your fork</h6>
-<p>Now that you have your own <em>remote</em> repository hosted on GitHub, it's time to start working on it! To do so, you will <em>clone</em> your remote repo onto your local machine (the CS50 IDE). </p>
+<p>You should now be taken to a new, nearly identical project page. But instead of <code>LaunchCodeEducation/flicklist</code>, this is <code>jharvard/flicklist</code> (where &quot;jharvard&quot; is your username). </p>
+<h5 id="clone-your-fork">Clone your Fork</h5>
+<p>Now that you have your own <em>remote</em> repository hosted on GitHub, it's time to start working on it! To do so, you will <em>clone</em> the remote repo onto your local machine (the CS50 IDE). </p>
 <p>Open up the terminal in your IDE, and type the following:</p>
 <pre><code class="language-nohighlight">$ cd ~/workspace/web-track/studios/
 $ git clone https://github.com/jharvard/flicklist.git
@@ -102,13 +106,47 @@ flicklist</code></pre>
 <pre><code class="language-nohighlight">$ cd flicklist/
 $ ls
 README.md  css/  index.html  js/</code></pre>
-<p>There's some code in here! Open up index.html and take a very brief look. Seems like a lot of stuff. In fact, open up this page in the browser (by clicking preview, or by running the apche50 server and then visiting your ide url). </p>
-<ol>
-<li>Add upstream as a remote (git remote add upstream <a href="https://github.com/LaunchCodeEducation/flicklist.git">https://github.com/LaunchCodeEducation/flicklist.git</a>)</li>
-<li>git fetch upstream</li>
-<li>git checkout -b studio0 upstream/studio0</li>
-<li>git checkout -b studio0-my-solution</li>
-</ol>
+<p>There's some code in here! Open up index.html and take a very brief look. Seems like a lot of stuff. In fact, the entire finished project is all here. See for yourself: open up this page in the browser by clicking preview, or by running the apche50 server and then visiting <code>ide50-jharvard.cs50.io</code>). </p>
+<p>Why did we give you the finished product? Well, this is a Git repo, so in fact, the entire history of the project is actually present. In order to start from the beginning, you just have to go back in time!</p>
+<p>We have created 6 <em>branches</em> at various points in the history of the project, one for each Studio. You will complete each studio from a different one of these &quot;jumping off points&quot;. </p>
+<p>You will learn more about branches in the next Prep Work, but for now, simply follow along blindly like a docile sheep.</p>
+<h5 id="add-upstream-as-a-remote">Add Upstream as a Remote</h5>
+<p>In order to obtain the branches we made, your local repo will need a reference to our &quot;upstream&quot; repo, <code>LaunchCodeEducation/flicklist</code>. Currently, it only has a reference to your personal &quot;downstream&quot; fork, <code>jharvard/flicklist</code>, but not ours. You can see this by asking git for a list of all the remote repos that this local repo knows about:</p>
+<pre><code class="language-nohighlight">$ git remote -v
+origin  https://github.com/jharvard/flicklist.git (fetch)
+origin  https://github.com/jharvard/flicklist.git (push)</code></pre>
+<p>Our local repo here has a reference to a remote repo at <code>https://github.com/jharvard/flicklist.git</code> (which it refers to as &quot;origin&quot;). But it does not have any references to the &quot;upstream&quot; granddady-of-them-all repo. Let's remedy that:</p>
+<pre><code class="language-nohighlight">$ git remote add upstream https://github.com/LaunchCodeEducation/flicklist.git</code></pre>
+<p>This says, &quot;Hey git, there's another remote repository that you should know about. Let's call it &quot;upstream&quot;, and it lives at this url: <a href="https://github.com/LaunchCodeEducation/flicklist.git">https://github.com/LaunchCodeEducation/flicklist.git</a>.</p>
+<p>Re-logging the remotes should now reveal that we have a reference to both of them:</p>
+<pre><code class="language-nohighlight">$ git remote -v
+origin  https://github.com/jharvard/flicklist.git (fetch)
+origin  https://github.com/jharvard/flicklist.git (push)
+upstream        https://github.com/LaunchCodeEducation/flicklist (fetch)
+upstream        https://github.com/LaunchCodeEducation/flicklist (push)</code></pre>
+<h5 id="fetch-the-branch-from-upstream">Fetch the Branch from Upstream</h5>
+<p>Now you will <em>fetch</em> the branch for today's Studio:</p>
+<pre><code class="language-nohighlight">$ git fetch upstream studio0
+From https://github.com/LaunchCodeEducation/flicklist
+ * branch            studio0    -&gt; FETCH_HEAD
+ * [new branch]      studio0    -&gt; upstream/studio0</code></pre>
+<h5 id="switch-to-the-new-branch">Switch to the New Branch</h5>
+<p>Next, create a new local branch from the <code>upstream/studio0</code> branch:</p>
+<pre><code class="language-nohighlight">$ git branch studio0 upstream/studio0
+Branch studio0 set up to track remote branch studio0 from upstream.</code></pre>
+<p>You now have a new local branch called &quot;studio 0&quot; whose contents came from &quot;upstream/studio0&quot;. You can confirm the existence of the new branch by typing:</p>
+<pre><code class="language-nohighlight">$ git branch
+* master
+  studio0</code></pre>
+<p>The output indicates that we have two local branches, &quot;master&quot;, and &quot;studio0&quot;. The <code>*</code> next to &quot;master&quot; indicates that master is the branch we currently have <em>checked out</em>. </p>
+<p>What does that mean?</p>
+<h5 id="check-out-the-new-branch">Check Out the new Branch</h5>
+<p>To find out, watch what happens when you checkout the new branch:</p>
+<pre><code class="language-nohighlight">$ git checkout studio0
+Switched to branch 'studio0'
+Your branch is up-to-date with 'upstream/studio0'.</code></pre>
+<p>Git informs us that we have &quot;switched to&quot; the other branch. Close and reopen <code>index.html</code>, and you should see a big change! You might also notice that the <code>css/</code> directory has disappeared entirely. We have officially time traveled into the past!</p>
+<h3 id="starter-code">Starter Code</h3>
 <h3 id="themoviedb-api">TheMovieDB API</h3>
 <p>TheMovieDB is an opensource database of movies and TV shows. We will use their API as the source of our project's data. This API, like most, requires that you register and obtain a key in order to use it. </p>
 <p>Here's how to nab that key:</p>
@@ -122,10 +160,12 @@ README.md  css/  index.html  js/</code></pre>
 <p>You will now be presented with a form. TheMovieDB wants to know about the cool people like us who are using their service. Go ahead and fill the form out. For the project url, point them to your repo on github.</p>
 <h5 id="get-the-key">Get the Key!</h5>
 <p>You should now be taken to your profile page, where your key should be visible.</p>
-<h3 id="your-assignment">Your Assignment</h3>
+<h3 id="your-mission">Your Mission</h3>
 <p>Paste your api key into the TODO in <code>flicklist.js</code>. </p>
 <p>In <code>index.html</code>, complete the <code>&lt;script&gt;</code> tag to link to the <code>flicklist.js</code> file. </p>
 <h3 id="how-to-submit">How to Submit</h3>
+<p>On Vocareum, click on the assignment called <strong>Studio: FlickList 0</strong>.</p>
+<p>You should see a file called <code>studio0.txt</code>, on which a secret quiz question awaits! Type your answer and click submit.</p>
                 </section>
 
             </div>
