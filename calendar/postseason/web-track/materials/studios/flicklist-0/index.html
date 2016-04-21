@@ -115,22 +115,22 @@ README.md  css/  index.html  js/</code></pre>
 <pre><code class="language-nohighlight">$ git remote -v
 origin  https://github.com/jharvard/flicklist.git (fetch)
 origin  https://github.com/jharvard/flicklist.git (push)</code></pre>
-<p>Our local repo here has a reference to a remote repo at <code>https://github.com/jharvard/flicklist.git</code> (which it refers to as &quot;origin&quot;). But it does not have any references to the &quot;upstream&quot; granddady-of-them-all repo. Let's remedy that:</p>
+<p>Your local repo here has a reference to a remote repo at <code>https://github.com/jharvard/flicklist.git</code> (which it refers to as &quot;origin&quot;). But it does not have any references to the &quot;upstream&quot; granddady-of-them-all repo. Let's remedy that:</p>
 <pre><code class="language-nohighlight">$ git remote add upstream https://github.com/LaunchCodeEducation/flicklist.git</code></pre>
 <p>This says, &quot;Hey git, there's another remote repository that you should know about. Let's call it &quot;upstream&quot;, and it lives at this url: <a href="https://github.com/LaunchCodeEducation/flicklist.git">https://github.com/LaunchCodeEducation/flicklist.git</a>.</p>
-<p>Re-logging the remotes should now reveal that we have a reference to both of them:</p>
+<p>Logging <code>git remote</code> again should now reveal that you have a local reference to both of the remotes:</p>
 <pre><code class="language-nohighlight">$ git remote -v
 origin  https://github.com/jharvard/flicklist.git (fetch)
 origin  https://github.com/jharvard/flicklist.git (push)
 upstream        https://github.com/LaunchCodeEducation/flicklist (fetch)
 upstream        https://github.com/LaunchCodeEducation/flicklist (push)</code></pre>
+<p>That's better!</p>
 <h5 id="fetch-the-branch-from-upstream">Fetch the Branch from Upstream</h5>
 <p>Now you will <em>fetch</em> the branch for today's Studio:</p>
 <pre><code class="language-nohighlight">$ git fetch upstream studio0
 From https://github.com/LaunchCodeEducation/flicklist
  * branch            studio0    -&gt; FETCH_HEAD
  * [new branch]      studio0    -&gt; upstream/studio0</code></pre>
-<h5 id="switch-to-the-new-branch">Switch to the New Branch</h5>
 <p>Next, create a new local branch from the <code>upstream/studio0</code> branch:</p>
 <pre><code class="language-nohighlight">$ git branch studio0 upstream/studio0
 Branch studio0 set up to track remote branch studio0 from upstream.</code></pre>
@@ -145,7 +145,8 @@ Branch studio0 set up to track remote branch studio0 from upstream.</code></pre>
 <pre><code class="language-nohighlight">$ git checkout studio0
 Switched to branch 'studio0'
 Your branch is up-to-date with 'upstream/studio0'.</code></pre>
-<p>Git informs us that we have &quot;switched to&quot; the other branch. Close and reopen <code>index.html</code>, and you should see a big change! You might also notice that the <code>css/</code> directory has disappeared entirely. We have officially time traveled into the past!</p>
+<p>Git informs us that we have &quot;switched to&quot; the other branch. If you close and reopen <code>index.html</code>, you should see a big change! You might also notice that the <code>css/</code> directory has disappeared entirely. And if you preview the webpage in the browser again, you will see that the fancy movie content has reverted to some very basic text.</p>
+<p>We have officially time traveled into the past!</p>
 <h3 id="starter-code">Starter Code</h3>
 <h3 id="themoviedb-api">TheMovieDB API</h3>
 <p>TheMovieDB is an opensource database of movies and TV shows. We will use their API as the source of our project's data. This API, like most, requires that you register and obtain a key in order to use it. </p>
