@@ -149,6 +149,12 @@ $ tree
 <li><code>indexOf()</code></li>
 </ul>
 <p>So google those (or googlymoogle them!) as needed.</p>
+<p>One more small thing to note. Recall that if the user types an invalid search term, you must inform the user of the invalid characters they used:</p>
+<img src="screenshots/invalid-chars.png"/>
+<p>This is actually very easy to do in Javascript. Because JS is &quot;weakly typed&quot;, you can concatonate an array onto a string, and it won't complain: it will simply convert the array into a comma-separated string automatically. For example:</p>
+<pre><code class="language-js">var favNums = [7, 16, 1000];
+console.log("My favorite numbers are: " + favNums);
+// --&gt; My favorite numbers are: 7,16,1000</code></pre>
 <h3 id="how-to-submit">How to Submit</h3>
 <p>Submit your <code>validate.js</code> file on Vocareum for the assignment titled <strong>Studio: Googly Moogly</strong></p>
                 </section>
