@@ -86,10 +86,35 @@
 On branch studio0-my-work
 nothing to commit, working directory clean</code></pre>
 <p>(We are assuming you will still be on the <code>studio0-my-work</code> branch from last time. But if you're on a different branch, that's fine, as long as you see &quot;nothing to commit, working directory clean&quot;. If you do have unstaged or uncommitted changes, commit them now. If you need guidance, see <a href="../flicklist-0#how-to-submit">here</a>.)</p>
-<p>Now let's checkout a new branch from the contents of <code>upstream/studio1</code>:</p>
+<p>Now let's fetch the <code>studio1</code> branch from the upstream repo:</p>
 <pre><code class="language-nohighlight">$ git fetch upstream/studio1
-$ git checkout -b studio1 upstream/studio1</code></pre>
+From https://github.com/LaunchCodeEducation/flicklist
+ * branch            studio1    -&gt; FETCH_HEAD</code></pre>
+<p>and then switch to a new local branch with the contents of </p>
+<pre><code class="language-nohighlight">$ git checkout -b studio1 upstream/studio1
+Branch studio1 set up to track remote branch studio1 from upstream.
+Switched to a new branch 'studio1'</code></pre>
+<p>(Just an aside: The <code>-b</code> flag allows you to create and switch to a branch in one line. It's just a fancier version of this:</p>
+<pre><code class="language-nohighlight">$ git branch studio1 upstream/studio1
+Branch studio1 set up to track remote branch studio1 from upstream.
+$ git checkout studio1
+Switched to a new branch 'studio1'</code></pre>
+<p>You can use whichever you feel more comfortable with.)</p>
 <h5 id="a-brief-tour">A Brief Tour</h5>
+<p>Welcome to the studio1 branch!</p>
+<p>Your folder structure should look the same as last time:</p>
+<pre><code class="language-nohighlight">$ tree
+.
+├── index.html
+└── js
+    └── flicklist.js
+
+1 directory, 2 files</code></pre>
+<p>But the contents of those files is a little different. Let's take a look. Open up <code>index.html</code> and <code>flicklist.js</code> in your IDE.</p>
+<h5 id="indexhtml">index.html</h5>
+<p>The beginning of this file is more or less the same as last time. The only change is that we've added is this line:</p>
+<pre><code class="language-html">&lt;meta charset="utf-8"/&gt;</code></pre>
+<p>which explicitly defines that our document should use the Unicode character encoding. (If curious, you can read more about character encoding <a href="http://www.w3.org/International/questions/qa-what-is-encoding" target="_blank">here</a>). Generally try to remember to add this line in your HTML, or you might get some strange results when your page attempts to display obscure characters. But for now, don't waste a ton of brainpower worrying about this topic.</p>
 <h3 id="assignment">Assignment</h3>
 <p>Work your way through the following TODOs:</p>
 <h5 id="1-add-a-browsing-section">1. Add a browsing section</h5>
