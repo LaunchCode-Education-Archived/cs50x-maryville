@@ -114,6 +114,26 @@ Switched to a new branch 'studio1'</code></pre>
 <p>The beginning of this file is more or less the same as last time. The only change is that we've added is this line:</p>
 <pre><code class="language-html">&lt;meta charset="utf-8"/&gt;</code></pre>
 <p>which explicitly defines that our document should use the Unicode character encoding. (If curious, you can read more about character encoding <a href="http://www.w3.org/International/questions/qa-what-is-encoding" target="_blank">here</a>). Generally try to remember to add this line in your HTML, or you might get some strange results when your page attempts to display obscure characters. But for now, don't waste a ton of brainpower worrying about this topic.</p>
+<p>The body of the document now has three main parts:</p>
+<ul>
+<li>a <code>&lt;header&gt;</code> to display the project title and tagline</li>
+<li>a <code>&lt;section&gt;</code> to display the movies that are on the user's watchlist</li>
+<li>a TODO, where you will implement another <code>&lt;section&gt;</code>, this one to display a browsable list of popular movies</li>
+</ul>
+<p>The <code>&lt;header&gt;</code> and <code>&lt;section&gt;</code> tags might look unfamiliar to you. They are relatively new additions to HTML. They serve a similar role as the <code>&lt;div&gt;</code>: a container for other tags, so you can group your document into chunks. The difference is that a <code>&lt;div&gt;</code> does not indicate <em>what kind of content</em> it contains, whereas these new tags do: the <code>&lt;header&gt;</code> indicates that it is meant to serve as a title or heading above some other content; the <code>&lt;section&gt;</code> indicates a discrete section of your document. Using these tags instead of <code>&lt;div&gt;</code>s makes it more immediately obvious how your document is structured and what role the various chunks are playing. As much as possible, it is generally best practice to make your HTML &quot;semantically meaningful&quot; like this. You will learn a bit more about &quot;Semantic HTML&quot; in later Prep Work.</p>
+<h5 id="flicklistjs">flicklist.js</h5>
+<p>Let's now talk about what's changed in<code>flicklist.js</code>. </p>
+<p>The beginning of the file still contains that <code>api</code> object, one of whose properties, <code>token</code>, currently has a value of <code>"TODO"</code>, which you should yet again replace with your personal api key.</p>
+<p>There is another object nearby, called <code>model</code>. This is where we will store all the data we need to keep track of. You can see that this object has two properties:</p>
+<ul>
+<li><code>watchlistItems</code>, an array (initially empty) that represents all the movies on the user's watchlist</li>
+<li><code>browseItems</code>, an array (also initally empty) that holds all the movies we want to make available to the user for browsing.</li>
+</ul>
+<p>Moving down the page, the <code>discoverMovies()</code> function is very similar to the function called <code>testTheAPI()</code> from last time: it makes an AJAX request to TheMovieDB's API, and after receiving a response, logs it to the console. But there is now a little bit more code inside that <code>success</code> function. </p>
+<ul>
+<li>First of all, there is a TODO! We want you to write a line here such that, whenever a response comes back from the API, you update the <code>model</code> variable so that its <code>.browseList</code> property is equal to the list of movies in the response.</li>
+<li>After updating the model, we invoke a function called <code>callback()</code>. Where did that function come from? It turns out it was passed into us as an argument to <code>discoverMovies()</code>. The idea of a <a href="https://en.wikipedia.org/wiki/Callback_(computer_programming)" target="_blank">callback</a> is that whoever is invoking <code>discoverMovies()</code> can decide what should happen after the response comes back from the API. </li>
+</ul>
 <h3 id="assignment">Assignment</h3>
 <p>Work your way through the following TODOs:</p>
 <h5 id="1-add-a-browsing-section">1. Add a browsing section</h5>
