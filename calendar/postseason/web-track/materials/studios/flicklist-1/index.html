@@ -129,11 +129,15 @@ Switched to a new branch 'studio1'</code></pre>
 <li><code>watchlistItems</code>, an array (initially empty) that represents all the movies on the user's watchlist</li>
 <li><code>browseItems</code>, an array (also initally empty) that holds all the movies we want to make available to the user for browsing.</li>
 </ul>
-<p>Moving down the page, the <code>discoverMovies()</code> function is very similar to the function called <code>testTheAPI()</code> from last time: it makes an AJAX request to TheMovieDB's API, and after receiving a response, logs it to the console. But there is now a little bit more code inside that <code>success</code> function. </p>
+<p>Moving down the page, the <code>discoverMovies</code> function is very similar to the function called <code>testTheAPI</code> from last time: it makes an AJAX request to TheMovieDB's API, and after receiving a response, logs it to the console. But there is now a little bit more code inside that <code>success</code> function. </p>
 <ul>
 <li>First of all, there is a TODO! We want you to write a line here such that, whenever a response comes back from the API, you update the <code>model</code> variable so that its <code>.browseList</code> property is equal to the list of movies in the response.</li>
-<li>After updating the model, we invoke a function called <code>callback()</code>. Where did that function come from? It turns out it was passed into us as an argument to <code>discoverMovies()</code>. The idea of a <a href="https://en.wikipedia.org/wiki/Callback_(computer_programming)" target="_blank">callback</a> is that whoever is invoking <code>discoverMovies()</code> can decide what should happen after the response comes back from the API. </li>
+<li>After updating the model, we invoke a function called <code>callback</code>. Where did that function come from? It turns out it was passed into us as an argument to <code>discoverMovies</code>. JS allows us to pass functions around as arguments to other functions. The idea of a <a href="https://en.wikipedia.org/wiki/Callback_(computer_programming)" target="_blank">callback</a> is that whoever is invoking <code>discoverMovies</code> can pass in a block of code to specify what should happen after the response comes back.</li>
 </ul>
+<p>To see this in action, scroll down to the bottom of the file, and you'll see where <code>discoverMovies</code> is used. When the document is loaded, we execute this line:</p>
+<pre><code class="language-js">discoverMovies(render);</code></pre>
+<p>which invokes <code>discoverMovies()</code> and passes something called <code>render</code> as the callback. In other words, we are saying: Go fetch some results from the API, and when you get a response back, invoke this other function called <code>render</code>. </p>
+<p>Scroll up a bit, and you'll see that the <code>render</code> function is defined directly above. The purpose of this function is to re-display everything in the DOM based on the current information stored in the <code>model</code> variable. It is mostly empty so far, but contains a handful of TODOs. </p>
 <h3 id="assignment">Assignment</h3>
 <p>Work your way through the following TODOs:</p>
 <h5 id="1-add-a-browsing-section">1. Add a browsing section</h5>
