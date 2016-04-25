@@ -120,28 +120,50 @@ Switched to a new branch 'studio1'</code></pre>
 <li>a <code>&lt;section&gt;</code> to display the movies that are on the user's watchlist</li>
 <li>a TODO, where you will implement another <code>&lt;section&gt;</code>, this one to display a browsable list of popular movies</li>
 </ul>
-<p>The <code>&lt;header&gt;</code> and <code>&lt;section&gt;</code> tags might look unfamiliar to you. They are relatively new additions to HTML. They serve a similar role as the <code>&lt;div&gt;</code>: a container for other tags, so you can group your document into chunks. The difference is that a <code>&lt;div&gt;</code> does not indicate <em>what kind of content</em> it contains, whereas these new tags do: the <code>&lt;header&gt;</code> indicates that it is meant to serve as a title or heading above some other content; the <code>&lt;section&gt;</code> indicates a discrete section of your document. Using these tags instead of <code>&lt;div&gt;</code>s makes it more immediately obvious how your document is structured and what role the various chunks are playing. As much as possible, it is generally best practice to make your HTML &quot;semantically meaningful&quot; like this. You will learn a bit more about &quot;Semantic HTML&quot; in later Prep Work.</p>
+<p>The <code>&lt;header&gt;</code> and <code>&lt;section&gt;</code> tags might look unfamiliar to you. They are relatively new additions to the HTML language. Similar to the <code>&lt;div&gt;</code>, these tags serve as a container for other tags, so you can group your document into chunks. The difference is that a <code>&lt;div&gt;</code> does not indicate <em>what kind of content</em> it contains, whereas these new tags do: the <code>&lt;header&gt;</code> indicates that it is meant to serve as a title or heading above some other content; the <code>&lt;section&gt;</code> indicates a discrete section of your document. Using these tags instead of <code>&lt;div&gt;</code>s makes it more immediately obvious how your document is structured and what kind of role each of the various chunks is playing. As much as possible, it is generally best practice to make your HTML &quot;semantically meaningful&quot; like this. You will learn a bit more about &quot;Semantic HTML&quot; in later Prep Work.</p>
 <h5 id="flicklistjs">flicklist.js</h5>
-<p>Let's now talk about what's changed in<code>flicklist.js</code>. </p>
-<p>The beginning of the file still contains that <code>api</code> object, one of whose properties, <code>token</code>, currently has a value of <code>"TODO"</code>, which you should yet again replace with your personal api key.</p>
+<p>Let's now talk <code>flicklist.js</code>. </p>
+<p>The beginning of the file still contains that <code>api</code> object, one of whose properties, <code>token</code>, currently has a value of <code>"TODO"</code>, which you should once again replace with your personal api key.</p>
 <p>There is another object nearby, called <code>model</code>. This is where we will store all the data we need to keep track of. You can see that this object has two properties:</p>
 <ul>
 <li><code>watchlistItems</code>, an array (initially empty) that represents all the movies on the user's watchlist</li>
 <li><code>browseItems</code>, an array (also initally empty) that holds all the movies we want to make available to the user for browsing.</li>
 </ul>
-<p>Moving down the page, the <code>discoverMovies</code> function is very similar to the function called <code>testTheAPI</code> from last time: it makes an AJAX request to TheMovieDB's API, and after receiving a response, logs it to the console. But there is now a little bit more code inside that <code>success</code> function. </p>
+<p>Moving down the page, the <code>discoverMovies</code> function is very similar to the function called <code>testTheAPI</code> from last time: it makes an AJAX request to TheMovieDB's API, and after receiving a response, logs it to the console. But there is now a little bit more code inside that <code>success</code> function:</p>
 <ul>
-<li>First of all, there is a TODO! We want you to write a line here such that, whenever a response comes back from the API, you update the <code>model</code> variable so that its <code>.browseList</code> property is equal to the list of movies in the response.</li>
-<li>After updating the model, we invoke a function called <code>callback</code>. Where did that function come from? It turns out it was passed into us as an argument to <code>discoverMovies</code>. JS allows us to pass functions around as arguments to other functions. The idea of a <a href="https://en.wikipedia.org/wiki/Callback_(computer_programming)" target="_blank">callback</a> is that whoever is invoking <code>discoverMovies</code> can pass in a block of code to specify what should happen after the response comes back.</li>
+<li>First of all, there is a TODO! We want you to write a line here such that, whenever a response comes back from the API, you update the <code>model</code> variable so that its <code>.browseItems</code> property is equal to the list of movies in the response.</li>
+<li>After updating the model, we invoke a function called <code>callback</code>. Where did that function come from? It turns out it was passed into us as an argument to <code>discoverMovies</code>. A very powerful feature of JS is the ability to pass functions around as arguments to other functions. The idea of a <a href="https://en.wikipedia.org/wiki/Callback_(computer_programming)" target="_blank">callback</a> is that whoever is invoking <code>discoverMovies</code> can pass in a block of code to specify what should happen after the response comes back.</li>
 </ul>
 <p>To see this in action, scroll down to the bottom of the file, and you'll see where <code>discoverMovies</code> is used. When the document is loaded, we execute this line:</p>
 <pre><code class="language-js">discoverMovies(render);</code></pre>
-<p>which invokes <code>discoverMovies()</code> and passes something called <code>render</code> as the callback. In other words, we are saying: Go fetch some results from the API, and when you get a response back, invoke this other function called <code>render</code>. </p>
+<p>which invokes <code>discoverMovies</code> and passes in something called <code>render</code> as the callback. In other words, we are saying: Go fetch some results from the API, and when you get a response back, invoke this other function called <code>render</code>. </p>
 <p>Scroll up a bit, and you'll see that the <code>render</code> function is defined directly above. The purpose of this function is to re-display everything in the DOM based on the current information stored in the <code>model</code> variable. It is mostly empty so far, but contains a handful of TODOs. </p>
+<h5 id="debugger-walkthrough">Debugger Walkthrough</h5>
+<p>To help wrap your head around all this, do the following exercise:</p>
+<ol>
+<li>Preview the page in the Chrome browser</li>
+<li>Open the developer tools</li>
+<li>Click the &quot;Sources Tab&quot;</li>
+<li>Locate <code>flicklist.js</code> and click on that. You should see the source code appear.</li>
+<li>Expand the sub-window displaying the source code to be a little bigger, so you can actually see the code.</li>
+<li>Add breakpoints to the following lines: 
+<ul>
+<li>line 21</li>
+<li>line 27</li>
+<li>line 45</li>
+<li>line 69</li>
+</ul></li>
+<li>Refresh the page.</li>
+<li>You should hit your first breakpoint (line 69.) Click the continue button and you should hit another breakpoint. At each breakpoint, click the Step-Over button a few times to get a feel for what's happening, and then click Continue button and observe which section of code fires next.</li>
+</ol>
 <h3 id="assignment">Assignment</h3>
 <p>Work your way through the following TODOs:</p>
+<h5 id="0-add-your-api-key-to-the">0. Add your API key to the <code>api</code> variable</h5>
+<p>Just like last time.</p>
 <h5 id="1-add-a-browsing-section">1. Add a browsing section</h5>
+<p>In <code>index.html</code>, add another <code>&lt;section&gt;</code> very similar to the watchlist section above. You should give your section an <code>id</code> so that you can refer to it later and manipulate its contents. You should also put an empty <code>&lt;ul&gt;</code> inside, where you will later insert those list items for the browsable movies.</p>
 <h5 id="2-update-the-model-when-ajax-request-succeeds">2. Update the model when AJAX request succeeds</h5>
+<p>Inside the <code>discoverMovies</code> function, in the <code>success</code></p>
 <h5 id="3-insert-a-list-item-for-each-movie-on-the-browse-list">3. Insert a list item for each movie on the browse list</h5>
 <h5 id="4-each-browse-list-item-should-contain-a-button">4. Each browse list item should contain a button</h5>
 <h5 id="5-add-click-handlers-to-the-buttons">5. Add click handlers to the buttons</h5>
