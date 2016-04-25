@@ -79,6 +79,16 @@
 <h3 id="more-about-branches">More about Branches</h3>
 <h3 id="starter-code">Starter Code</h3>
 <h5 id="obtaining-the-starter-code">Obtaining the Starter Code</h5>
+<p>Navigate to the proper directory:</p>
+<pre><code class="language-nohighlight">$ cd ~/workspace/web-track/studios/flicklist</code></pre>
+<p>Your git status should be clean of any unstaged changes:</p>
+<pre><code class="language-nohighlight">$ git status
+On branch studio0-my-work
+nothing to commit, working directory clean</code></pre>
+<p>(We are assuming you will still be on the <code>studio0-my-work</code> branch from last time. But if you're on a different branch, that's fine, as long as you see &quot;nothing to commit, working directory clean&quot;. If you do have unstaged or uncommitted changes, commit them now. If you need guidance, see <a href="../flicklist-1#how-to-submit">here</a>.)</p>
+<p>Now let's checkout a new branch from the contents of <code>upstream/studio1</code>:</p>
+<pre><code class="language-nohighlight">$ git fetch upstream/studio1
+$ git checkout -b studio1 upstream/studio1</code></pre>
 <h5 id="a-brief-tour">A Brief Tour</h5>
 <h3 id="assignment">Assignment</h3>
 <p>Work your way through the following TODOs:</p>
