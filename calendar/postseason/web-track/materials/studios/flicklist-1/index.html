@@ -157,16 +157,47 @@ Switched to a new branch 'studio1'</code></pre>
 <li>You should hit your first breakpoint (line 69.) Click the continue button and you should hit another breakpoint. At each breakpoint, click the Step-Over button a few times to get a feel for what's happening, and then click Continue button and observe which section of code fires next.</li>
 </ol>
 <h3 id="assignment">Assignment</h3>
-<p>Work your way through the following TODOs:</p>
+<p>Work your way through the TODOs in the starter code. Each task is numbered, indicating the order in which you should work on them. The tasks are as follows:</p>
 <h5 id="0-add-your-api-key-to-the">0. Add your API key to the <code>api</code> variable</h5>
 <p>Just like last time.</p>
 <h5 id="1-add-a-browsing-section">1. Add a browsing section</h5>
 <p>In <code>index.html</code>, add another <code>&lt;section&gt;</code> very similar to the watchlist section above. You should give your section an <code>id</code> so that you can refer to it later and manipulate its contents. You should also put an empty <code>&lt;ul&gt;</code> inside, where you will later insert those list items for the browsable movies.</p>
 <h5 id="2-update-the-model-when-ajax-request-succeeds">2. Update the model when AJAX request succeeds</h5>
-<p>Inside the <code>discoverMovies</code> function, in the <code>success</code></p>
+<p>Inside the <code>discoverMovies</code> function, when a successul response comes back, we are currently logging the response to the console, but we are not actually doing anythign useful with the data. Your job is to update the <code>model</code> variable, filling its <code>.browseItems</code> property with the newly received list of movies.</p>
 <h5 id="3-insert-a-list-item-for-each-movie-on-the-browse-list">3. Insert a list item for each movie on the browse list</h5>
+<p>The rest of your TODOs are inside the <code>render</code> function. For these, jQuery is your best friend. </p>
+<p>On this one, we are asking you to create a list item <code>&lt;li&gt;</code> for each movie in the browse list, and append that list item to the <code>&lt;ul&gt;</code> inside the browse section on the document. The list item for now should jsut contain the title of the movie.</p>
+<p>You might be wondering: we had you assign an id to the section, but not the <code>&lt;ul&gt;</code> inside the section, so how can you obtain a reference to the <code>&lt;ul&gt;</code>? Just like CSS, jQuery allows you to traverse the DOM using <a>descendant selectors</a>, for example:</p>
+<pre><code class="language-js">$("#essay p")</code></pre>
+<p>yields all <code>&lt;p&gt;</code> tags who are descendents (children, or children's children...) of the element whose id is &quot;essay&quot;. </p>
+<p>To complete this task, you will need to make use of jQuery's <a href="http://api.jquery.com/append/" target="_blank">append</a> and <a href="http://api.jquery.com/text/" target="_blank">text</a> functions. </p>
+<p>The following code demonstrates how to add a link to the bottom of every descendant paragraph inside the &quot;essay&quot; element:</p>
+<pre><code class="language-js">var googleLink = $("&lt;a&gt;&lt;/a&gt;").text("Click me!").attr("href", "google.com");
+$("#essay p").append(googleLink);</code></pre>
+<p>Ultimately, you should be generating HTML that looks something like this:</p>
+<pre><code class="language-html">&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;The Night Before Christmas&lt;/p&gt;
+  &lt;li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The Morning After Christmas&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Eyes Wide Shut&lt;/p&gt;
+  &lt;/li&gt;
+  ...
+&lt;/ul&gt;</code></pre>
 <h5 id="4-each-browse-list-item-should-contain-a-button">4. Each browse list item should contain a button</h5>
+<p>Once you have list items displaying the titles of all the movies, the next step is to add a button to each item. The button should say &quot;Add to watchlist&quot;.</p>
+<p>This step should be pretty simple. Just append another item inside the list item, after the movie title.</p>
 <h5 id="5-add-click-handlers-to-the-buttons">5. Add click handlers to the buttons</h5>
+<p>Once those buttons are showing up, your next task is to make them actually do something. Use jQuery's <a href="http://api.jquery.com/click/" target="_blank">click</a> function to register a &quot;click handler&quot; on each button. This is another one of those functions where you pass in a &quot;callback&quot;, in order to specify exactly what should happen when the click event occurs. You'll want to pass in an &quot;annonymous function&quot; that appends to <code>model.browseItems</code> whichever movie was clicked, and then re-invokes <code>render</code>. For example, here's an annonymous function logs stuff to the console and calls some other function whenever a button is clicked: </p>
+<pre><code class="language-js">// assuming you have a button called myButton
+myButton.click(function() {
+  console.log("You clicked my button!");
+  console.log("I love you!");
+  releaseTheHounds();
+});</code></pre>
 <h5 id="6-insert-a-list-item-for-each-movie-on-the-watchlist">6. Insert a list item for each movie on the Watchlist</h5>
 <h5 id="7-clear-out-the-old-list-elements-before-re-rendering">7. Clear out the old list elements before re-rendering</h5>
 <h3 id="how-to-submit">How to Submit</h3>
