@@ -72,8 +72,8 @@
                     <h5 id="web-track">Web Track</h5>
 <p><a href="../../class1">Back to class 1</a></p>
 <h1 id="studio-flicklist-1">Studio: FlickList 1</h1>
-<p>In <a href="../flicklist-0">the previous Studio</a>, you forked the project repository and added your API key to the javascript file. When the page loaded, our script sent an AJAX request to themoviedb.org, and a few seconds later, received a response containing a bunch of javascript objects dsecribing popular movies, which were logged to the console. You poked through this array of movie objects to answer a quiz question when submitting your assignment.</p>
-<p>Today, you're going to get started adding some real functionality to the code base. By the end of this studio, users will see a browseable list of movies on the screen. Each movie will have a &quot;Add to Watchlist&quot; button, which, when clicked, will cause that movie to show up on another area of the screen where the user's Watchlist is displayed.</p>
+<p>In <a href="../flicklist-0">the previous Studio</a>, you forked the project repository and added your API key to the source code.</p>
+<p>Today, you will start adding some real functionality to the code base. By the end of this studio, users will see a browseable list of movies on the screen. Each movie will have a &quot;Add to Watchlist&quot; button, which, when clicked, will cause that movie to show up on another area of the screen where the user's Watchlist is displayed.</p>
 <h3 id="demo">Demo</h3>
 <p>Here is what you are trying to accomplish: <a href="http://htmlpreview.github.io/?https://github.com/LaunchCodeEducation/flicklist/blob/ba335b0509258c7e4dc51779f9baa536f914c07b/index.html" target="_blank">FlickList 1 Demo</a>. Take a minute to play around with the demo so you understand what your goal is.</p>
 <h3 id="more-about-branches">More about Branches</h3>
@@ -208,6 +208,51 @@ myButton.click(function() {
 <p>To fix this, simply add some code at the beginning of the function which clears both lists. Use jQuery's <a href="http://api.jquery.com/empty/" target="_blank">empty</a> function, which deletes all the child nodes of an element. </p>
 <p>You may think this is an inefficient way having the browser render stuff, and in fact, you are right. After all, why should we delete all 20 items from the browse list, only to re-add them an instant later? Fortunately, the operations we are doing here are small enough that the inefficiency won't lead to a drop in performance significant enough to hurt the user experience. And the benefit of this monolithic <code>render</code> function is that we don't have to worry about which particular event we are responding to (Did a response come back from the API? Did the user just click a button? Which button?). All we have to worry about is, given the current state of the model, this is what our view should look like. The mental simplicity that this system affords us will grow more and more valuable as our program grows in complexity. </p>
 <h3 id="how-to-submit">How to Submit</h3>
+<h5 id="commit-and-push-on-git">Commit and Push on Git</h5>
+<p>If you run the <code>git status</code> command, you should see that you now have <em>unstaged</em> changes:</p>
+<pre><code class="language-nohighlight">$ git status
+On branch studio1-my-work
+Changes not staged for commit:
+  (use "git add &lt;file&gt;..." to update what will be committed)
+  (use "git checkout -- &lt;file&gt;..." to discard changes in working directory)
+
+        modified:   index.html
+        modified:   js/flicklist.js
+
+no changes added to commit (use "git add" and/or "git commit -a")</code></pre>
+<p>We can stage these changes with the <code>add</code> command:</p>
+<pre><code class="language-nohighlight">$ git add --all</code></pre>
+<p>The <code>--all</code> adds all (both of) the unstaged files, so you don't have to type them one by one.</p>
+<p>If you check your status again now, you should see:</p>
+<pre><code class="language-nohighlight">$ git status
+On branch studio1-my-work
+Changes to be committed:
+  (use "git reset HEAD &lt;file&gt;..." to unstage)
+
+        modified:   index.html
+        modified:   js/flicklist.js</code></pre>
+<p>Both files are now staged for committing. Go ahead and make a commit, using the -m flag to remind your future self (and others looking at your code) what changes you made during this commit:</p>
+<pre><code class="language-nohighlight">$ git commit -m "finish FlickList 1 studio"
+[studio1-my-work 46db232] finish FlickList 1 studio
+ 2 files changed, 2 insertions(+), 2 deletions(-)</code></pre>
+<p>The convention is to write your commit messages using the present tense rather than past tense (e.g. &quot;finish&quot; rather than &quot;finished&quot;).</p>
+<p>If you check your status one more time, you should see this:</p>
+<pre><code class="language-nohighlight">$ git status
+On branch studio1-my-work
+nothing to commit, working directory clean</code></pre>
+<p>Finally, <em>push</em> your changes to your remote repo:</p>
+<pre><code class="language-nohighlight">$ git push origin studio1-my-work
+Counting objects: 62, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (20/20), done.
+Writing objects: 100% (22/22), 2.36 KiB | 0 bytes/s, done.
+Total 22 (delta 6), reused 0 (delta 0)
+To https://github.com/jharvard/flicklist.git
+ * [new branch]      studio1-my-work -&gt; studio1-my-work</code></pre>
+<p>If you go back and revisit <a href="https://github.com/jharvard/flicklist">https://github.com/jharvard/flicklist</a>, you should now see your new branch up there!</p>
+<h5 id="submit-on-vocareum">Submit on Vocareum</h5>
+<p>On Vocareum, click on the assignment called <strong>Studio: FlickList 1</strong>.</p>
+<p>You should see a file called <code>studio1.txt</code>, on which a secret quiz question awaits! Write your anser into that file, and click submit.</p>
                 </section>
 
             </div>
