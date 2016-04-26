@@ -110,9 +110,6 @@ Switched to a new branch 'studio1-my-work'</code></pre>
 1 directory, 2 files</code></pre>
 <p>But the contents of those files is a little different. Let's take a look. Open up <code>index.html</code> and <code>flicklist.js</code> in your IDE.</p>
 <h5 id="indexhtml">index.html</h5>
-<p>The beginning of this file is more or less the same as last time. The only change is that we've added is this line:</p>
-<pre><code class="language-html">&lt;meta charset="utf-8"/&gt;</code></pre>
-<p>which explicitly defines that our document should use the Unicode character encoding. (If curious, you can read more about character encoding <a href="http://www.w3.org/International/questions/qa-what-is-encoding" target="_blank">here</a>). Generally try to remember to add this line in your HTML, or you might get some strange results when your page attempts to display obscure characters. But for now, don't waste a ton of brainpower worrying about this topic.</p>
 <p>The body of the document now has three main parts:</p>
 <ul>
 <li>a <code>&lt;header&gt;</code> to display the project title and tagline</li>
@@ -120,6 +117,9 @@ Switched to a new branch 'studio1-my-work'</code></pre>
 <li>a TODO, where you will implement another <code>&lt;section&gt;</code>, this one to display a browsable list of popular movies</li>
 </ul>
 <p>The <code>&lt;header&gt;</code> and <code>&lt;section&gt;</code> tags might look unfamiliar to you. They are relatively new additions to the HTML language. Similar to the <code>&lt;div&gt;</code>, these tags serve as a container for other tags, so you can group your document into chunks. The difference is that a <code>&lt;div&gt;</code> does not indicate <em>what kind of content</em> it contains, whereas these new tags do: the <code>&lt;header&gt;</code> indicates that it is meant to serve as a title or heading above some other content; the <code>&lt;section&gt;</code> indicates a discrete section of your document. Using these tags instead of <code>&lt;div&gt;</code>s makes it more immediately obvious how your document is structured and what kind of role each of the various chunks is playing. As much as possible, it is generally best practice to make your HTML &quot;semantically meaningful&quot; like this. You will learn a bit more about &quot;Semantic HTML&quot; in later Prep Work.</p>
+<p>You might also notice that although the top of this file is almost the same as last time, there is one small change-- we've added is this line:</p>
+<pre><code class="language-html">&lt;meta charset="utf-8"/&gt;</code></pre>
+<p>What this does is explicitly defines that our document should use the Unicode character encoding. If curious, you can read more about character encoding <a href="http://www.w3.org/International/questions/qa-what-is-encoding" target="_blank">here</a>. Generally try to remember to add this line in your HTML, or you might get some strange results when your page attempts to display obscure characters. But for now, don't waste a ton of brainpower worrying about this topic.</p>
 <h5 id="flicklistjs">flicklist.js</h5>
 <p>Let's now talk <code>flicklist.js</code>. </p>
 <p>The beginning of the file still contains that <code>api</code> object, one of whose properties, <code>token</code>, currently has a value of <code>"TODO"</code>, which you should once again replace with your personal api key.</p>
