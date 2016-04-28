@@ -75,7 +75,7 @@
 <p>Today we will add a hodge-podge of miscellaneous new features to our movie site. We'll include some CSS to apply styles to the page, and build on our interaction with the API. </p>
 <p>Along the way, hopefully you will continue to get more comfortable with jQuery, CSS, AJAX, making API calls, and working with HTML forms.</p>
 <h3 id="demo">Demo</h3>
-<p>Here is a demo of what you are trying to accomplish: <a href="http://htmlpreview.github.io/?https://github.com/LaunchCodeEducation/flicklist/blob/f3dae711763c73f56267ac35e076c56383183829/index.html" target="_blank">FlickList 2 Demo</a>. Play around with the demo for a minute and get familiar with its features.</p>
+<p>Here is a demo of what you are trying to accomplish: <a href="http://htmlpreview.github.io/?https://github.com/LaunchCodeEducation/flicklist/blob/f3dae711763c73f56267ac35e076c56383183829/index.html" target="_blank">FlickList 2 Demo</a>. Play around with the demo for a minute and get familiar with its features. Also, keep the demo open in a separate window, so you can refer to it while working on the assignment.</p>
 <p>Note the following additions since last time:</p>
 <ul>
 <li>In the browse list, each movie is accompanied by a paragraph summarizing its plot.</li>
@@ -104,16 +104,54 @@ Switched to a new branch 'studio2-my-work'</code></pre>
 <h5 id="stylescss">styles.css</h5>
 <h3 id="assignment">Assignment</h3>
 <h5 id="0-api-key">0. API key</h5>
+<p>As usual, add your api key to the object near the top of <code>flicklist.js</code>.</p>
 <h5 id="1-add-a-description-paragraph-to-each-browselist-item">1. Add a Description Paragraph to Each Browselist Item</h5>
+<p>On the browse list, let's spice up those list items by displaying some more data about the movies. Using jQuery, create a <code>&lt;p&gt;</code> with a description of the movie's plot. You can find this description as a string somewhere inside the movie object. Just as the title is accessbile via the property <code>movie.original_title</code>, the description is a different property. What's the name of the property? You'll have to use a <code>console.log</code> statement to poke around and find out. (It's not <code>movie.description</code>). Once you have created the paragraph, append it to <code>itemView</code> below the title and above the &quot;Add to Watchlist&quot; button.</p>
 <h5 id="2-disable-buttons">2. Disable Buttons</h5>
+<p>Next, implement this feature: an &quot;Add to Watchlist&quot; button should be disabled if the movie in question is already present in the user's watchlist. </p>
+<p>To determine whether the movie is already present, you can use the javascript array function <code>indexOf</code>, which returns the index of a thing in an array, unless the thing is not found, in which case <code>-1</code> is returned. For example:</p>
+<pre><code class="language-js">var nums = [0, 7, 5, 2];
+nums.indexOf(5) // returns 2
+nums.indexOf(5000) // returns -1</code></pre>
+<p>To disable the button, you can use jQuery's <code>prop</code> function, e.g.</p>
+<pre><code class="language-js">var nuclearReactor = $("#nuclear-reactor");
+nuclearReactor.prop("disabled", true);</code></pre>
+<p>Once you have this working, take a quick note of the CSS rule we used in order to achive the visual effect. We lower the <code>opacity</code> property (in otherwords, transparency) of disabled buttons. In order to select for only disabled buttons, we used the <code>:disabled</code> <a href="http://www.w3schools.com/css/css_pseudo_classes.asp" target="_blank">pseudoclass</a>.</p>
 <h5 id="3-give-watchlist-items-a-class-attribute">3. Give Watchlist Items a Class Attribute</h5>
+<p>Next, it's time to apply some styles to thosewatchlist <code>&lt;li&gt;</code>s, so that they are big orange bricks. But first, in order to do that, we'll need to give them a <code>class</code> attribute, so that our CSS can select them. Inside the <code>render</code> function, within the <code>forEach</code> iteration over <code>model.watchlistItems</code>, use the jQuery <code>attr</code> function to give the <code>itemView</code> variable a class of <code>"item-watchlist"</code>.</p>
+<p>Verify that you succeeded as follows: In your browser window, add some movies to the watchlist. Then, open up the dev tools, go to the Console tab, and type this:</p>
+<pre><code class="language-js">$(".item-watchlist")</code></pre>
+<p>followed by the Enter key. You should see an array with some <code>&lt;li&gt;</code>s inside it, one for each watchlist item! You should not see an empty array, i.e. <code>[]</code>.</p>
 <h5 id="4-style-the-watchlist-items-as-orange-bricks">4. Style the Watchlist Items as Orange Bricks</h5>
+<p>Now that your watchlist items have a class attribute, you can apply styles to them. Open up <code>styles.css</code>, and create a new class selector for elements with the class &quot;item-watchlist&quot; (hint: CSS selectors are the same as jQuery selectors). Add some styles until your watchlist tiems resemble those orange bricks from the demo. One style you'll definitely want to apply is:</p>
+<pre><code class="language-css">display: inline-block;</code></pre>
+<p>This is what enables that left-to-right flow pattern. (See this <a href="http://stackoverflow.com/questions/8969381/what-is-the-difference-between-display-inline-and-display-inline-block" target="_blank">Stack Overflow post</a> for a nice overview of the differences between <code>block</code>, <code>inline</code>, and <code>inline-block</code>).</p>
+<p>You'll also need to apply a few other styles: a lot of padding, a little bit of margin on <a href="http://stackoverflow.com/questions/356759/a-mnemonic-for-the-order-of-css-margin-and-padding-shorthand-properties" target="_blank">just the right and bottom edges</a>, and the colors obviously need to change.</p>
 <h5 id="5-change-the-text-color-to-gray">5. Change the Text Color to Gray</h5>
-<h5 id="6-style-the-buttons">6. Style the Buttons</h5>
-<h5 id="7-add-a-form-to-the-page">7. Add a Form to the Page</h5>
+<p>Next, create a css rule that will set a baseline default of gray for the color of all text in the body of the document. To accomplish this, you only have to make one rule! you don't have to go and start adding declarations to each and every selector in the CSS file. You simply have to apply the style to some common container, and then all descendants of the container will automatically inherit the same style.</p>
+<h5 id="6-add-a-form-to-the-page">6. Add a Form to the Page</h5>
+<p>The last new feature we need to add is a <code>&lt;form&gt;</code>, with a text field and a submit button, via which users can search for particular movies. </p>
+<p>The first step to implementing this feature is simply to add the form to <code>index.html</code>. Go ahead and do that now. Your form does not need any of the usual attributes, like <code>action</code> or <code>method</code>, because we are going to intercept and cancel its submit event anyway. The one attribute you should give the form is an <code>id</code> equal to <code>"form-search"</code>. Inside the form, you should have two <code>&lt;input&gt;</code>s: one, a text field, and the other, a submit button.</p>
+<h5 id="7-style-the-buttons">7. Style the Buttons</h5>
+<p>Very briefly, let's jump back over to <code>styles.css</code> and apply some styles to the buttons, both the &quot;Add to Watchlist&quot; buttons and the &quot;Search by Title&quot; submit button on the form</p>
+<p>Notice how the selector here includes <code>input[type=submit]</code> in order to select for both normal buttons and submit buttons on forms.</p>
 <h5 id="8-add-a-submit-handler-to-the-form">8. Add a Submit Handler to the Form</h5>
+<p>Once your form is present on the page, the next step is to give it a submit handler. We want to specify that when the user presses the submit button, the <code>searchMovies</code> function (which you will implement next) gets invoked, using the search term that the user typed in, with <code>render</code> as the callback to be executed after receiving a response from the api.</p>
+<p>As you can see, we use jQuery's <code>.submit</code> function, which is very similar to <code>.click</code> in that it allows you to pass in a function to be executed whenever a form is submitted. You must:</p>
+<ul>
+<li>A: fill in the jQuery selector so that we are calling <code>.submit</code> on our form</li>
+<li>B: within the submit handler function, fill in another jQuery selector to figure out what the user typed into the search bar. For this task you must use a selector very similar to the example in <code>styles.css</code> for the submit button (<code>input[type=submit]</code>).</li>
+<li>C: also within the body of the submit handler function, invoke the <code>searchMovies</code> function and pass in the arguments it needs.</li>
+</ul>
+<p>If you've done everything correctly you should be able to see some output on the console. Search for &quot;cocounut&quot; and you should see a log statement that reads: &quot;searching for movies with 'coconut' in their title...&quot;.</p>
 <h5 id="9-implement-the">9. Implement the <code>searchMovies</code> Function</h5>
+<p>Finally, let's implement this function in <code>flicklist.js</code>. As a starting point, you can follow in the footsteps of the <code>discoverMovies</code> function. But a few things must be different:</p>
+<ul>
+<li>You will send the request to a slightly different url (we want to talk to a different &quot;endpoint&quot; on the API)</li>
+<li>Your <code>data</code> object must include another property, <code>query</code>, whose value will be the search term the user typed in (e.g. &quot;coconut&quot;)</li>
+</ul>
 <h3 id="how-to-submit">How to Submit</h3>
+<p>Just like last time, commit your work on Git and push to a new branch on your GitHub repo. Then, submit a link to your repo on Vocareum.</p>
 <h5 id="commit-and-push">Commit and Push</h5>
 <p>If you run the <code>git status</code> command, you should see that you now have <em>unstaged</em> changes:</p>
 <pre><code class="language-nohighlight">$ git status
