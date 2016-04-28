@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>LaunchCode&#039;s CS50x - Maryville</title>
+
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/font-awesome.min.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/highlight.dark.css">
+        <link rel="stylesheet" href="http://education.launchcode.org/cs50x-maryville/css/main.css">
+    </head>
+    <body>
+
+        <header class="navbar navbar-default navbar-fixed-top">
+
+            <a class="navbar-brand" href="http://education.launchcode.org/cs50x-maryville/">
+                LaunchCode&#039;s CS50x - Maryville
+            </a>
+
+        </header>
+
+        <main class="container-fluid">
+            <div class="row">
+
+                
+                    <nav id="sidebar" class="col-sm-3 col-lg-2" role="navigation">
+
+                        <ul class="nav nav-pills nav-stacked">
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/calendar/">
+                                        Calendar
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/how-to-take-this-class/">
+                                        How To Take This Class
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://education.launchcode.org/cs50x-maryville/helpful-resources/">
+                                        Helpful Resources
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://cs50.io/">
+                                        CS50 IDE
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://labs.vocareum.com/home/login.php">
+                                        Vocareum
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="http://piazza.com/link-to-maryville-piazza-page">
+                                        Piazza
+                                    </a>
+                                </li>
+                                                            <li class="">
+                                    <a href="https://docs.google.com/document/d/1E72HS409WnV_Ss6VNfzbX9WSYjOqKIJ1d_QtdZpb9xI/edit?usp=sharing">
+                                        Student Guide
+                                    </a>
+                                </li>
+                                                    </ul>
+
+                    </nav>
+
+                
+                <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
+                    <h5 id="web-track">Web Track</h5>
+<p><a href="../../class2">Back to Class 2</a></p>
+<h1 id="studio-flicklist-2">Studio: FlickList 2</h1>
+<h3 id="demo">Demo</h3>
+<p>Here is a demo of what you are trying to accomplish: <a href="http://htmlpreview.github.io/?https://github.com/LaunchCodeEducation/flicklist/blob/f3dae711763c73f56267ac35e076c56383183829/index.html" target="_blank">FlickList 2 Demo</a>. Play around with the demo for a minute and get familiar with its features.</p>
+<p>Note the following additions since last time:</p>
+<ul>
+<li>The page has some styles and is a little prettier than last time.</li>
+<li>In the browse list, each movie is accompanied by a paragraph summarizing its plot.</li>
+<li>Once the user clicks the &quot;Add to Watchlist&quot; button for a movie, the button then becomes disabled, thereby preventing the same movie from being added more than once.</li>
+<li>In the watchlist, each movie is represented by an orange rectangle. These rectangles line up next to each other from left to right, without skipping down to a new line until they run out of space on the right-hand side of their container.</li>
+<li>At the top of the browselist, there is a search bar which users can use to search for particular movies. Upon submitting the form, the browse list repopulates full of movies with matching titles.</li>
+</ul>
+<h3 id="git-yer-hands-on-the-starter-code">Git Yer Hands on the Starter Code</h3>
+<p>Same procedure as usual here. First, fetch the upstream studio2 branch:</p>
+<pre><code class="language-nohighlight">$ git fetch upstream studio2
+remote: Counting objects: 21, done.
+remote: Compressing objects: 100% (15/15), done.
+remote: Total 21 (delta 6), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (21/21), done.
+From https://github.com/LaunchCodeEducation/flicklist
+ * branch            studio2    -&gt; FETCH_HEAD
+   74b1223..fe10c4f  studio2    -&gt; upstream/studio2</code></pre>
+<p>Then, checkout a new local branch:</p>
+<pre><code class="language-nohighlight">$ git checkout -b studio2-my-work upstream/studio2
+Branch studio2-my-work set up to track remote branch studio2 from upstream.
+Switched to a new branch 'studio2-my-work'</code></pre>
+<h3 id="a-brief-tour">A Brief Tour</h3>
+<h5></h5>
+<h3 id="assignment">Assignment</h3>
+<h3 id="how-to-submit">How to Submit</h3>
+                </section>
+
+            </div>
+        </main>
+
+        <footer>
+            <div class="container-fluid">
+                <p class="text-muted">
+                    website generated with <a href="http://couscous.io" title="Markdown website generator">Couscous</a>
+                </p>
+            </div>
+        </footer>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="//yastatic.net/highlightjs/8.2/highlight.min.js"></script>
+
+        <script>
+            $(function() {
+                $("section>h1").wrap('<div class="page-header" />');
+                // Syntax highlighting
+                hljs.initHighlightingOnLoad();
+            });
+        </script>
+
+    </body>
+</html>
