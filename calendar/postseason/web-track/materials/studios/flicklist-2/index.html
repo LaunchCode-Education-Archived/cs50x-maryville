@@ -99,9 +99,45 @@ From https://github.com/LaunchCodeEducation/flicklist
 Branch studio2-my-work set up to track remote branch studio2 from upstream.
 Switched to a new branch 'studio2-my-work'</code></pre>
 <h3 id="a-brief-tour">A Brief Tour</h3>
+<p>Our project now looks like this:</p>
+<pre><code class="language-nohighlight">$ tree
+.
+├── css
+│   └── styles.css
+├── index.html
+└── js
+    └── flicklist.js</code></pre>
+<p>Notice the new directory, <code>css</code>, which contains a stylesheet, <code>styles.css</code>. </p>
+<p>Let's look briefly at each of our files:</p>
 <h5 id="indexhtml">index.html</h5>
+<p>The HTML file has only changed slightly since we last left it:</p>
+<ul>
+<li>In the <code>&lt;head&gt;</code> there is now a link to our stylesheet. </li>
+<li>In the browse section, we have a TODO, asking you to create a <code>&lt;form&gt;</code> for the user to search for movies</li>
+<li>At the bottom, we have a <code>&lt;script&gt;</code> tag inside of which is some partially completed JS code with some more TODOs. This is where you will specify what the form should do when the user clicks the submit button.</li>
+</ul>
 <h5 id="flicklistjs">flicklist.js</h5>
+<p>Our javascript file is also pretty similar to last time, with just a few changes:</p>
+<ul>
+<li>There is a new function, <code>searchMovies</code>, which will be invoked as part of the submit handler on the form (see above). The body of this function is pretty empty (so far!).</li>
+<li>The <code>render</code> function has a few TODOs for you.</li>
+</ul>
+<p>Also notice inside <code>render</code> that we have re-written some of the jQuery code in a style that might seem a little funny. For example, this line:</p>
+<pre><code class="language-js">var button = $("&lt;button&gt;&lt;/button&gt;")
+   .text("Add to Watchlist")
+   .click(function() {
+     model.watchlistItems.push(movie);
+     render();
+   });</code></pre>
+<p>or this one:</p>
+<pre><code class="language-js">var itemView = $("&lt;li&gt;&lt;/li&gt;")
+   .append($("&lt;hr/&gt;"))
+   .append(title)
+   .append(button);</code></pre>
+<p>This is a common style for lines of code in which you are chaining together a bunch of jQuery method calls one after the other. When these chains become long enough, there comes a point where they will annoyingly run off the right edge of the screen. To mitigate that, the convention is to place each subsequennt method call on its own new line, indented once.</p>
 <h5 id="stylescss">styles.css</h5>
+<p>Finally, open up the new stylesheet. As you can see, we've already gotten started applying some styles to the page.</p>
+<p>As a quick exercise, go preview the page in your browser right now, and open up Dev Tools. In the Elements tab, notice that one of the things you can inspect is the styles of your elements. You can even change the styles and see the results immediately! Spend a minute playing and tinkering with the styles we have added.</p>
 <h3 id="assignment">Assignment</h3>
 <p>Work your way through the TODOs in the source code. The tasks are numbered. You should work on them in the order prescribed, as follows:</p>
 <h5 id="0-api-key">0. API key</h5>
