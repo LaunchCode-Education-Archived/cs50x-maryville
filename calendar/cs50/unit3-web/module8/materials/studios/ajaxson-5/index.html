@@ -184,9 +184,9 @@ index.html request-gif.js</code></pre>
 <li><code>url</code> -- the url that we want to talk to</li>
 <li><code>data</code> -- any extra data that we want to send along with our request (in our case, the api_key and tag)</li>
 <li><code>success</code> -- a callback function to execute when the response comes back</li>
-<li><code>error</code> -- an alternative callback function, if something went wrong, to handle the error
-There are many more settings you can configure, but those are the core things we care about in this case. </li>
+<li><code>error</code> -- an alternative callback function, if something went wrong, to handle the error</li>
 </ul>
+<p>There are many more settings you can configure, but those are the core things we care about in this case. </p>
 <p>The last section of this function is a TODO where we instruct you to give the user a &quot;Loading...&quot; message while they wait for the response to come back. You might be wondering: Why are we displaying a loading message AFTER we've already done the whole request and handled the response in the <code>success()</code> (or <code>error()</code>) function? Remember, those callback functions will not actually be <em>executed</em> until later, after the response comes back. Just because the <code>success()</code> function is defined <em>above</em> line 53 does not mean that it will actually be invoked before line 53.</p>
 <p>The final piece of code in the file is a helper function called <code>setGifLoadedStatus()</code> which we have written, which you can use to toggle the visibility of the <code>&lt;img&gt;</code> and <code>&lt;p&gt;</code> tags in the HTML page. Depending on the situation, you are either going to want one to be visible and the other hidden, or vice versa, so this function makes it easy to flip back and forth between those two possible states.</p>
 <h3 id="assignment">Assignment</h3>
