@@ -69,29 +69,35 @@
 
                 
                 <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
-                    <h1 id="creating-a-quiz">Creating a Quiz</h1>
-<p>Your next task will be to create a program that allows the user to take a quiz. This means you will have to create some questions, and get some feedback from the user.</p>
-<p>First, the questions. We want to be able to handle multiple types of questions: multiple choice, fill in the blank, and questions with strictly numeric answers.</p>
-<p>As usual, consider:</p>
+                    <h5><a href="../..">Java Track</a></h5>
+<h1 id="final-project">Final Project</h1>
+<h3 id="synopsis">Synopsis</h3>
+<p>You've made it to the end! Now it is time to create a final project to show off your skills.</p>
+<h3 id="project-ideas">Project Ideas</h3>
+<p>You are welcome (and encouraged!) to come up with your own project idea. Please feel free to discuss your idea with an instructor or a mentor before you begin if you are unsure about the feasibility of your idea.</p>
+<p>If you are looking for ideas here are some suggestions:</p>
+<p>Many of the exercises we did in the Java Track could be expanded into full-fledged projects. Here are some ideas about how you could expand some of the exercises we have been working on:</p>
 <ul>
-<li>What do these types of questions have in common?</li>
-<li>What makes these question types different?</li>
+<li>The <a href="../problem-set-9">Student and Course</a> classes could be expanded into a complete course registration system including instructors, schools, semesters, transcripts, etc. A user interface and database (see below) could be incorporated.</li>
+<li>The banking application we have been developing in class could be expanded to include a user login system, loans, credit card processing, or other banking features.</li>
+<li>The [../studios/quiz-time](quiz application) could be expanded to become a survey taking application, with many different kinds of questions and different ways to display the results of a survey.</li>
 </ul>
-<p>Construct a base class that contains the common features, and subclasses as necessary. Don't forget to test!</p>
-<p>Make sure that there is functionality included to display the questions, the choices (if necessary) and check to see if the answer is correct.</p>
-<h1 id="design-change">Design Change</h1>
-<p>Now let's add a wrinkle into the design. We want to have two types of multiple choice questions: questions where only one choice is correct, and questions where multiple choices are correct.</p>
-<p>Think about how this will affect your design, and make the necessary changes. Test your code to make sure this new design works!</p>
-<h1 id="putting-it-all-together">Putting it all together</h1>
-<p>You're now ready to present these questions as a Quiz. Create a quiz class that will choose a question, present it to the user, accept the user's response, and then tell them whether their answer was correct or incorrect.</p>
-<p>You have two paths for grabbing user input:</p>
+<p>You might also consider the following project ideas:</p>
 <ul>
-<li>Scanner can read input from the console (quicker, easier): <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Scanner.html">Scanner API</a></li>
-<li>Dialogs use windows and buttons to get user feedback (more complex, but flashier): <a href="https://docs.oracle.com/javase/tutorial/uiswing/components/dialog.html">Dialog Examples</a></li>
+<li>A calendar application that allows users to schedule appointments</li>
+<li>An application that lets users track what foods they've eaten and prints out useful statistics</li>
+<li>An application that lets users log music/movies/books they've seen and makes simple recommendations based on their preferences</li>
 </ul>
-<p>When it comes to testing this portion of the program, be careful: good design states that retrieving input should be kept separate and isolated from the rest of the program. We want to be able to simulate user input in our tests by provided the appropriate values through method calls. We do <strong>not</strong> want to have to sit and type in a bunch of answers to questions just to test our code!</p>
-<p>For this problem set, you know that you have a good design if your Quiz class is fairly short. Remember that each of the Questions should be responsible for displaying themselves and checking the answers, so the Quiz class merely needs to utilize this functionality!</p>
-<p>When you are finished, make sure that all of your unit tests pass, commit and push your code, and notify an instructor.</p>
+<p><em>You are not limited to these ideas</em>. A good project idea is one that excites you, that encourages you and motivates you to make something truly special. If one of these suggestions does that for you, great! If not, try to find something that is of more interest to you.</p>
+<h3 id="additional-resources">Additional Resources</h3>
+<p>Programming is a very large topic, and we unfortunately do not have time to cover every aspect of it. This means that there may be certain parts of your project that you would like to implement that were not discussed directly in class. We encourage you to embrace these features, even though they may seem intimidating at first. Part of becoming a good programmer means recognizing when you do not know something and having the initiative to go and learn about it. Fortunately you have a lot of tools at your disposal, including mentors, the instructors, this website, and the vast amount of information that can be found online. Please do not hesitate to lean on these resources as you work on your project.</p>
+<p>In particular, a lot of the projects that have been mentioned would benefit from some form of <a href="https://en.wikipedia.org/wiki/Persistence_(computer_science)">persistence</a>. You first learned about persistence in CS50x, when you incorporated databases into your web applications. Fortunately, databases can be incorporated into your Java applications as well, and the concepts that you learned during the web development portion of the course translate to Java very well. With a little work, you should be able to use your MySQL database in your Java applications!</p>
+<p>Here are some helpful resources for using databases with your Java applications:</p>
+<ul>
+<li><a href="https://docs.oracle.com/javase/tutorial/jdbc/">Java documentation for databases</a></li>
+<li><a href="https://docs.oracle.com/javase/tutorial/jdbc/basics/gettingstarted.html">The official Java tutorial</a></li>
+<li><a href="http://www.vogella.com/tutorials/MySQLJava/article.html">Another tutorial that uses MySQL in Java</a></li>
+</ul>
                 </section>
 
             </div>

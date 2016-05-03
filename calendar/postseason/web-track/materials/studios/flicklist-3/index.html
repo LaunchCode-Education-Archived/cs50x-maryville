@@ -108,7 +108,7 @@ Switched to a new branch 'studio3-my-work'</code></pre>
 <p>As usual, add your api key to the object near the top of <code>flicklist.js</code>.</p>
 <h4 id="1-an-quoti-watched-itquot-button">1. An &quot;I watched it&quot; Button</h4>
 <p>In flicklist.js, inside the <code>render</code> function, add a button to each Watchlist item. When clicked, the appropriate movie should be removed from <code>model.watchlistItems</code>, and <code>render</code> should be called again.</p>
-<p>TODO explain <code>splice</code></p>
+<p>To remove the item from the array, you can use a new array function called <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice">splice</a>. You'll also need to use <code>indexOf</code> again (you should be familiar with this function from the previous studio), in order to determine where to splice from the array.</p>
 <h4 id="2-bootstrap-makeover-party">2. Bootstrap Makeover Party</h4>
 <p>Bootstrap comes with a ton of nice pre-made CSS styles &quot;right out of the box&quot;. We simply need to give our elements the appropriate class names, and they will automagically change appearence. There are a bunch of places all around the project where you will do this.</p>
 <h5 id="2a-include-the-library">2a. Include the Library</h5>
@@ -142,10 +142,25 @@ Switched to a new branch 'studio3-my-work'</code></pre>
 <h5 id="2i-style-the-quoti-watched-itquot-buttons">2i. Style the &quot;I watched it&quot; Buttons</h5>
 <p>Make 'em red. Here is the section on <a href="http://v4-alpha.getbootstrap.com/components/buttons/" target="_blank">Bootstrap Buttons</a> again.</p>
 <h5 id="2j-customize-the-quoti-watched-itquot-buttons">2j. Customize the &quot;I watched it&quot; Buttons</h5>
-<p>We want the button to fill the entire width of the container, and sit 10px below its upper neighbor.</p>
+<p>In <code>flicklist.js</code>, add some additional styles to these buttons. We want the button to fill the entire width of its container, and sit 10px below its upper neighbor.</p>
 <h4 id="3-responsive-grid-layout">3. Responsive Grid Layout</h4>
+<p>Now let's implement the grid layout. When the page is sufficiently wide, we want the browselist to show up to the right of the Watchlist, rather than below it. </p>
+<h5 id="3a-implement-the-grid">3a. Implement the Grid</h5>
+<p>In <code>index.html</code>, add another <code>&lt;div&gt;</code> inside the main content div, but still wrapped around both sections. This new div should have a class of &quot;row&quot;. </p>
+<p>Next, give each section a class of &quot;col-?-?&quot; (the question marks are for oyu to figure out). You want the watchlist to take up 5/12 of the width of the screen, and the browselist to take up the remaining 7/12. The &quot;breakpoint&quot; should be tablet devices-- in other words, if the user is on an iPad or anything smaller, then the column layout switches back to normal, with the browselist on its own block below the watchlist.</p>
+<p>Resize your window and see if it's working properly. At a certain point, the layout should switch back and forth.</p>
+<p>Read more on <a>Bootstrap Grids</a> for guidance.</p>
+<h5 id="3b-add-a-meta-viewport-tag">3b. Add a Meta Viewport Tag</h5>
+<p>Open up the developer tools and click the little icon of a tablet and a phone. This will allow you to simiulate varous devices in the browser.</p>
+<p>Uh-oh! Things don't look so great for these devices. Why not? Our layout is responsive...</p>
+<p>It turns out there is one more little tag we need to add to the top of our html file:</p>
+<pre><code class="language-html">&lt;meta name=viewport content="width=device-width, initial-scale=1"&gt;</code></pre>
+<p>From now on, this is another one of those tags that you probably want to include in all your HMTL right from the beginning. This sets the width of the page's viewport to be equal to the width of the user's device. Read more <a href="https://developers.google.com/speed/docs/insights/ConfigureViewport#additional-information">here</a>.</p>
 <h4 id="4-poster-images">4. Poster Images</h4>
+<p>The last task to tackle is to add poster images to the Watchlist items. </p>
 <h4 id="5-remove-dead-code">5. Remove Dead Code</h4>
+<p>There's a chunk of CSS code we no longer need after switching to Bootstrap. For example, Bootstrap automatically applies some transparency to disabled buttons. </p>
+<p>All the rest of the CSS at the bottom of the file is obsolete. Go ahead and delete it!</p>
 <h3 id="how-to-submit">How to Submit</h3>
 <p>As usual, first, commit your work on Git and push to a new branch on your GitHub repo. Then, submit a link to your repo on Vocareum.</p>
 <h5 id="commit-and-push">Commit and Push</h5>
