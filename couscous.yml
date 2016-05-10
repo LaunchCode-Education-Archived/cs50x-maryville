@@ -37,7 +37,7 @@ menu:
             attributes: target="_blank"
         piazza:
             text: Piazza
-            absoluteUrl: http://piazza.com/link-to-maryville-piazza-page
+            absoluteUrl: http://piazza.com/launchcode/summer2016/lc50/home
             attributes: target="_blank"
         studentguide:  
             text: Student Guide
