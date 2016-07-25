@@ -153,7 +153,7 @@ console.log(url); // =&gt; logs http://images5.fanpop.com/image/photos/25100000/
 <p>This task involves changing code in both <code>index.html</code> and <code>flicklist.js</code>.</p>
 <p>Read more about <a href="http://v4-alpha.getbootstrap.com/components/list-group/" target="_blank">Bootstrap Lists</a> and <a href="http://v4-alpha.getbootstrap.com/components/buttons/" target="_blank">Bootstrap Buttons</a> for guidance.</p>
 <h5 id="2e-style-the-form">2e. Style the Form</h5>
-<p>For guidance, read more about <a>Boostrap Inputs</a>, especially <a>Button Add-ons</a>.</p>
+<p>For guidance, read more about <a href="http://v4-alpha.getbootstrap.com/components/input-group/" target="_blank">Boostrap Input Groups</a>, especially <a href="http://v4-alpha.getbootstrap.com/components/input-group/#button-addons" target="_blank">Button Addons</a>.</p>
 <h5 id="2f-style-the-watchlist">2f. Style the Watchlist</h5>
 <p>This one's very simple. In index.html, just give the watchlist <code>&lt;ul&gt;</code> a class of <a href="http://getbootstrap.com/css/#inline" target="_blank">list-inline</a>. Remember that whole <code>"inline-block"</code> shenanigans we did last time? This class was made specifically for lists like the kind we're doing here.</p>
 <h5 id="2g-style-the-watchlist-items">2g. Style the Watchlist Items</h5>
@@ -186,7 +186,20 @@ console.log(url); // =&gt; logs http://images5.fanpop.com/image/photos/25100000/
 <pre><code class="language-html">&lt;meta name=viewport content="width=device-width, initial-scale=1"&gt;</code></pre>
 <p>From now on, this is another one of those tags that you probably want to include in all your HMTL right from the beginning. This sets the width of the page's viewport to be equal to the width of the user's device. Read more <a href="https://developers.google.com/speed/docs/insights/ConfigureViewport#additional-information">here</a>.</p>
 <h4 id="4-poster-images">4. Poster Images</h4>
-<p>The last task to tackle is to add poster images to the Watchlist items. </p>
+<p>The last task to tackle is to add poster images to the Watchlist items. This involves two parts:</p>
+<h5 id="4a-add-image-element-to-watchlist-item">4a. Add Image Element to Watchlist Item</h5>
+<p>Inside <code>render</code>, use jQuery to make an <code>&lt;img&gt;</code> element, and set its <code>src</code> attribute equal to the result calling of the <code>posterUrl</code> function inside the <code>api</code> object at the top of the file. When calling the function, don't forget to pass your movie in as an argument. </p>
+<p>Once you have the element, append it inside the &quot;body&quot; portion of the Bootstrap panel (rather than the &quot;heading&quot; portion).</p>
+<p>Also, give the image element a class of &quot;img-responsive&quot;. This is another Bootstrap class that does some work for us, for example setting the element's width to be 100% of its container (and not more! otherwise it will stick out past the bounds of the container).</p>
+<h5 id="4b-implement-the-posterurl-function">4b. Implement the posterUrl function</h5>
+<p>Now we have to actually implement that function. Currently it just returns a hard-coded url. We want to examine the movie that was passed in, and figure out what the actual url should be. </p>
+<p>To help you figure that out, here are three example urls to real movie posters:</p>
+<ul>
+<li><a href="http://image.tmdb.org/t/p/w300//jjBgi2r5cRt36xF6iNUEhzscEcb.jpg">http://image.tmdb.org/t/p/w300//jjBgi2r5cRt36xF6iNUEhzscEcb.jpg</a></li>
+<li><a href="http://image.tmdb.org/t/p/w300//kqjL17yufvn9OVLyXYpvtyrFfak.jpg">http://image.tmdb.org/t/p/w300//kqjL17yufvn9OVLyXYpvtyrFfak.jpg</a></li>
+<li><a href="http://image.tmdb.org/t/p/w300//nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg">http://image.tmdb.org/t/p/w300//nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg</a></li>
+</ul>
+<p>Use a console.log statement to print a movie object and poke around and see if you can find anything that might help construct the full url for a particular movie.</p>
 <h4 id="5-remove-dead-code">5. Remove Dead Code</h4>
 <p>There's a chunk of CSS code we no longer need after switching to Bootstrap. For example, Bootstrap automatically applies some transparency to disabled buttons. </p>
 <p>All the rest of the CSS at the bottom of the file is obsolete. Go ahead and delete it!</p>
